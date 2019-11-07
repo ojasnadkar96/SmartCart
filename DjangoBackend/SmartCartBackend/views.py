@@ -103,7 +103,7 @@ def walmart_crawl(walmart_item):
 	walmart_page = requests.get(url=walmart_url, headers=walmart_headers)
 	walmart_soup = BeautifulSoup(walmart_page.content, 'lxml')
 	walmart_product = walmart_soup.find('li', class_='Grid-col u-size-6-12 u-size-1-4-m u-size-1-5-xl search-gridview-first-col-item search-gridview-first-grid-row-item')
-	walmart_price = walmart_product.find(class_="price-group").get_text()
+	walmart_price = walmart_product.find(class_="price-group").text
 	walmart_description = walmart_product.find('div', class_='search-result-product-title gridview')
 	walmart_anchor = walmart_description.find('a', class_='product-title-link line-clamp line-clamp-2')
 	walmart_link = 'https://www.walmart.com' + walmart_anchor['href']
