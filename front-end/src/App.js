@@ -81,6 +81,7 @@ function App(){
   const [data, setData] = React.useState(" ");
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
+  const axios = require('axios');
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
@@ -91,7 +92,15 @@ function App(){
   };
 
   const onSubmit = () => {
-    alert('You clicked the submit button');    
+    alert('You clicked the submit button');
+    axios.post('http://127.0.0.1:8000/findprice/',{item:"whole+milk"})
+    .then(function(response){
+      console.log(response);
+    })
+    .catch(function(error){
+      console.log(error);
+    })
+
   };
 
   // componentDidMount(){
@@ -185,7 +194,7 @@ function App(){
       />
       </div>
       <div>
-      <Button variant="contained" color="primary" style={{ margin: 18 }} onClick = {callBackendAPI}>
+      <Button variant="contained" color="primary" style={{ margin: 18 }} onClick = {onSubmit}>
         Submit
       </Button>
       </div>
@@ -214,7 +223,7 @@ function App(){
       />
       <CardMedia
         className={classes.media}
-        image={require ("/Users/Kevin/Desktop/CapStone/express-react/frontend/src/1.jpg")}
+        image={require ("/Users/Kevin/Desktop/CapStone/SmartCart/front-end/src/1.jpg")}
         title="Lamborghini"
       />
       <CardContent>
@@ -274,7 +283,7 @@ function App(){
       />
       <CardMedia
         className={classes.media}
-        image={require ("/Users/Kevin/Desktop/CapStone/express-react/frontend/src/2.jpg")}
+        image={require ("/Users/Kevin/Desktop/CapStone/SmartCart/front-end/src/2.jpg")}
         title="Lamborghini"
       />
       <CardContent>
@@ -334,7 +343,7 @@ function App(){
       />
       <CardMedia
         className={classes.media}
-        image={require ("/Users/Kevin/Desktop/CapStone/express-react/frontend/src/3.jpg")}
+        image={require ("/Users/Kevin/Desktop/CapStone/SmartCart/front-end/src/3.jpg")}
         title="Lamborghini"
       />
       <CardContent>
@@ -394,7 +403,7 @@ function App(){
       />
       <CardMedia
         className={classes.media}
-        image={require ("/Users/Kevin/Desktop/CapStone/express-react/frontend/src/4.jpg")}
+        image={require ("/Users/Kevin/Desktop/CapStone/SmartCart/front-end/src/4.jpg")}
         title="Lamborghini"
       />
       <CardContent>

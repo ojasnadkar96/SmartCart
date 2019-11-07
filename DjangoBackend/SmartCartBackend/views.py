@@ -30,11 +30,11 @@ from time import sleep
 def findPrice(item):
 	query_item = json.loads(item.body)
 	dict_query = {}
-	dict_query['Item'] = query_item
+	dict_query['Item'] = query_item['item']
 	default_title = 'CANNOT FIND ITEM'
 	default_price = 0.0
 	try:
-		w_title, w_cost, w_link = walmart_crawl(query_item)
+		w_title, w_cost, w_link = walmart_crawl(query_item['item'])
 		w_price = convert_price_string_to_float(w_cost)
 		dict_query['Walmart_Title'] = w_title
 		dict_query['Walmart_Price'] = w_price
@@ -58,7 +58,7 @@ def findPrice(item):
 		dict_query['Target_Link'] = t_link
 	'''
 	try:
-		a_title, a_cost, a_link = amazon_crawl(query_item)
+		a_title, a_cost, a_link = amazon_crawl(query_item['item'])
 		a_price = convert_price_string_to_float(a_cost)
 		dict_query['Amazon_Title'] = a_title
 		dict_query['Amazon_Price'] = a_price
@@ -69,7 +69,7 @@ def findPrice(item):
 		dict_query['Amazon_Price'] = default_price
 		dict_query['Amazon_Link'] = a_link
 	try:
-		r_title, r_cost, r_link = rite_crawl(query_item)
+		r_title, r_cost, r_link = rite_crawl(query_item['item'])
 		r_price = convert_price_string_to_float(r_cost)
 		dict_query['Rite_Title'] = r_title
 		dict_query['Rite_Price'] = r_price
