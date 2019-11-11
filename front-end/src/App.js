@@ -77,18 +77,50 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function App(){
-  
-  const [data, setData] = React.useState(" ");
+
+  const [Search_Query,set_Search_Query] = React.useState(null);
+  const [Search_Query1,set_Search_Query1] = React.useState(null);
+  const [Search_Query2,set_Search_Query2] = React.useState(null);
+  const [Search_Query3,set_Search_Query3] = React.useState(null);
+  const [Search_Query4,set_Search_Query4] = React.useState(null);
+  const [Search_Query5,set_Search_Query5] = React.useState(null);
+  const [Amazon_Title,set_Amazon_Title] = React.useState("Not Found");
+  const [Amazon_Price,set_Amazon_Price] = React.useState(" - ");
+  const [Amazon_Link,set_Amazon_Link] = React.useState(" - ");
+  const [Walmart_Title,set_Walmart_Title] = React.useState("Not Found");
+  const [Walmart_Price,set_Walmart_Price] = React.useState(" - ");
+  const [Walmart_Link,set_Walmart_Link] = React.useState(" - ");
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
   const axios = require('axios');
+
+  const onInputChange = (event) => {
+    set_Search_Query(event.target.value);
+    console.log(Search_Query);
+  };
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
 
-  const handleDelete = () => {
-    alert('You clicked the delete icon.');
+  const handleDelete1 = () => {
+    set_Search_Query1(null);
+  };
+
+  const handleDelete2 = () => {
+    set_Search_Query2(null);
+  };
+
+  const handleDelete3 = () => {
+    set_Search_Query3(null);
+  };
+
+  const handleDelete4 = () => {
+    set_Search_Query4(null);
+  };
+
+  const handleDelete5 = () => {
+    set_Search_Query5(null);
   };
 
   const onSubmit = () => {
@@ -96,11 +128,35 @@ function App(){
     axios.post('http://127.0.0.1:8000/findprice/',{item:"whole+milk"})
     .then(function(response){
       console.log(response);
+      console.log(response.data.Walmart_Title);
+      set_Amazon_Title(response.data.Amazon_Title);
+      set_Amazon_Price(response.data.Amazon_Price);
+      set_Amazon_Link(response.data.Amazon_Link);
+      set_Walmart_Title(response.data.Walmart_Title);
+      set_Walmart_Price(response.data.Walmart_Price);
+      set_Walmart_Link(response.data.Walmart_Link);
     })
     .catch(function(error){
       console.log(error);
     })
 
+  };
+
+  const onAdd = () => {
+    if(Search_Query !== null)
+    {
+      var query = Search_Query.split(",");
+      var len = query.length;
+      set_Search_Query1(query[0]);
+      if(len>=2)
+        set_Search_Query2(query[1]);
+      if(len>=3)
+        set_Search_Query3(query[2]);
+      if(len>=4)
+        set_Search_Query4(query[3]);
+      if(len ===5)
+        set_Search_Query5(query[4]);   
+    }
   };
 
   // componentDidMount(){
@@ -117,7 +173,6 @@ function App(){
       throw Error(body.message);
     }
     console.log(body.express);
-    setData(`${body.express}`);
     return body;
 
   };
@@ -160,47 +215,60 @@ function App(){
         fullWidth
         margin="normal"
         variant="outlined"
+        onChange = {onInputChange}
         InputLabelProps={{
           shrink: true,
         }}
       />
       </form>
       <div>
+      <Button variant="contained" color="primary" style={{ margin: 18 }} onClick = {onAdd}>
+        Add Item
+      </Button>
+      </div>
+      <div>
       <h2>List of items</h2>
+      { Search_Query1 !== null &&
       <Chip
-        label="Item 1"
-        onDelete={handleDelete}
+        label={Search_Query1}
+        onDelete={handleDelete1}
         variant="outlined"
       />
+      }
+      { Search_Query2 !== null &&
       <Chip
-        label="Item 2"
-        onDelete={handleDelete}
+        label={Search_Query2}
+        onDelete={handleDelete2}
         variant="outlined"
       />
+      }
+      { Search_Query3 !== null &&
       <Chip
-        label="Item 3"
-        onDelete={handleDelete}
+        label={Search_Query3}
+        onDelete={handleDelete3}
         variant="outlined"
       />
+      }
+      { Search_Query4 !== null &&
       <Chip
-        label="Item 4"
-        onDelete={handleDelete}
+        label={Search_Query4}
+        onDelete={handleDelete4}
         variant="outlined"
       />
+      }
+      { Search_Query5 !== null &&
       <Chip
-        label="Item 5"
-        onDelete={handleDelete}
+        label={Search_Query5}
+        onDelete={handleDelete5}
         variant="outlined"
       />
+      }
       </div>
       <div>
       <Button variant="contained" color="primary" style={{ margin: 18 }} onClick = {onSubmit}>
         Submit
       </Button>
       </div>
-      </div>
-      <div>
-        <p> Before clicking the submit button: {data} </p>
       </div>
       <br></br>
       <div className={classes.root}>
@@ -218,17 +286,18 @@ function App(){
             <MoreVertIcon />
           </IconButton>
         }
-        title="Lamborghini"
-        subheader="Target for 2022"
+        title = {Amazon_Title}
+        subheader={Amazon_Price}
       />
       <CardMedia
         className={classes.media}
+        //image = {{uri:'https://m.media-amazon.com/images/I/51q509vv--L._AC_UL320_ML3_.jpg'}}
         image={require ("/Users/Kevin/Desktop/CapStone/SmartCart/front-end/src/1.jpg")}
-        title="Lamborghini"
+        title={Amazon_Title}  
       />
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
-          We will enter the details about the product here in this section
+          {Amazon_Link}
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
@@ -278,17 +347,17 @@ function App(){
             <MoreVertIcon />
           </IconButton>
         }
-        title="Lamborghini"
-        subheader="Target for 2022"
+        title={Walmart_Title}
+        subheader={Walmart_Price}
       />
       <CardMedia
         className={classes.media}
         image={require ("/Users/Kevin/Desktop/CapStone/SmartCart/front-end/src/2.jpg")}
-        title="Lamborghini"
+        title={Walmart_Title}
       />
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
-          We will enter the details about the product here in this section
+          {Walmart_Link}
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
