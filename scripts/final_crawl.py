@@ -7,7 +7,7 @@ from selenium import webdriver
 import sys
 from time import sleep
 
-chrome_driver = 'E:\Data\chromedriver.exe'
+chrome_driver = 'C:/Users/Kevin/Desktop/CapStone/chromedriver.exe'
 
 def walmart_crawl(walmart_item):
 	walmart_headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.71 Safari/537.36'}
@@ -151,7 +151,7 @@ def main():
 		dict_query['Costco_Title'] = default_title
 		dict_query['Costco_Price'] = default_price
 		dict_query['Costco_Link'] = c_link
-	#print(json.dumps(dict_query, indent=4, sort_keys=False))
+	print(json.dumps(dict_query, indent=4, sort_keys=False))
 	return dict_query
 
 if __name__ == "__main__":

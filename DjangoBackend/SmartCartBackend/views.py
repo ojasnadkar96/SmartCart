@@ -44,9 +44,8 @@ def findPrice(item):
 		dict_query['Walmart_Title'] = default_title
 		dict_query['Walmart_Price'] = default_price
 		dict_query['Walmart_Link'] = w_link
-	'''
 	try:
-		t_title, t_cost, t_link = target_crawl(query_item)
+		t_title, t_cost, t_link = target_crawl(query_item['item'])
 		t_price = convert_price_string_to_float(t_cost)
 		dict_query['Target_Title'] = t_title
 		dict_query['Target_Price'] = t_price
@@ -56,7 +55,6 @@ def findPrice(item):
 		dict_query['Target_Title'] = default_title
 		dict_query['Target_Price'] = default_price
 		dict_query['Target_Link'] = t_link
-	'''
 	try:
 		a_title, a_cost, a_link = amazon_crawl(query_item['item'])
 		a_price = convert_price_string_to_float(a_cost)
@@ -68,6 +66,7 @@ def findPrice(item):
 		dict_query['Amazon_Title'] = default_title
 		dict_query['Amazon_Price'] = default_price
 		dict_query['Amazon_Link'] = a_link
+	'''	
 	try:
 		r_title, r_cost, r_link = rite_crawl(query_item['item'])
 		r_price = convert_price_string_to_float(r_cost)
@@ -81,7 +80,7 @@ def findPrice(item):
 		dict_query['Rite_Link'] = r_link
 	'''
 	try:
-		c_title, c_cost, c_link = costco_crawl(query_item)
+		c_title, c_cost, c_link = costco_crawl(query_item['item'])
 		c_price = convert_price_string_to_float(c_cost)
 		dict_query['Costco_Title'] = c_title
 		dict_query['Costco_Price'] = c_price
@@ -91,11 +90,10 @@ def findPrice(item):
 		dict_query['Costco_Title'] = default_title
 		dict_query['Costco_Price'] = default_price
 		dict_query['Costco_Link'] = c_link
-	'''
 	return JsonResponse(dict_query)
 	#return dict_query
 
-chrome_driver = 'E:\Data\chromedriver.exe'
+chrome_driver = 'C:/Users/Kevin/Desktop/CapStone/chromedriver.exe'
 
 def walmart_crawl(walmart_item):
 	walmart_headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.71 Safari/537.36'}
@@ -112,7 +110,7 @@ def walmart_crawl(walmart_item):
 	
 def target_crawl(target_item):
 	target_url = 'https://www.target.com/s?searchTerm=' + target_item + '&sortBy=PriceLow&Nao=0'
-	target_driver = webdriver.Chrome(chrome_driver)
+	target_driver = webdriver.Chrome(executable_path=chrome_driver)
 	target_driver.get(target_url)
 	sleep(1)
 	target_innerHTML = target_driver.page_source
@@ -152,7 +150,7 @@ def rite_crawl(rite_item):
 
 def costco_crawl(costco_item):
 	costco_url = 'https://www.costco.com/CatalogSearch?sortBy=PriceMin%7C0&keyword=' + costco_item + '&dept=All'
-	costco_driver = webdriver.Chrome(chrome_driver)
+	costco_driver = webdriver.Chrome(executable_path=chrome_driver)
 	costco_driver.get(costco_url)
 	costco_innerHTML = costco_driver.page_source
 	costco_soup = BeautifulSoup(costco_innerHTML,"lxml")
