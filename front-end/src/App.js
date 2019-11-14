@@ -1,7 +1,7 @@
 
 //front end code using material UI
 
-import React, {Component} from 'react';
+import React from 'react';
 //import logo from './logo.svg';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
@@ -84,12 +84,48 @@ function App(){
   const [Search_Query3,set_Search_Query3] = React.useState(null);
   const [Search_Query4,set_Search_Query4] = React.useState(null);
   const [Search_Query5,set_Search_Query5] = React.useState(null);
-  const [Amazon_Title,set_Amazon_Title] = React.useState("Not Found");
-  const [Amazon_Price,set_Amazon_Price] = React.useState(" - ");
-  const [Amazon_Link,set_Amazon_Link] = React.useState(" - ");
-  const [Walmart_Title,set_Walmart_Title] = React.useState("Not Found");
-  const [Walmart_Price,set_Walmart_Price] = React.useState(" - ");
-  const [Walmart_Link,set_Walmart_Link] = React.useState(" - ");
+
+  const [Amazon_Title_Query1,set_Amazon_Title_Query1] = React.useState("Not Found");
+  const [Amazon_Price_Query1,set_Amazon_Price_Query1] = React.useState(" - ");
+  const [Amazon_Link_Query1,set_Amazon_Link_Query1] = React.useState(" - ");
+  const [Walmart_Title_Query1,set_Walmart_Title_Query1] = React.useState("Not Found");
+  const [Walmart_Price_Query1,set_Walmart_Price_Query1] = React.useState(" - ");
+  const [Walmart_Link_Query1,set_Walmart_Link_Query1] = React.useState(" - ");
+  
+  const [Amazon_Title_Query2,set_Amazon_Title_Query2] = React.useState("Not Found");
+  const [Amazon_Price_Query2,set_Amazon_Price_Query2] = React.useState(" - ");
+  const [Amazon_Link_Query2,set_Amazon_Link_Query2] = React.useState(" - ");
+  const [Walmart_Title_Query2,set_Walmart_Title_Query2] = React.useState("Not Found");
+  const [Walmart_Price_Query2,set_Walmart_Price_Query2] = React.useState(" - ");
+  const [Walmart_Link_Query2,set_Walmart_Link_Query2] = React.useState(" - ");
+
+  const [Amazon_Title_Query3,set_Amazon_Title_Query3] = React.useState("Not Found");
+  const [Amazon_Price_Query3,set_Amazon_Price_Query3] = React.useState(" - ");
+  const [Amazon_Link_Query3,set_Amazon_Link_Query3] = React.useState(" - ");
+  const [Walmart_Title_Query3,set_Walmart_Title_Query3] = React.useState("Not Found");
+  const [Walmart_Price_Query3,set_Walmart_Price_Query3] = React.useState(" - ");
+  const [Walmart_Link_Query3,set_Walmart_Link_Query3] = React.useState(" - ");
+
+  const [Amazon_Title_Query4,set_Amazon_Title_Query4] = React.useState("Not Found");
+  const [Amazon_Price_Query4,set_Amazon_Price_Query4] = React.useState(" - ");
+  const [Amazon_Link_Query4,set_Amazon_Link_Query4] = React.useState(" - ");
+  const [Walmart_Title_Query4,set_Walmart_Title_Query4] = React.useState("Not Found");
+  const [Walmart_Price_Query4,set_Walmart_Price_Query4] = React.useState(" - ");
+  const [Walmart_Link_Query4,set_Walmart_Link_Query4] = React.useState(" - ");
+
+  const [Amazon_Title_Query5,set_Amazon_Title_Query5] = React.useState("Not Found");
+  const [Amazon_Price_Query5,set_Amazon_Price_Query5] = React.useState(" - ");
+  const [Amazon_Link_Query5,set_Amazon_Link_Query5] = React.useState(" - ");
+  const [Walmart_Title_Query5,set_Walmart_Title_Query5] = React.useState("Not Found");
+  const [Walmart_Price_Query5,set_Walmart_Price_Query5] = React.useState(" - ");
+  const [Walmart_Link_Query5,set_Walmart_Link_Query5] = React.useState(" - ");
+
+  const [result1,set_Result1] = React.useState(null);
+  const [result2,set_Result2] = React.useState(null);
+  const [result3,set_Result3] = React.useState(null);
+  const [result4,set_Result4] = React.useState(null);
+  const [result5,set_Result5] = React.useState(null);
+
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
   const axios = require('axios');
@@ -105,40 +141,122 @@ function App(){
 
   const handleDelete1 = () => {
     set_Search_Query1(null);
+    set_Result1(null);
   };
 
   const handleDelete2 = () => {
     set_Search_Query2(null);
+    set_Result2(null);
   };
 
   const handleDelete3 = () => {
     set_Search_Query3(null);
+    set_Result3(null);
   };
 
   const handleDelete4 = () => {
     set_Search_Query4(null);
+    set_Result4(null);
   };
 
   const handleDelete5 = () => {
     set_Search_Query5(null);
+    set_Result5(null);
   };
 
   const onSubmit = () => {
     alert('You clicked the submit button');
-    axios.post('http://127.0.0.1:8000/findprice/',{item:"whole+milk"})
-    .then(function(response){
-      console.log(response);
-      console.log(response.data.Walmart_Title);
-      set_Amazon_Title(response.data.Amazon_Title);
-      set_Amazon_Price(response.data.Amazon_Price);
-      set_Amazon_Link(response.data.Amazon_Link);
-      set_Walmart_Title(response.data.Walmart_Title);
-      set_Walmart_Price(response.data.Walmart_Price);
-      set_Walmart_Link(response.data.Walmart_Link);
-    })
-    .catch(function(error){
-      console.log(error);
-    })
+    
+    if(Search_Query1 !== null)
+    {
+      axios.post('http://127.0.0.1:8000/findprice/',{item:Search_Query1}) 
+      .then(function(response){
+        console.log(response);
+        console.log(response.data.Walmart_Title);
+        set_Amazon_Title_Query1(response.data.Amazon_Title);
+        set_Amazon_Price_Query1(response.data.Amazon_Price);
+        set_Amazon_Link_Query1(response.data.Amazon_Link);
+        set_Walmart_Title_Query1(response.data.Walmart_Title);
+        set_Walmart_Price_Query1(response.data.Walmart_Price);
+        set_Walmart_Link_Query1(response.data.Walmart_Link);
+        set_Result1(true);
+      })
+      .catch(function(error){
+        console.log(error);
+      })
+    }
+
+    if(Search_Query2 !== null)
+    {
+      axios.post('http://127.0.0.1:8000/findprice/',{item:Search_Query2}) 
+      .then(function(response){
+        console.log(response);
+        console.log(response.data.Walmart_Title);
+        set_Amazon_Title_Query2(response.data.Amazon_Title);
+        set_Amazon_Price_Query2(response.data.Amazon_Price);
+        set_Amazon_Link_Query2(response.data.Amazon_Link);
+        set_Walmart_Title_Query2(response.data.Walmart_Title);
+        set_Walmart_Price_Query2(response.data.Walmart_Price);
+        set_Walmart_Link_Query2(response.data.Walmart_Link);
+        set_Result2(true);
+      })
+      .catch(function(error){
+        console.log(error);
+      })
+    }
+
+    if(Search_Query3 !== null)
+    {
+      axios.post('http://127.0.0.1:8000/findprice/',{item:Search_Query3}) 
+      .then(function(response){
+        console.log(response);
+        console.log(response.data.Walmart_Title);
+        set_Amazon_Title_Query3(response.data.Amazon_Title);
+        set_Amazon_Price_Query3(response.data.Amazon_Price);
+        set_Amazon_Link_Query3(response.data.Amazon_Link);
+        set_Walmart_Title_Query3(response.data.Walmart_Title);
+        set_Walmart_Price_Query3(response.data.Walmart_Price);
+        set_Walmart_Link_Query3(response.data.Walmart_Link);
+        set_Result3(true);
+      })
+      .catch(function(error){
+        console.log(error);
+      })
+    }
+
+    if(Search_Query4 !== null)
+    {
+      axios.post('http://127.0.0.1:8000/findprice/',{item:Search_Query4}) 
+      .then(function(response){
+        set_Amazon_Title_Query4(response.data.Amazon_Title);
+        set_Amazon_Price_Query4(response.data.Amazon_Price);
+        set_Amazon_Link_Query4(response.data.Amazon_Link);
+        set_Walmart_Title_Query4(response.data.Walmart_Title);
+        set_Walmart_Price_Query4(response.data.Walmart_Price);
+        set_Walmart_Link_Query4(response.data.Walmart_Link);
+        set_Result4(true);
+      })
+      .catch(function(error){
+        console.log(error);
+      })
+    }
+
+    if(Search_Query5 !== null)
+    {
+      axios.post('http://127.0.0.1:8000/findprice/',{item:Search_Query5}) 
+      .then(function(response){
+        set_Amazon_Title_Query5(response.data.Amazon_Title);
+        set_Amazon_Price_Query5(response.data.Amazon_Price);
+        set_Amazon_Link_Query5(response.data.Amazon_Link);
+        set_Walmart_Title_Query5(response.data.Walmart_Title);
+        set_Walmart_Price_Query5(response.data.Walmart_Price);
+        set_Walmart_Link_Query5(response.data.Walmart_Link);
+        set_Result5(true);
+      })
+      .catch(function(error){
+        console.log(error);
+      })
+    }
 
   };
 
@@ -165,17 +283,16 @@ function App(){
   //   .catch(err => console.log(err));
   // }
 
-  const callBackendAPI = async () => {
-    const response = await fetch('/express_backend');
-    const body = await response.json();
+  // const callBackendAPI = async () => {
+  //   const response = await fetch('/express_backend');
+  //   const body = await response.json();
 
-    if(response.status!==200){
-      throw Error(body.message);
-    }
-    console.log(body.express);
-    return body;
-
-  };
+  //   if(response.status!==200){
+  //     throw Error(body.message);
+  //   }
+  //   console.log(body.express);
+  //   return body;
+  // };
 
     return (
       <div className="App">
@@ -271,6 +388,7 @@ function App(){
       </div>
       </div>
       <br></br>
+      { result1 !== null &&
       <div className={classes.root}>
       <Grid container spacing={3}>
         <Grid item xs={3}>
@@ -286,18 +404,19 @@ function App(){
             <MoreVertIcon />
           </IconButton>
         }
-        title = {Amazon_Title}
-        subheader={Amazon_Price}
+        title = {Amazon_Title_Query1}
+        subheader={Amazon_Price_Query1}
       />
       <CardMedia
         className={classes.media}
+        //image = {{uri:'https://via.placeholder.com/350x150'}}
         //image = {{uri:'https://m.media-amazon.com/images/I/51q509vv--L._AC_UL320_ML3_.jpg'}}
-        image={require ("/Users/Kevin/Desktop/CapStone/SmartCart/front-end/src/1.jpg")}
-        title={Amazon_Title}  
+        image={require("/Users/Kevin/Desktop/CapStone/SmartCart/front-end/src/1.jpg")}
+        title={Amazon_Title_Query1}  
       />
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
-          {Amazon_Link}
+          {Amazon_Link_Query1}
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
@@ -347,17 +466,269 @@ function App(){
             <MoreVertIcon />
           </IconButton>
         }
-        title={Walmart_Title}
-        subheader={Walmart_Price}
+        title={Walmart_Title_Query1}
+        subheader={Walmart_Price_Query1}
       />
       <CardMedia
         className={classes.media}
         image={require ("/Users/Kevin/Desktop/CapStone/SmartCart/front-end/src/2.jpg")}
-        title={Walmart_Title}
+        title={Walmart_Title_Query1}
       />
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
-          {Walmart_Link}
+          {Walmart_Link_Query1}
+        </Typography>
+      </CardContent>
+      <CardActions disableSpacing>
+        <IconButton aria-label="add to favorites">
+          <FavoriteIcon />
+        </IconButton>
+        <IconButton aria-label="share">
+          <ShareIcon />
+        </IconButton>
+        <IconButton
+          className={clsx(classes.expand, {
+            [classes.expandOpen]: expanded,
+          })}
+          onClick={handleExpandClick}
+          aria-expanded={expanded}
+          aria-label="show more"
+        >
+        <ExpandMoreIcon/> 
+        </IconButton>
+      </CardActions>
+      <Collapse in={expanded} timeout="auto" unmountOnExit>
+        <CardContent>
+          <Typography paragraph>
+            Enter more details here.
+          </Typography>
+          <Typography paragraph>
+            Add some more details here.
+          </Typography>
+          <Typography paragraph>
+            We can add some more details here.
+          </Typography>
+        </CardContent>
+      </Collapse>
+    </Card>
+        </Grid>
+        <Grid item xs={3}>
+        <Card className={classes.card}>
+      <CardHeader
+        avatar={
+          <Avatar aria-label="recipe" className={classes.avatar}>
+            3
+          </Avatar>
+        }
+        action={
+          <IconButton aria-label="settings">
+            <MoreVertIcon />
+          </IconButton>
+        }
+        title={Amazon_Title_Query1}
+        subheader={Amazon_Price_Query1}
+      />
+      <CardMedia
+        className={classes.media}
+        image={require ("/Users/Kevin/Desktop/CapStone/SmartCart/front-end/src/3.jpg")}
+        title={Amazon_Title_Query1}
+      />
+      <CardContent>
+        <Typography variant="body2" color="textSecondary" component="p">
+          We will enter the details about the product here in this section
+        </Typography>
+      </CardContent>
+      <CardActions disableSpacing>
+        <IconButton aria-label="add to favorites">
+          <FavoriteIcon />
+        </IconButton>
+        <IconButton aria-label="share">
+          <ShareIcon />
+        </IconButton>
+        <IconButton
+          className={clsx(classes.expand, {
+            [classes.expandOpen]: expanded,
+          })}
+          onClick={handleExpandClick}
+          aria-expanded={expanded}
+          aria-label="show more"
+        >
+        <ExpandMoreIcon/> 
+        </IconButton>
+      </CardActions>
+      <Collapse in={expanded} timeout="auto" unmountOnExit>
+        <CardContent>
+          <Typography paragraph>Method:</Typography>
+          <Typography paragraph>
+            Enter more details here.
+          </Typography>
+          <Typography paragraph>
+            Add some more details here.
+          </Typography>
+          <Typography paragraph>
+            We can add some more details here.
+          </Typography>
+        </CardContent>
+      </Collapse>
+    </Card>
+        </Grid>
+        <Grid item xs={3}>
+        <Card className={classes.card}>
+      <CardHeader
+        avatar={
+          <Avatar aria-label="recipe" className={classes.avatar}>
+            4
+          </Avatar>
+        }
+        action={
+          <IconButton aria-label="settings">
+            <MoreVertIcon />
+          </IconButton>
+        }
+        title={Amazon_Title_Query1}
+        subheader={Amazon_Price_Query1}
+      />
+      <CardMedia
+        className={classes.media}
+        image={require ("/Users/Kevin/Desktop/CapStone/SmartCart/front-end/src/4.jpg")}
+        title={Amazon_Title_Query1}
+      />
+      <CardContent>
+        <Typography variant="body2" color="textSecondary" component="p">
+          We will enter the details about the product here in this section
+        </Typography>
+      </CardContent>
+      <CardActions disableSpacing>
+        <IconButton aria-label="add to favorites">
+          <FavoriteIcon />
+        </IconButton>
+        <IconButton aria-label="share">
+          <ShareIcon />
+        </IconButton>
+        <IconButton
+          className={clsx(classes.expand, {
+            [classes.expandOpen]: expanded,
+          })}
+          onClick={handleExpandClick}
+          aria-expanded={expanded}
+          aria-label="show more"
+        >
+        <ExpandMoreIcon/> 
+        </IconButton>
+      </CardActions>
+      <Collapse in={expanded} timeout="auto" unmountOnExit>
+        <CardContent>
+          <Typography paragraph>Method:</Typography>
+          <Typography paragraph>
+            Enter more details here.
+          </Typography>
+          <Typography paragraph>
+            Add some more details here.
+          </Typography>
+          <Typography paragraph>
+            We can add some more details here.
+          </Typography>
+        </CardContent>
+      </Collapse>
+    </Card>
+        </Grid>
+      </Grid>  
+    </div>
+    }
+
+    {/* --------------------------------------------------------------------------------------------------
+     */}
+
+<br></br>
+    { result2 !== null &&
+      <div className={classes.root}>
+      <Grid container spacing={3}>
+        <Grid item xs={3}>
+      <Card className={classes.card}>
+      <CardHeader
+        avatar={
+          <Avatar aria-label="recipe" className={classes.avatar}>
+            1
+          </Avatar>
+        }
+        action={
+          <IconButton aria-label="settings">
+            <MoreVertIcon />
+          </IconButton>
+        }
+        title = {Amazon_Title_Query2}
+        subheader={Amazon_Price_Query2}
+      />
+      <CardMedia
+        className={classes.media}
+        //image = {{uri:'https://via.placeholder.com/350x150'}}
+        //image = {{uri:'https://m.media-amazon.com/images/I/51q509vv--L._AC_UL320_ML3_.jpg'}}
+        image={require("/Users/Kevin/Desktop/CapStone/SmartCart/front-end/src/1.jpg")}
+        title={Amazon_Title_Query2}  
+      />
+      <CardContent>
+        <Typography variant="body2" color="textSecondary" component="p">
+          {Amazon_Link_Query2}
+        </Typography>
+      </CardContent>
+      <CardActions disableSpacing>
+        <IconButton aria-label="add to favorites">
+          <FavoriteIcon />
+        </IconButton>
+        <IconButton aria-label="share">
+          <ShareIcon />
+        </IconButton>
+        <IconButton
+          className={clsx(classes.expand, {
+            [classes.expandOpen]: expanded,
+          })}
+          onClick={handleExpandClick}
+          aria-expanded={expanded}
+          aria-label="show more"
+        >
+        <ExpandMoreIcon/> 
+        </IconButton>
+      </CardActions>
+      <Collapse in={expanded} timeout="auto" unmountOnExit>
+        <CardContent>
+          <Typography paragraph>Method:</Typography>
+          <Typography paragraph>
+            Enter more details here.
+          </Typography>
+          <Typography paragraph>
+            Add some more details here.
+          </Typography>
+          <Typography paragraph>
+            We can add some more details here.
+          </Typography>
+        </CardContent>
+      </Collapse>
+    </Card>
+        </Grid>
+        <Grid item xs={3}>
+        <Card className={classes.card}>
+      <CardHeader
+        avatar={
+          <Avatar aria-label="recipe" className={classes.avatar}>
+            2
+          </Avatar>
+        }
+        action={
+          <IconButton aria-label="settings">
+            <MoreVertIcon />
+          </IconButton>
+        }
+        title={Walmart_Title_Query2}
+        subheader={Walmart_Price_Query2}
+      />
+      <CardMedia
+        className={classes.media}
+        image={require ("/Users/Kevin/Desktop/CapStone/SmartCart/front-end/src/2.jpg")}
+        title={Walmart_Title_Query2}
+      />
+      <CardContent>
+        <Typography variant="body2" color="textSecondary" component="p">
+          {Walmart_Link_Query2}
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
@@ -516,13 +887,14 @@ function App(){
         </Grid>
       </Grid>  
     </div>
+    }
 
     {/* --------------------------------------------------------------------------------------------------
      */}
 
-    {/* <br></br>
-    <br></br>
-    <div className={classes.root}>
+<br></br>
+     { result3 !== null &&
+      <div className={classes.root}>
       <Grid container spacing={3}>
         <Grid item xs={3}>
       <Card className={classes.card}>
@@ -537,17 +909,18 @@ function App(){
             <MoreVertIcon />
           </IconButton>
         }
-        title="Lamborghini"
-        subheader="Target for 2022"
+        title = {Amazon_Title_Query3}
+        subheader={Amazon_Price_Query3}
       />
       <CardMedia
         className={classes.media}
-        image={require ("/Users/Kevin/Desktop/CapStone/react-example/src/1.jpg")}
-        title="Lamborghini"
+        //image = {{uri:'https://m.media-amazon.com/images/I/51q509vv--L._AC_UL320_ML3_.jpg'}}
+        image={require ("/Users/Kevin/Desktop/CapStone/SmartCart/front-end/src/1.jpg")}
+        title={Amazon_Title_Query3}  
       />
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
-          We will enter the details about the product here in this section
+          {Amazon_Link_Query3}
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
@@ -597,17 +970,17 @@ function App(){
             <MoreVertIcon />
           </IconButton>
         }
-        title="Lamborghini"
-        subheader="Target for 2022"
+        title={Walmart_Title_Query3}
+        subheader={Walmart_Price_Query3}
       />
       <CardMedia
         className={classes.media}
-        image={require ("/Users/Kevin/Desktop/CapStone/react-example/src/2.jpg")}
-        title="Lamborghini"
+        image={require ("/Users/Kevin/Desktop/CapStone/SmartCart/front-end/src/2.jpg")}
+        title={Walmart_Title_Query3}
       />
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
-          We will enter the details about the product here in this section
+          {Walmart_Link_Query1}
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
@@ -662,7 +1035,7 @@ function App(){
       />
       <CardMedia
         className={classes.media}
-        image={require ("/Users/Kevin/Desktop/CapStone/react-example/src/3.jpg")}
+        image={require ("/Users/Kevin/Desktop/CapStone/SmartCart/front-end/src/3.jpg")}
         title="Lamborghini"
       />
       <CardContent>
@@ -722,7 +1095,7 @@ function App(){
       />
       <CardMedia
         className={classes.media}
-        image={require ("/Users/Kevin/Desktop/CapStone/react-example/src/4.jpg")}
+        image={require ("/Users/Kevin/Desktop/CapStone/SmartCart/front-end/src/4.jpg")}
         title="Lamborghini"
       />
       <CardContent>
@@ -765,8 +1138,512 @@ function App(){
     </Card>
         </Grid>
       </Grid>  
-    </div> */}
+    </div>
+     }
 
+    {/* ------------------------------------------------------------------------------------------------
+    ------------------------------------------------------------------------------------------------ */}
+
+    <br></br>
+    { result4 !== null && 
+      <div className={classes.root}>
+      <Grid container spacing={3}>
+        <Grid item xs={3}>
+      <Card className={classes.card}>
+      <CardHeader
+        avatar={
+          <Avatar aria-label="recipe" className={classes.avatar}>
+            1
+          </Avatar>
+        }
+        action={
+          <IconButton aria-label="settings">
+            <MoreVertIcon />
+          </IconButton>
+        }
+        title = {Amazon_Title_Query4}
+        subheader={Amazon_Price_Query4}
+      />
+      <CardMedia
+        className={classes.media}
+        //image = {{uri:'https://m.media-amazon.com/images/I/51q509vv--L._AC_UL320_ML3_.jpg'}}
+        image={require ("/Users/Kevin/Desktop/CapStone/SmartCart/front-end/src/1.jpg")}
+        title={Amazon_Title_Query4}  
+      />
+      <CardContent>
+        <Typography variant="body2" color="textSecondary" component="p">
+          {Amazon_Link_Query4}
+        </Typography>
+      </CardContent>
+      <CardActions disableSpacing>
+        <IconButton aria-label="add to favorites">
+          <FavoriteIcon />
+        </IconButton>
+        <IconButton aria-label="share">
+          <ShareIcon />
+        </IconButton>
+        <IconButton
+          className={clsx(classes.expand, {
+            [classes.expandOpen]: expanded,
+          })}
+          onClick={handleExpandClick}
+          aria-expanded={expanded}
+          aria-label="show more"
+        >
+        <ExpandMoreIcon/> 
+        </IconButton>
+      </CardActions>
+      <Collapse in={expanded} timeout="auto" unmountOnExit>
+        <CardContent>
+          <Typography paragraph>Method:</Typography>
+          <Typography paragraph>
+            Enter more details here.
+          </Typography>
+          <Typography paragraph>
+            Add some more details here.
+          </Typography>
+          <Typography paragraph>
+            We can add some more details here.
+          </Typography>
+        </CardContent>
+      </Collapse>
+    </Card>
+        </Grid>
+        <Grid item xs={3}>
+        <Card className={classes.card}>
+      <CardHeader
+        avatar={
+          <Avatar aria-label="recipe" className={classes.avatar}>
+            2
+          </Avatar>
+        }
+        action={
+          <IconButton aria-label="settings">
+            <MoreVertIcon />
+          </IconButton>
+        }
+        title={Walmart_Title_Query4}
+        subheader={Walmart_Price_Query4}
+      />
+      <CardMedia
+        className={classes.media}
+        image={require ("/Users/Kevin/Desktop/CapStone/SmartCart/front-end/src/2.jpg")}
+        title={Walmart_Title_Query4}
+      />
+      <CardContent>
+        <Typography variant="body2" color="textSecondary" component="p">
+          {Walmart_Link_Query4}
+        </Typography>
+      </CardContent>
+      <CardActions disableSpacing>
+        <IconButton aria-label="add to favorites">
+          <FavoriteIcon />
+        </IconButton>
+        <IconButton aria-label="share">
+          <ShareIcon />
+        </IconButton>
+        <IconButton
+          className={clsx(classes.expand, {
+            [classes.expandOpen]: expanded,
+          })}
+          onClick={handleExpandClick}
+          aria-expanded={expanded}
+          aria-label="show more"
+        >
+        <ExpandMoreIcon/> 
+        </IconButton>
+      </CardActions>
+      <Collapse in={expanded} timeout="auto" unmountOnExit>
+        <CardContent>
+          <Typography paragraph>Method:</Typography>
+          <Typography paragraph>
+            Enter more details here.
+          </Typography>
+          <Typography paragraph>
+            Add some more details here.
+          </Typography>
+          <Typography paragraph>
+            We can add some more details here.
+          </Typography>
+        </CardContent>
+      </Collapse>
+    </Card>
+        </Grid>
+        <Grid item xs={3}>
+        <Card className={classes.card}>
+      <CardHeader
+        avatar={
+          <Avatar aria-label="recipe" className={classes.avatar}>
+            3
+          </Avatar>
+        }
+        action={
+          <IconButton aria-label="settings">
+            <MoreVertIcon />
+          </IconButton>
+        }
+        title="Lamborghini"
+        subheader="Target for 2022"
+      />
+      <CardMedia
+        className={classes.media}
+        image={require ("/Users/Kevin/Desktop/CapStone/SmartCart/front-end/src/3.jpg")}
+        title="Lamborghini"
+      />
+      <CardContent>
+        <Typography variant="body2" color="textSecondary" component="p">
+          We will enter the details about the product here in this section
+        </Typography>
+      </CardContent>
+      <CardActions disableSpacing>
+        <IconButton aria-label="add to favorites">
+          <FavoriteIcon />
+        </IconButton>
+        <IconButton aria-label="share">
+          <ShareIcon />
+        </IconButton>
+        <IconButton
+          className={clsx(classes.expand, {
+            [classes.expandOpen]: expanded,
+          })}
+          onClick={handleExpandClick}
+          aria-expanded={expanded}
+          aria-label="show more"
+        >
+        <ExpandMoreIcon/> 
+        </IconButton>
+      </CardActions>
+      <Collapse in={expanded} timeout="auto" unmountOnExit>
+        <CardContent>
+          <Typography paragraph>Method:</Typography>
+          <Typography paragraph>
+            Enter more details here.
+          </Typography>
+          <Typography paragraph>
+            Add some more details here.
+          </Typography>
+          <Typography paragraph>
+            We can add some more details here.
+          </Typography>
+        </CardContent>
+      </Collapse>
+    </Card>
+        </Grid>
+        <Grid item xs={3}>
+        <Card className={classes.card}>
+      <CardHeader
+        avatar={
+          <Avatar aria-label="recipe" className={classes.avatar}>
+            4
+          </Avatar>
+        }
+        action={
+          <IconButton aria-label="settings">
+            <MoreVertIcon />
+          </IconButton>
+        }
+        title="Lamborghini"
+        subheader="Target for 2022"
+      />
+      <CardMedia
+        className={classes.media}
+        image={require ("/Users/Kevin/Desktop/CapStone/SmartCart/front-end/src/4.jpg")}
+        title="Lamborghini"
+      />
+      <CardContent>
+        <Typography variant="body2" color="textSecondary" component="p">
+          We will enter the details about the product here in this section
+        </Typography>
+      </CardContent>
+      <CardActions disableSpacing>
+        <IconButton aria-label="add to favorites">
+          <FavoriteIcon />
+        </IconButton>
+        <IconButton aria-label="share">
+          <ShareIcon />
+        </IconButton>
+        <IconButton
+          className={clsx(classes.expand, {
+            [classes.expandOpen]: expanded,
+          })}
+          onClick={handleExpandClick}
+          aria-expanded={expanded}
+          aria-label="show more"
+        >
+        <ExpandMoreIcon/> 
+        </IconButton>
+      </CardActions>
+      <Collapse in={expanded} timeout="auto" unmountOnExit>
+        <CardContent>
+          <Typography paragraph>Method:</Typography>
+          <Typography paragraph>
+            Enter more details here.
+          </Typography>
+          <Typography paragraph>
+            Add some more details here.
+          </Typography>
+          <Typography paragraph>
+            We can add some more details here.
+          </Typography>
+        </CardContent>
+      </Collapse>
+    </Card>
+        </Grid>
+      </Grid>  
+    </div>
+    }
+
+  {/* ---------------------------------------------------------------------------------------------------
+  ----------------------------------------------------------------- */}
+
+<br></br>
+  { result5 !== null && 
+      <div className={classes.root}>
+      <Grid container spacing={3}>
+        <Grid item xs={3}>
+      <Card className={classes.card}>
+      <CardHeader
+        avatar={
+          <Avatar aria-label="recipe" className={classes.avatar}>
+            1
+          </Avatar>
+        }
+        action={
+          <IconButton aria-label="settings">
+            <MoreVertIcon />
+          </IconButton>
+        }
+        title = {Amazon_Title_Query5}
+        subheader={Amazon_Price_Query5}
+      />
+      <CardMedia
+        className={classes.media}
+        //image = {{uri:'https://m.media-amazon.com/images/I/51q509vv--L._AC_UL320_ML3_.jpg'}}
+        image={require ("/Users/Kevin/Desktop/CapStone/SmartCart/front-end/src/1.jpg")}
+        title={Amazon_Title_Query5}  
+      />
+      <CardContent>
+        <Typography variant="body2" color="textSecondary" component="p">
+          {Amazon_Link_Query5}
+        </Typography>
+      </CardContent>
+      <CardActions disableSpacing>
+        <IconButton aria-label="add to favorites">
+          <FavoriteIcon />
+        </IconButton>
+        <IconButton aria-label="share">
+          <ShareIcon />
+        </IconButton>
+        <IconButton
+          className={clsx(classes.expand, {
+            [classes.expandOpen]: expanded,
+          })}
+          onClick={handleExpandClick}
+          aria-expanded={expanded}
+          aria-label="show more"
+        >
+        <ExpandMoreIcon/> 
+        </IconButton>
+      </CardActions>
+      <Collapse in={expanded} timeout="auto" unmountOnExit>
+        <CardContent>
+          <Typography paragraph>Method:</Typography>
+          <Typography paragraph>
+            Enter more details here.
+          </Typography>
+          <Typography paragraph>
+            Add some more details here.
+          </Typography>
+          <Typography paragraph>
+            We can add some more details here.
+          </Typography>
+        </CardContent>
+      </Collapse>
+    </Card>
+        </Grid>
+        <Grid item xs={3}>
+        <Card className={classes.card}>
+      <CardHeader
+        avatar={
+          <Avatar aria-label="recipe" className={classes.avatar}>
+            2
+          </Avatar>
+        }
+        action={
+          <IconButton aria-label="settings">
+            <MoreVertIcon />
+          </IconButton>
+        }
+        title={Walmart_Title_Query5}
+        subheader={Walmart_Price_Query5}
+      />
+      <CardMedia
+        className={classes.media}
+        image={require ("/Users/Kevin/Desktop/CapStone/SmartCart/front-end/src/2.jpg")}
+        title={Walmart_Title_Query5}
+      />
+      <CardContent>
+        <Typography variant="body2" color="textSecondary" component="p">
+          {Walmart_Link_Query5}
+        </Typography>
+      </CardContent>
+      <CardActions disableSpacing>
+        <IconButton aria-label="add to favorites">
+          <FavoriteIcon />
+        </IconButton>
+        <IconButton aria-label="share">
+          <ShareIcon />
+        </IconButton>
+        <IconButton
+          className={clsx(classes.expand, {
+            [classes.expandOpen]: expanded,
+          })}
+          onClick={handleExpandClick}
+          aria-expanded={expanded}
+          aria-label="show more"
+        >
+        <ExpandMoreIcon/> 
+        </IconButton>
+      </CardActions>
+      <Collapse in={expanded} timeout="auto" unmountOnExit>
+        <CardContent>
+          <Typography paragraph>Method:</Typography>
+          <Typography paragraph>
+            Enter more details here.
+          </Typography>
+          <Typography paragraph>
+            Add some more details here.
+          </Typography>
+          <Typography paragraph>
+            We can add some more details here.
+          </Typography>
+        </CardContent>
+      </Collapse>
+    </Card>
+        </Grid>
+        <Grid item xs={3}>
+        <Card className={classes.card}>
+      <CardHeader
+        avatar={
+          <Avatar aria-label="recipe" className={classes.avatar}>
+            3
+          </Avatar>
+        }
+        action={
+          <IconButton aria-label="settings">
+            <MoreVertIcon />
+          </IconButton>
+        }
+        title="Lamborghini"
+        subheader="Target for 2022"
+      />
+      <CardMedia
+        className={classes.media}
+        image={require ("/Users/Kevin/Desktop/CapStone/SmartCart/front-end/src/3.jpg")}
+        title="Lamborghini"
+      />
+      <CardContent>
+        <Typography variant="body2" color="textSecondary" component="p">
+          We will enter the details about the product here in this section
+        </Typography>
+      </CardContent>
+      <CardActions disableSpacing>
+        <IconButton aria-label="add to favorites">
+          <FavoriteIcon />
+        </IconButton>
+        <IconButton aria-label="share">
+          <ShareIcon />
+        </IconButton>
+        <IconButton
+          className={clsx(classes.expand, {
+            [classes.expandOpen]: expanded,
+          })}
+          onClick={handleExpandClick}
+          aria-expanded={expanded}
+          aria-label="show more"
+        >
+        <ExpandMoreIcon/> 
+        </IconButton>
+      </CardActions>
+      <Collapse in={expanded} timeout="auto" unmountOnExit>
+        <CardContent>
+          <Typography paragraph>Method:</Typography>
+          <Typography paragraph>
+            Enter more details here.
+          </Typography>
+          <Typography paragraph>
+            Add some more details here.
+          </Typography>
+          <Typography paragraph>
+            We can add some more details here.
+          </Typography>
+        </CardContent>
+      </Collapse>
+    </Card>
+        </Grid>
+        <Grid item xs={3}>
+        <Card className={classes.card}>
+      <CardHeader
+        avatar={
+          <Avatar aria-label="recipe" className={classes.avatar}>
+            4
+          </Avatar>
+        }
+        action={
+          <IconButton aria-label="settings">
+            <MoreVertIcon />
+          </IconButton>
+        }
+        title="Lamborghini"
+        subheader="Target for 2022"
+      />
+      <CardMedia
+        className={classes.media}
+        image={require ("/Users/Kevin/Desktop/CapStone/SmartCart/front-end/src/4.jpg")}
+        title="Lamborghini"
+      />
+      <CardContent>
+        <Typography variant="body2" color="textSecondary" component="p">
+          We will enter the details about the product here in this section
+        </Typography>
+      </CardContent>
+      <CardActions disableSpacing>
+        <IconButton aria-label="add to favorites">
+          <FavoriteIcon />
+        </IconButton>
+        <IconButton aria-label="share">
+          <ShareIcon />
+        </IconButton>
+        <IconButton
+          className={clsx(classes.expand, {
+            [classes.expandOpen]: expanded,
+          })}
+          onClick={handleExpandClick}
+          aria-expanded={expanded}
+          aria-label="show more"
+        >
+        <ExpandMoreIcon/> 
+        </IconButton>
+      </CardActions>
+      <Collapse in={expanded} timeout="auto" unmountOnExit>
+        <CardContent>
+          <Typography paragraph>Method:</Typography>
+          <Typography paragraph>
+            Enter more details here.
+          </Typography>
+          <Typography paragraph>
+            Add some more details here.
+          </Typography>
+          <Typography paragraph>
+            We can add some more details here.
+          </Typography>
+        </CardContent>
+      </Collapse>
+    </Card>
+        </Grid>
+      </Grid>  
+    </div>
+    }
     </div>
       );
    }
