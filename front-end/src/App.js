@@ -91,6 +91,12 @@ function App(){
   const [Walmart_Title_Query1,set_Walmart_Title_Query1] = React.useState("Not Found");
   const [Walmart_Price_Query1,set_Walmart_Price_Query1] = React.useState(" - ");
   const [Walmart_Link_Query1,set_Walmart_Link_Query1] = React.useState(" - ");
+  const [Target_Title_Query1,set_Target_Title_Query1] = React.useState("Not Found");
+  const [Target_Price_Query1,set_Target_Price_Query1] = React.useState(" - ");
+  const [Target_Link_Query1,set_Target_Link_Query1] = React.useState(" - ");
+  const [Costco_Title_Query1,set_Costco_Title_Query1] = React.useState("Not Found");
+  const [Costco_Price_Query1,set_Costco_Price_Query1] = React.useState(" - ");
+  const [Costco_Link_Query1,set_Costco_Link_Query1] = React.useState(" - ");
   
   const [Amazon_Title_Query2,set_Amazon_Title_Query2] = React.useState("Not Found");
   const [Amazon_Price_Query2,set_Amazon_Price_Query2] = React.useState(" - ");
@@ -98,6 +104,12 @@ function App(){
   const [Walmart_Title_Query2,set_Walmart_Title_Query2] = React.useState("Not Found");
   const [Walmart_Price_Query2,set_Walmart_Price_Query2] = React.useState(" - ");
   const [Walmart_Link_Query2,set_Walmart_Link_Query2] = React.useState(" - ");
+  const [Target_Title_Query2,set_Target_Title_Query2] = React.useState("Not Found");
+  const [Target_Price_Query2,set_Target_Price_Query2] = React.useState(" - ");
+  const [Target_Link_Query2,set_Target_Link_Query2] = React.useState(" - ");
+  const [Costco_Title_Query2,set_Costco_Title_Query2] = React.useState("Not Found");
+  const [Costco_Price_Query2,set_Costco_Price_Query2] = React.useState(" - ");
+  const [Costco_Link_Query2,set_Costco_Link_Query2] = React.useState(" - ");
 
   const [Amazon_Title_Query3,set_Amazon_Title_Query3] = React.useState("Not Found");
   const [Amazon_Price_Query3,set_Amazon_Price_Query3] = React.useState(" - ");
@@ -105,6 +117,12 @@ function App(){
   const [Walmart_Title_Query3,set_Walmart_Title_Query3] = React.useState("Not Found");
   const [Walmart_Price_Query3,set_Walmart_Price_Query3] = React.useState(" - ");
   const [Walmart_Link_Query3,set_Walmart_Link_Query3] = React.useState(" - ");
+  const [Target_Title_Query3,set_Target_Title_Query3] = React.useState("Not Found");
+  const [Target_Price_Query3,set_Target_Price_Query3] = React.useState(" - ");
+  const [Target_Link_Query3,set_Target_Link_Query3] = React.useState(" - ");
+  const [Costco_Title_Query3,set_Costco_Title_Query3] = React.useState("Not Found");
+  const [Costco_Price_Query3,set_Costco_Price_Query3] = React.useState(" - ");
+  const [Costco_Link_Query3,set_Costco_Link_Query3] = React.useState(" - ");
 
   const [Amazon_Title_Query4,set_Amazon_Title_Query4] = React.useState("Not Found");
   const [Amazon_Price_Query4,set_Amazon_Price_Query4] = React.useState(" - ");
@@ -112,6 +130,12 @@ function App(){
   const [Walmart_Title_Query4,set_Walmart_Title_Query4] = React.useState("Not Found");
   const [Walmart_Price_Query4,set_Walmart_Price_Query4] = React.useState(" - ");
   const [Walmart_Link_Query4,set_Walmart_Link_Query4] = React.useState(" - ");
+  const [Target_Title_Query4,set_Target_Title_Query4] = React.useState("Not Found");
+  const [Target_Price_Query4,set_Target_Price_Query4] = React.useState(" - ");
+  const [Target_Link_Query4,set_Target_Link_Query4] = React.useState(" - ");
+  const [Costco_Title_Query4,set_Costco_Title_Query4] = React.useState("Not Found");
+  const [Costco_Price_Query4,set_Costco_Price_Query4] = React.useState(" - ");
+  const [Costco_Link_Query4,set_Costco_Link_Query4] = React.useState(" - ");
 
   const [Amazon_Title_Query5,set_Amazon_Title_Query5] = React.useState("Not Found");
   const [Amazon_Price_Query5,set_Amazon_Price_Query5] = React.useState(" - ");
@@ -119,6 +143,12 @@ function App(){
   const [Walmart_Title_Query5,set_Walmart_Title_Query5] = React.useState("Not Found");
   const [Walmart_Price_Query5,set_Walmart_Price_Query5] = React.useState(" - ");
   const [Walmart_Link_Query5,set_Walmart_Link_Query5] = React.useState(" - ");
+  const [Target_Title_Query5,set_Target_Title_Query5] = React.useState("Not Found");
+  const [Target_Price_Query5,set_Target_Price_Query5] = React.useState(" - ");
+  const [Target_Link_Query5,set_Target_Link_Query5] = React.useState(" - ");
+  const [Costco_Title_Query5,set_Costco_Title_Query5] = React.useState("Not Found");
+  const [Costco_Price_Query5,set_Costco_Price_Query5] = React.useState(" - ");
+  const [Costco_Link_Query5,set_Costco_Link_Query5] = React.useState(" - ");
 
   const [result1,set_Result1] = React.useState(null);
   const [result2,set_Result2] = React.useState(null);
@@ -172,13 +202,18 @@ function App(){
       axios.post('http://127.0.0.1:8000/findprice/',{item:Search_Query1}) 
       .then(function(response){
         console.log(response);
-        console.log(response.data.Walmart_Title);
         set_Amazon_Title_Query1(response.data.Amazon_Title);
         set_Amazon_Price_Query1(response.data.Amazon_Price);
         set_Amazon_Link_Query1(response.data.Amazon_Link);
         set_Walmart_Title_Query1(response.data.Walmart_Title);
         set_Walmart_Price_Query1(response.data.Walmart_Price);
         set_Walmart_Link_Query1(response.data.Walmart_Link);
+        set_Target_Title_Query1(response.data.Target_Title);
+        set_Target_Price_Query1(response.data.Target_Price);
+        set_Target_Link_Query1(response.data.Target_Link);
+        set_Costco_Title_Query1(response.data.Costco_Title);
+        set_Costco_Price_Query1(response.data.Costco_Price);
+        set_Costco_Link_Query1(response.data.Costco_Link);
         set_Result1(true);
       })
       .catch(function(error){
@@ -191,13 +226,18 @@ function App(){
       axios.post('http://127.0.0.1:8000/findprice/',{item:Search_Query2}) 
       .then(function(response){
         console.log(response);
-        console.log(response.data.Walmart_Title);
         set_Amazon_Title_Query2(response.data.Amazon_Title);
         set_Amazon_Price_Query2(response.data.Amazon_Price);
         set_Amazon_Link_Query2(response.data.Amazon_Link);
         set_Walmart_Title_Query2(response.data.Walmart_Title);
         set_Walmart_Price_Query2(response.data.Walmart_Price);
         set_Walmart_Link_Query2(response.data.Walmart_Link);
+        set_Target_Title_Query2(response.data.Target_Title);
+        set_Target_Price_Query2(response.data.Target_Price);
+        set_Target_Link_Query2(response.data.Target_Link);
+        set_Costco_Title_Query2(response.data.Costco_Title);
+        set_Costco_Price_Query2(response.data.Costco_Price);
+        set_Costco_Link_Query2(response.data.Costco_Link);
         set_Result2(true);
       })
       .catch(function(error){
@@ -210,13 +250,18 @@ function App(){
       axios.post('http://127.0.0.1:8000/findprice/',{item:Search_Query3}) 
       .then(function(response){
         console.log(response);
-        console.log(response.data.Walmart_Title);
         set_Amazon_Title_Query3(response.data.Amazon_Title);
         set_Amazon_Price_Query3(response.data.Amazon_Price);
         set_Amazon_Link_Query3(response.data.Amazon_Link);
         set_Walmart_Title_Query3(response.data.Walmart_Title);
         set_Walmart_Price_Query3(response.data.Walmart_Price);
         set_Walmart_Link_Query3(response.data.Walmart_Link);
+        set_Target_Title_Query3(response.data.Target_Title);
+        set_Target_Price_Query3(response.data.Target_Price);
+        set_Target_Link_Query3(response.data.Target_Link);
+        set_Costco_Title_Query3(response.data.Costco_Title);
+        set_Costco_Price_Query3(response.data.Costco_Price);
+        set_Costco_Link_Query3(response.data.Costco_Link);
         set_Result3(true);
       })
       .catch(function(error){
@@ -228,12 +273,19 @@ function App(){
     {
       axios.post('http://127.0.0.1:8000/findprice/',{item:Search_Query4}) 
       .then(function(response){
+        console.log(response);
         set_Amazon_Title_Query4(response.data.Amazon_Title);
         set_Amazon_Price_Query4(response.data.Amazon_Price);
         set_Amazon_Link_Query4(response.data.Amazon_Link);
         set_Walmart_Title_Query4(response.data.Walmart_Title);
         set_Walmart_Price_Query4(response.data.Walmart_Price);
         set_Walmart_Link_Query4(response.data.Walmart_Link);
+        set_Target_Title_Query4(response.data.Target_Title);
+        set_Target_Price_Query4(response.data.Target_Price);
+        set_Target_Link_Query4(response.data.Target_Link);
+        set_Costco_Title_Query4(response.data.Costco_Title);
+        set_Costco_Price_Query4(response.data.Costco_Price);
+        set_Costco_Link_Query4(response.data.Costco_Link);
         set_Result4(true);
       })
       .catch(function(error){
@@ -245,12 +297,19 @@ function App(){
     {
       axios.post('http://127.0.0.1:8000/findprice/',{item:Search_Query5}) 
       .then(function(response){
+        console.log(response);
         set_Amazon_Title_Query5(response.data.Amazon_Title);
         set_Amazon_Price_Query5(response.data.Amazon_Price);
         set_Amazon_Link_Query5(response.data.Amazon_Link);
         set_Walmart_Title_Query5(response.data.Walmart_Title);
         set_Walmart_Price_Query5(response.data.Walmart_Price);
         set_Walmart_Link_Query5(response.data.Walmart_Link);
+        set_Target_Title_Query5(response.data.Target_Title);
+        set_Target_Price_Query5(response.data.Target_Price);
+        set_Target_Link_Query5(response.data.Target_Link);
+        set_Costco_Title_Query5(response.data.Costco_Title);
+        set_Costco_Price_Query5(response.data.Costco_Price);
+        set_Costco_Link_Query5(response.data.Costco_Link);
         set_Result5(true);
       })
       .catch(function(error){
@@ -272,7 +331,7 @@ function App(){
         set_Search_Query3(query[2]);
       if(len>=4)
         set_Search_Query4(query[3]);
-      if(len ===5)
+      if(len===5)
         set_Search_Query5(query[4]);   
     }
   };
@@ -404,7 +463,7 @@ function App(){
             <MoreVertIcon />
           </IconButton>
         }
-        title = {Amazon_Title_Query1}
+        title={Amazon_Title_Query1}
         subheader={Amazon_Price_Query1}
       />
       <CardMedia
@@ -525,17 +584,17 @@ function App(){
             <MoreVertIcon />
           </IconButton>
         }
-        title={Amazon_Title_Query1}
-        subheader={Amazon_Price_Query1}
+        title={Target_Title_Query1}
+        subheader={Target_Price_Query1}
       />
       <CardMedia
         className={classes.media}
         image={require ("/Users/Kevin/Desktop/CapStone/SmartCart/front-end/src/3.jpg")}
-        title={Amazon_Title_Query1}
+        title={Target_Title_Query1}
       />
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
-          We will enter the details about the product here in this section
+          {Target_Link_Query1}
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
@@ -585,17 +644,17 @@ function App(){
             <MoreVertIcon />
           </IconButton>
         }
-        title={Amazon_Title_Query1}
-        subheader={Amazon_Price_Query1}
+        title={Costco_Title_Query1}
+        subheader={Costco_Price_Query1}
       />
       <CardMedia
         className={classes.media}
         image={require ("/Users/Kevin/Desktop/CapStone/SmartCart/front-end/src/4.jpg")}
-        title={Amazon_Title_Query1}
+        title={Costco_Title_Query1}
       />
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
-          We will enter the details about the product here in this section
+          {Costco_Link_Query1}
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
@@ -778,17 +837,17 @@ function App(){
             <MoreVertIcon />
           </IconButton>
         }
-        title="Lamborghini"
-        subheader="Target for 2022"
+        title={Target_Title_Query2}
+        subheader={Target_Price_Query2}
       />
       <CardMedia
         className={classes.media}
         image={require ("/Users/Kevin/Desktop/CapStone/SmartCart/front-end/src/3.jpg")}
-        title="Lamborghini"
+        title={Target_Title_Query2}
       />
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
-          We will enter the details about the product here in this section
+          {Target_Link_Query2}
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
@@ -838,17 +897,17 @@ function App(){
             <MoreVertIcon />
           </IconButton>
         }
-        title="Lamborghini"
-        subheader="Target for 2022"
+        title={Costco_Title_Query2}
+        subheader={Costco_Price_Query2}
       />
       <CardMedia
         className={classes.media}
         image={require ("/Users/Kevin/Desktop/CapStone/SmartCart/front-end/src/4.jpg")}
-        title="Lamborghini"
+        title={Costco_Title_Query2}
       />
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
-          We will enter the details about the product here in this section
+          {Costco_Link_Query2}
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
@@ -980,7 +1039,7 @@ function App(){
       />
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
-          {Walmart_Link_Query1}
+          {Walmart_Link_Query3}
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
@@ -1030,17 +1089,17 @@ function App(){
             <MoreVertIcon />
           </IconButton>
         }
-        title="Lamborghini"
-        subheader="Target for 2022"
+        title={Target_Title_Query3}
+        subheader={Target_Price_Query3}
       />
       <CardMedia
         className={classes.media}
         image={require ("/Users/Kevin/Desktop/CapStone/SmartCart/front-end/src/3.jpg")}
-        title="Lamborghini"
+        title={Target_Title_Query3}
       />
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
-          We will enter the details about the product here in this section
+          {Target_Link_Query3}
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
@@ -1090,17 +1149,17 @@ function App(){
             <MoreVertIcon />
           </IconButton>
         }
-        title="Lamborghini"
-        subheader="Target for 2022"
+        title={Costco_Title_Query3}
+        subheader={Costco_Price_Query3}
       />
       <CardMedia
         className={classes.media}
         image={require ("/Users/Kevin/Desktop/CapStone/SmartCart/front-end/src/4.jpg")}
-        title="Lamborghini"
+        title={Costco_Title_Query3}
       />
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
-          We will enter the details about the product here in this section
+          {Costco_Link_Query3}
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
@@ -1282,17 +1341,17 @@ function App(){
             <MoreVertIcon />
           </IconButton>
         }
-        title="Lamborghini"
-        subheader="Target for 2022"
+        title={Target_Title_Query4}
+        subheader={Target_Price_Query4}
       />
       <CardMedia
         className={classes.media}
         image={require ("/Users/Kevin/Desktop/CapStone/SmartCart/front-end/src/3.jpg")}
-        title="Lamborghini"
+        title={Target_Title_Query4}
       />
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
-          We will enter the details about the product here in this section
+          {Target_Link_Query4}
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
@@ -1342,17 +1401,17 @@ function App(){
             <MoreVertIcon />
           </IconButton>
         }
-        title="Lamborghini"
-        subheader="Target for 2022"
+        title={Costco_Title_Query4}
+        subheader={Costco_Price_Query4}
       />
       <CardMedia
         className={classes.media}
         image={require ("/Users/Kevin/Desktop/CapStone/SmartCart/front-end/src/4.jpg")}
-        title="Lamborghini"
+        title={Costco_Title_Query4}
       />
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
-          We will enter the details about the product here in this section
+          {Costco_Link_Query4}
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
@@ -1534,17 +1593,17 @@ function App(){
             <MoreVertIcon />
           </IconButton>
         }
-        title="Lamborghini"
-        subheader="Target for 2022"
+        title={Target_Title_Query5}
+        subheader={Target_Price_Query5}
       />
       <CardMedia
         className={classes.media}
         image={require ("/Users/Kevin/Desktop/CapStone/SmartCart/front-end/src/3.jpg")}
-        title="Lamborghini"
+        title={Target_Title_Query5}
       />
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
-          We will enter the details about the product here in this section
+          {Target_Link_Query5}
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
@@ -1594,17 +1653,17 @@ function App(){
             <MoreVertIcon />
           </IconButton>
         }
-        title="Lamborghini"
-        subheader="Target for 2022"
+        title={Costco_Title_Query5}
+        subheader={Costco_Price_Query5}
       />
       <CardMedia
         className={classes.media}
         image={require ("/Users/Kevin/Desktop/CapStone/SmartCart/front-end/src/4.jpg")}
-        title="Lamborghini"
+        title={Costco_Title_Query5}
       />
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
-          We will enter the details about the product here in this section
+          {Costco_Link_Query5}
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
