@@ -169,7 +169,6 @@ def real_crawl(search_term):
 		dict_query['Costco_Link'] = c_link
 		dict_query['Costco_Image'] = default_image
 	print(json.dumps(dict_query, indent=4, sort_keys=False))
-	#handle.insert_one(dict_query)
 	return dict_query
 
 def connection_setup():
@@ -185,6 +184,10 @@ def main():
 		#return indexed
 	#else:
 	real_result = real_crawl(sys.argv[1])
+		#try:
+		#handle.insert_one(dict_query)
+	#except:
+		#print("CANNOT INSERT INTO DB")
 	return real_result
 
 if __name__ == "__main__":

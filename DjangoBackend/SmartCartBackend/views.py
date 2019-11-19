@@ -15,57 +15,75 @@ import re
 from selenium import webdriver
 import sys
 from time import sleep
-# Create your views here.
 
-'''
-	try:
-        height=json.loads(heightdata.body)
-        weight=str(height*10)
-        return JsonResponse("Ideal weight should be:"+weight+" kg",safe=False)
-    except ValueError as e:
-        return Response(e.args[0],status.HTTP_400_BAD_REQUEST)
-	'''
+# Create your views here.
 
 @api_view(["POST"])
 def findPrice(item):
-	query_item = json.loads(item.body)
+	search_query = json.loads(item.body)
+	#handle = connection_setup()
+	#indexed = handle.find_one({'Item' : search_query['item']})
+	#if  indexed is not None:
+		#return indexed
+	#else:
+	real_result = real_crawl(search_query['item'])
+		#try:
+			#handle.insert_one(real_result)
+		#except:
+			#print("CANNOT INSERT INTO DB")
+	return real_result
+
+def connection_setup():
+	myclient = pymongo.MongoClient()
+	mydb = myclient.test
+	mycollection = mydb.test_crawl
+	return mycollection
+
+def real_crawl(json_item)
 	dict_query = {}
-	dict_query['Item'] = query_item['item']
+	dict_query['Item'] = json_item
 	default_title = 'CANNOT FIND ITEM'
 	default_price = 0.0
+	default_image = 'NO IMAGE'
 	try:
-		w_title, w_cost, w_link = walmart_crawl(query_item['item'])
+		w_title, w_cost, w_link, w_image = walmart_crawl(json_item)
 		w_price = convert_price_string_to_float(w_cost)
 		dict_query['Walmart_Title'] = w_title
 		dict_query['Walmart_Price'] = w_price
 		dict_query['Walmart_Link'] = w_link
+		dict_query['Walmar_Image'] = w_image
 	except:
 		w_link = 'https://www.walmart.com'
 		dict_query['Walmart_Title'] = default_title
 		dict_query['Walmart_Price'] = default_price
 		dict_query['Walmart_Link'] = w_link
+		dict_query['Walmart_Image'] = default_image
 	try:
-		t_title, t_cost, t_link = target_crawl(query_item['item'])
+		t_title, t_cost, t_link, t_image = target_crawl(json_item)
 		t_price = convert_price_string_to_float(t_cost)
 		dict_query['Target_Title'] = t_title
 		dict_query['Target_Price'] = t_price
 		dict_query['Target_Link'] = t_link
+		dict_query['Target_Image'] = t_image
 	except:
 		t_link = 'https://www.target.com'
 		dict_query['Target_Title'] = default_title
 		dict_query['Target_Price'] = default_price
 		dict_query['Target_Link'] = t_link
+		dict_query['Target_Image'] = default_image
 	try:
-		a_title, a_cost, a_link = amazon_crawl(query_item['item'])
+		a_title, a_cost, a_link, a_image = amazon_crawl(json_item)
 		a_price = convert_price_string_to_float(a_cost)
 		dict_query['Amazon_Title'] = a_title
 		dict_query['Amazon_Price'] = a_price
 		dict_query['Amazon_Link'] = a_link
+		dict_query['Amazon_Image'] = a_image
 	except:
 		a_link = 'https://www.amazon.com'
 		dict_query['Amazon_Title'] = default_title
 		dict_query['Amazon_Price'] = default_price
 		dict_query['Amazon_Link'] = a_link
+		dict_query['Amazon_Image'] = default_image
 	'''	
 	try:
 		r_title, r_cost, r_link = rite_crawl(query_item['item'])
@@ -80,18 +98,19 @@ def findPrice(item):
 		dict_query['Rite_Link'] = r_link
 	'''
 	try:
-		c_title, c_cost, c_link = costco_crawl(query_item['item'])
+		c_title, c_cost, c_link, c_image = costco_crawl(json_item)
 		c_price = convert_price_string_to_float(c_cost)
 		dict_query['Costco_Title'] = c_title
 		dict_query['Costco_Price'] = c_price
 		dict_query['Costco_Link'] = c_link
+		dict_query['Costco_Image'] = c_image
 	except:
 		c_link = 'https://www.costco.com'
 		dict_query['Costco_Title'] = default_title
 		dict_query['Costco_Price'] = default_price
 		dict_query['Costco_Link'] = c_link
+		dict_query['Costco_Image'] = default_image
 	return JsonResponse(dict_query)
-	#return dict_query
 
 chrome_driver = 'C:/Users/Kevin/Desktop/CapStone/chromedriver.exe'
 
