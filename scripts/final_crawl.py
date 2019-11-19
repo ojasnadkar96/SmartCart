@@ -185,9 +185,9 @@ def main():
 	#else:
 	real_result = real_crawl(sys.argv[1])
 		#try:
-		#handle.insert_one(dict_query)
-	#except:
-		#print("CANNOT INSERT INTO DB")
+			#handle.insert_one(dict_query)
+		#except:
+			#print("CANNOT INSERT INTO DB")
 	return real_result
 
 if __name__ == "__main__":
