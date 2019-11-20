@@ -23,8 +23,10 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
+import LaunchIcon from '@material-ui/icons/Launch';
 import { red } from '@material-ui/core/colors';
 import Chip from '@material-ui/core/Chip';
+import Link from '@material-ui/core/Link';
 import './App.css';
 
 const useStyles = makeStyles(theme => ({
@@ -74,6 +76,9 @@ const useStyles = makeStyles(theme => ({
   appbar: {
     alignItems: 'center',
   },
+  link: {
+    margin: theme.spacing(1),
+  },
 }));
 
 function App(){
@@ -88,67 +93,87 @@ function App(){
   const [Amazon_Title_Query1,set_Amazon_Title_Query1] = React.useState("Not Found");
   const [Amazon_Price_Query1,set_Amazon_Price_Query1] = React.useState(" - ");
   const [Amazon_Link_Query1,set_Amazon_Link_Query1] = React.useState(" - ");
+  const [Amazon_Image_Query1,set_Amazon_Image_Query1] = React.useState(" - ");
   const [Walmart_Title_Query1,set_Walmart_Title_Query1] = React.useState("Not Found");
   const [Walmart_Price_Query1,set_Walmart_Price_Query1] = React.useState(" - ");
   const [Walmart_Link_Query1,set_Walmart_Link_Query1] = React.useState(" - ");
+  const [Walmart_Image_Query1,set_Walmart_Image_Query1] = React.useState(" - ");
   const [Target_Title_Query1,set_Target_Title_Query1] = React.useState("Not Found");
   const [Target_Price_Query1,set_Target_Price_Query1] = React.useState(" - ");
   const [Target_Link_Query1,set_Target_Link_Query1] = React.useState(" - ");
+  const [Target_Image_Query1,set_Target_Image_Query1] = React.useState(" - ");
   const [Costco_Title_Query1,set_Costco_Title_Query1] = React.useState("Not Found");
   const [Costco_Price_Query1,set_Costco_Price_Query1] = React.useState(" - ");
   const [Costco_Link_Query1,set_Costco_Link_Query1] = React.useState(" - ");
+  const [Costco_Image_Query1,set_Costco_Image_Query1] = React.useState(" - ");
   
   const [Amazon_Title_Query2,set_Amazon_Title_Query2] = React.useState("Not Found");
   const [Amazon_Price_Query2,set_Amazon_Price_Query2] = React.useState(" - ");
   const [Amazon_Link_Query2,set_Amazon_Link_Query2] = React.useState(" - ");
+  const [Amazon_Image_Query2,set_Amazon_Image_Query2] = React.useState(" - ");
   const [Walmart_Title_Query2,set_Walmart_Title_Query2] = React.useState("Not Found");
   const [Walmart_Price_Query2,set_Walmart_Price_Query2] = React.useState(" - ");
   const [Walmart_Link_Query2,set_Walmart_Link_Query2] = React.useState(" - ");
-  const [Target_Title_Query2,set_Target_Title_Query2] = React.useState("Not Found");
+  const [Walmart_Image_Query2,set_Walmart_Image_Query2] = React.useState(" - ");
+  const [Target_Title_Query2,set_Target_Title_Query2]   = React.useState("Not Found");
   const [Target_Price_Query2,set_Target_Price_Query2] = React.useState(" - ");
   const [Target_Link_Query2,set_Target_Link_Query2] = React.useState(" - ");
+  const [Target_Image_Query2,set_Target_Image_Query2] = React.useState(" - ");
   const [Costco_Title_Query2,set_Costco_Title_Query2] = React.useState("Not Found");
   const [Costco_Price_Query2,set_Costco_Price_Query2] = React.useState(" - ");
   const [Costco_Link_Query2,set_Costco_Link_Query2] = React.useState(" - ");
+  const [Costco_Image_Query2,set_Costco_Image_Query2] = React.useState(" - ");
 
   const [Amazon_Title_Query3,set_Amazon_Title_Query3] = React.useState("Not Found");
   const [Amazon_Price_Query3,set_Amazon_Price_Query3] = React.useState(" - ");
   const [Amazon_Link_Query3,set_Amazon_Link_Query3] = React.useState(" - ");
+  const [Amazon_Image_Query3,set_Amazon_Image_Query3] = React.useState(" - ");
   const [Walmart_Title_Query3,set_Walmart_Title_Query3] = React.useState("Not Found");
   const [Walmart_Price_Query3,set_Walmart_Price_Query3] = React.useState(" - ");
   const [Walmart_Link_Query3,set_Walmart_Link_Query3] = React.useState(" - ");
+  const [Walmart_Image_Query3,set_Walmart_Image_Query3] = React.useState(" - ");
   const [Target_Title_Query3,set_Target_Title_Query3] = React.useState("Not Found");
   const [Target_Price_Query3,set_Target_Price_Query3] = React.useState(" - ");
   const [Target_Link_Query3,set_Target_Link_Query3] = React.useState(" - ");
+  const [Target_Image_Query3,set_Target_Image_Query3] = React.useState(" - ");
   const [Costco_Title_Query3,set_Costco_Title_Query3] = React.useState("Not Found");
   const [Costco_Price_Query3,set_Costco_Price_Query3] = React.useState(" - ");
   const [Costco_Link_Query3,set_Costco_Link_Query3] = React.useState(" - ");
+  const [Costco_Image_Query3,set_Costco_Image_Query3] = React.useState(" - ");
 
   const [Amazon_Title_Query4,set_Amazon_Title_Query4] = React.useState("Not Found");
   const [Amazon_Price_Query4,set_Amazon_Price_Query4] = React.useState(" - ");
   const [Amazon_Link_Query4,set_Amazon_Link_Query4] = React.useState(" - ");
+  const [Amazon_Image_Query4,set_Amazon_Image_Query4] = React.useState(" - ");
   const [Walmart_Title_Query4,set_Walmart_Title_Query4] = React.useState("Not Found");
   const [Walmart_Price_Query4,set_Walmart_Price_Query4] = React.useState(" - ");
   const [Walmart_Link_Query4,set_Walmart_Link_Query4] = React.useState(" - ");
+  const [Walmart_Image_Query4,set_Walmart_Image_Query4] = React.useState(" - ");
   const [Target_Title_Query4,set_Target_Title_Query4] = React.useState("Not Found");
   const [Target_Price_Query4,set_Target_Price_Query4] = React.useState(" - ");
   const [Target_Link_Query4,set_Target_Link_Query4] = React.useState(" - ");
+  const [Target_Image_Query4,set_Target_Image_Query4] = React.useState(" - ");
   const [Costco_Title_Query4,set_Costco_Title_Query4] = React.useState("Not Found");
   const [Costco_Price_Query4,set_Costco_Price_Query4] = React.useState(" - ");
   const [Costco_Link_Query4,set_Costco_Link_Query4] = React.useState(" - ");
+  const [Costco_Image_Query4,set_Costco_Image_Query4] = React.useState(" - ");
 
   const [Amazon_Title_Query5,set_Amazon_Title_Query5] = React.useState("Not Found");
   const [Amazon_Price_Query5,set_Amazon_Price_Query5] = React.useState(" - ");
   const [Amazon_Link_Query5,set_Amazon_Link_Query5] = React.useState(" - ");
+  const [Amazon_Image_Query5,set_Amazon_Image_Query5] = React.useState(" - ");
   const [Walmart_Title_Query5,set_Walmart_Title_Query5] = React.useState("Not Found");
   const [Walmart_Price_Query5,set_Walmart_Price_Query5] = React.useState(" - ");
   const [Walmart_Link_Query5,set_Walmart_Link_Query5] = React.useState(" - ");
+  const [Walmart_Image_Query5,set_Walmart_Image_Query5] = React.useState(" - ");
   const [Target_Title_Query5,set_Target_Title_Query5] = React.useState("Not Found");
   const [Target_Price_Query5,set_Target_Price_Query5] = React.useState(" - ");
   const [Target_Link_Query5,set_Target_Link_Query5] = React.useState(" - ");
+  const [Target_Image_Query5,set_Target_Image_Query5] = React.useState(" - ");
   const [Costco_Title_Query5,set_Costco_Title_Query5] = React.useState("Not Found");
   const [Costco_Price_Query5,set_Costco_Price_Query5] = React.useState(" - ");
   const [Costco_Link_Query5,set_Costco_Link_Query5] = React.useState(" - ");
+  const [Costco_Image_Query5,set_Costco_Image_Query5] = React.useState(" - ");
 
   const [result1,set_Result1] = React.useState(null);
   const [result2,set_Result2] = React.useState(null);
@@ -205,15 +230,19 @@ function App(){
         set_Amazon_Title_Query1(response.data.Amazon_Title);
         set_Amazon_Price_Query1(response.data.Amazon_Price);
         set_Amazon_Link_Query1(response.data.Amazon_Link);
+        set_Amazon_Image_Query1(response.data.Amazon_Image);
         set_Walmart_Title_Query1(response.data.Walmart_Title);
         set_Walmart_Price_Query1(response.data.Walmart_Price);
         set_Walmart_Link_Query1(response.data.Walmart_Link);
+        set_Walmart_Image_Query1(response.data.Walmart_Image);
         set_Target_Title_Query1(response.data.Target_Title);
         set_Target_Price_Query1(response.data.Target_Price);
         set_Target_Link_Query1(response.data.Target_Link);
+        set_Target_Image_Query1(response.data.Target_Image);
         set_Costco_Title_Query1(response.data.Costco_Title);
         set_Costco_Price_Query1(response.data.Costco_Price);
         set_Costco_Link_Query1(response.data.Costco_Link);
+        set_Costco_Image_Query1(response.data.Costco_Image);
         set_Result1(true);
       })
       .catch(function(error){
@@ -229,15 +258,19 @@ function App(){
         set_Amazon_Title_Query2(response.data.Amazon_Title);
         set_Amazon_Price_Query2(response.data.Amazon_Price);
         set_Amazon_Link_Query2(response.data.Amazon_Link);
+        set_Amazon_Image_Query2(response.data.Amazon_Image);
         set_Walmart_Title_Query2(response.data.Walmart_Title);
         set_Walmart_Price_Query2(response.data.Walmart_Price);
         set_Walmart_Link_Query2(response.data.Walmart_Link);
+        set_Walmart_Image_Query2(response.data.Walmart_Image);
         set_Target_Title_Query2(response.data.Target_Title);
         set_Target_Price_Query2(response.data.Target_Price);
         set_Target_Link_Query2(response.data.Target_Link);
+        set_Target_Image_Query2(response.data.Target_Image);
         set_Costco_Title_Query2(response.data.Costco_Title);
         set_Costco_Price_Query2(response.data.Costco_Price);
         set_Costco_Link_Query2(response.data.Costco_Link);
+        set_Costco_Image_Query2(response.data.Costco_Image);
         set_Result2(true);
       })
       .catch(function(error){
@@ -253,15 +286,19 @@ function App(){
         set_Amazon_Title_Query3(response.data.Amazon_Title);
         set_Amazon_Price_Query3(response.data.Amazon_Price);
         set_Amazon_Link_Query3(response.data.Amazon_Link);
+        set_Amazon_Image_Query3(response.data.Amazon_Image);
         set_Walmart_Title_Query3(response.data.Walmart_Title);
         set_Walmart_Price_Query3(response.data.Walmart_Price);
         set_Walmart_Link_Query3(response.data.Walmart_Link);
+        set_Walmart_Image_Query3(response.data.Walmart_Image);
         set_Target_Title_Query3(response.data.Target_Title);
         set_Target_Price_Query3(response.data.Target_Price);
         set_Target_Link_Query3(response.data.Target_Link);
+        set_Target_Image_Query3(response.data.Target_Image);
         set_Costco_Title_Query3(response.data.Costco_Title);
         set_Costco_Price_Query3(response.data.Costco_Price);
         set_Costco_Link_Query3(response.data.Costco_Link);
+        set_Costco_Image_Query3(response.data.Costco_Image);
         set_Result3(true);
       })
       .catch(function(error){
@@ -277,15 +314,19 @@ function App(){
         set_Amazon_Title_Query4(response.data.Amazon_Title);
         set_Amazon_Price_Query4(response.data.Amazon_Price);
         set_Amazon_Link_Query4(response.data.Amazon_Link);
+        set_Amazon_Image_Query4(response.data.Amazon_Image);
         set_Walmart_Title_Query4(response.data.Walmart_Title);
         set_Walmart_Price_Query4(response.data.Walmart_Price);
         set_Walmart_Link_Query4(response.data.Walmart_Link);
+        set_Walmart_Image_Query4(response.data.Walmart_Image);
         set_Target_Title_Query4(response.data.Target_Title);
         set_Target_Price_Query4(response.data.Target_Price);
         set_Target_Link_Query4(response.data.Target_Link);
+        set_Target_Image_Query4(response.data.Target_Image);
         set_Costco_Title_Query4(response.data.Costco_Title);
         set_Costco_Price_Query4(response.data.Costco_Price);
         set_Costco_Link_Query4(response.data.Costco_Link);
+        set_Costco_Image_Query4(response.data.Costco_Image);
         set_Result4(true);
       })
       .catch(function(error){
@@ -301,15 +342,19 @@ function App(){
         set_Amazon_Title_Query5(response.data.Amazon_Title);
         set_Amazon_Price_Query5(response.data.Amazon_Price);
         set_Amazon_Link_Query5(response.data.Amazon_Link);
+        set_Amazon_Image_Query5(response.data.Amazon_Image);
         set_Walmart_Title_Query5(response.data.Walmart_Title);
         set_Walmart_Price_Query5(response.data.Walmart_Price);
         set_Walmart_Link_Query5(response.data.Walmart_Link);
+        set_Walmart_Image_Query5(response.data.Walmart_Image);
         set_Target_Title_Query5(response.data.Target_Title);
         set_Target_Price_Query5(response.data.Target_Price);
         set_Target_Link_Query5(response.data.Target_Link);
+        set_Target_Image_Query5(response.data.Target_Image);
         set_Costco_Title_Query5(response.data.Costco_Title);
         set_Costco_Price_Query5(response.data.Costco_Price);
         set_Costco_Link_Query5(response.data.Costco_Link);
+        set_Costco_Image_Query5(response.data.Costco_Image);
         set_Result5(true);
       })
       .catch(function(error){
@@ -334,6 +379,10 @@ function App(){
       if(len===5)
         set_Search_Query5(query[4]);   
     }
+  };
+
+  const CardStyleAmazon = {
+    height: 32,
   };
 
   // componentDidMount(){
@@ -466,19 +515,22 @@ function App(){
         title={Amazon_Title_Query1}
         subheader={Amazon_Price_Query1}
       />
-      <CardMedia
-        className={classes.media}
-        //image = {{uri:'https://via.placeholder.com/350x150'}}
-        //image = {{uri:'https://m.media-amazon.com/images/I/51q509vv--L._AC_UL320_ML3_.jpg'}}
-        image={require("/Users/Kevin/Desktop/CapStone/SmartCart/front-end/src/1.jpg")}
-        title={Amazon_Title_Query1}  
-      />
+      <CardMedia 
+        className={classes.media} 
+        title={Amazon_Title_Query1} 
+        image = {Amazon_Image_Query1}
+        /> 
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
-          {Amazon_Link_Query1}
+          <Link href={Amazon_Link_Query1} className={classes.link}>
+            Link to Product
+            <IconButton>
+              <LaunchIcon style={{fontSize:15}}/>
+            </IconButton>
+          </Link>
         </Typography>
       </CardContent>
-      <CardActions disableSpacing>
+      {/* <CardActions disableSpacing>
         <IconButton aria-label="add to favorites">
           <FavoriteIcon />
         </IconButton>
@@ -495,8 +547,8 @@ function App(){
         >
         <ExpandMoreIcon/> 
         </IconButton>
-      </CardActions>
-      <Collapse in={expanded} timeout="auto" unmountOnExit>
+      </CardActions> */}
+      {/* <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
           <Typography paragraph>Method:</Typography>
           <Typography paragraph>
@@ -509,7 +561,7 @@ function App(){
             We can add some more details here.
           </Typography>
         </CardContent>
-      </Collapse>
+      </Collapse> */}
     </Card>
         </Grid>
         <Grid item xs={3}>
@@ -522,7 +574,7 @@ function App(){
         }
         action={
           <IconButton aria-label="settings">
-            <MoreVertIcon />
+            <MoreVertIcon/>
           </IconButton>
         }
         title={Walmart_Title_Query1}
@@ -530,15 +582,21 @@ function App(){
       />
       <CardMedia
         className={classes.media}
-        image={require ("/Users/Kevin/Desktop/CapStone/SmartCart/front-end/src/2.jpg")}
-        title={Walmart_Title_Query1}
+        //image={require ("/Users/Kevin/Desktop/CapStone/SmartCart/front-end/src/2.jpg")}
+        image = {Walmart_Image_Query1}
+        title = {Walmart_Title_Query1}
       />
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
-          {Walmart_Link_Query1}
+        <Link href={Walmart_Link_Query1} className={classes.link}>
+            Link to Product
+            <IconButton>
+              <LaunchIcon style={{fontSize:15}}/>
+            </IconButton>
+          </Link>
         </Typography>
       </CardContent>
-      <CardActions disableSpacing>
+      {/* <CardActions disableSpacing>
         <IconButton aria-label="add to favorites">
           <FavoriteIcon />
         </IconButton>
@@ -568,7 +626,7 @@ function App(){
             We can add some more details here.
           </Typography>
         </CardContent>
-      </Collapse>
+      </Collapse> */}
     </Card>
         </Grid>
         <Grid item xs={3}>
@@ -589,15 +647,21 @@ function App(){
       />
       <CardMedia
         className={classes.media}
-        image={require ("/Users/Kevin/Desktop/CapStone/SmartCart/front-end/src/3.jpg")}
-        title={Target_Title_Query1}
+        //image={require ("/Users/Kevin/Desktop/CapStone/SmartCart/front-end/src/3.jpg")}
+        image = {Target_Image_Query1}
+        title = {Target_Title_Query1}
       />
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
-          {Target_Link_Query1}
+        <Link href={Target_Link_Query1} className={classes.link}>
+            Link to Product
+            <IconButton>
+              <LaunchIcon style={{fontSize:15}}/>
+            </IconButton>
+          </Link>
         </Typography>
       </CardContent>
-      <CardActions disableSpacing>
+      {/* <CardActions disableSpacing>
         <IconButton aria-label="add to favorites">
           <FavoriteIcon />
         </IconButton>
@@ -628,7 +692,7 @@ function App(){
             We can add some more details here.
           </Typography>
         </CardContent>
-      </Collapse>
+      </Collapse> */}
     </Card>
         </Grid>
         <Grid item xs={3}>
@@ -649,15 +713,21 @@ function App(){
       />
       <CardMedia
         className={classes.media}
-        image={require ("/Users/Kevin/Desktop/CapStone/SmartCart/front-end/src/4.jpg")}
-        title={Costco_Title_Query1}
+        //image={require ("/Users/Kevin/Desktop/CapStone/SmartCart/front-end/src/4.jpg")}
+        image = {Costco_Image_Query1}
+        title = {Costco_Title_Query1}
       />
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
-          {Costco_Link_Query1}
+        <Link href={Costco_Link_Query1} className={classes.link}>
+            Link to Product
+            <IconButton>
+              <LaunchIcon style={{fontSize:15}}/>
+            </IconButton>
+          </Link>
         </Typography>
       </CardContent>
-      <CardActions disableSpacing>
+      {/* <CardActions disableSpacing>
         <IconButton aria-label="add to favorites">
           <FavoriteIcon />
         </IconButton>
@@ -688,7 +758,7 @@ function App(){
             We can add some more details here.
           </Typography>
         </CardContent>
-      </Collapse>
+      </Collapse> */}
     </Card>
         </Grid>
       </Grid>  
@@ -722,15 +792,21 @@ function App(){
         className={classes.media}
         //image = {{uri:'https://via.placeholder.com/350x150'}}
         //image = {{uri:'https://m.media-amazon.com/images/I/51q509vv--L._AC_UL320_ML3_.jpg'}}
-        image={require("/Users/Kevin/Desktop/CapStone/SmartCart/front-end/src/1.jpg")}
-        title={Amazon_Title_Query2}  
+        //image={require("/Users/Kevin/Desktop/CapStone/SmartCart/front-end/src/1.jpg")}
+        image = {Amazon_Image_Query2}
+        title = {Amazon_Title_Query2}  
       />
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
-          {Amazon_Link_Query2}
+        <Link href={Amazon_Link_Query2} className={classes.link}>
+            Link to Product
+            <IconButton>
+              <LaunchIcon style={{fontSize:15}}/>
+            </IconButton>
+          </Link>
         </Typography>
       </CardContent>
-      <CardActions disableSpacing>
+      {/* <CardActions disableSpacing>
         <IconButton aria-label="add to favorites">
           <FavoriteIcon />
         </IconButton>
@@ -761,7 +837,7 @@ function App(){
             We can add some more details here.
           </Typography>
         </CardContent>
-      </Collapse>
+      </Collapse> */}
     </Card>
         </Grid>
         <Grid item xs={3}>
@@ -782,15 +858,21 @@ function App(){
       />
       <CardMedia
         className={classes.media}
-        image={require ("/Users/Kevin/Desktop/CapStone/SmartCart/front-end/src/2.jpg")}
-        title={Walmart_Title_Query2}
+        //image={require ("/Users/Kevin/Desktop/CapStone/SmartCart/front-end/src/2.jpg")}
+        image = {Walmart_Image_Query2}
+        title = {Walmart_Title_Query2}
       />
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
-          {Walmart_Link_Query2}
+        <Link href={Walmart_Link_Query2} className={classes.link}>
+            Link to Product
+            <IconButton>
+              <LaunchIcon style={{fontSize:15}}/>
+            </IconButton>
+          </Link>
         </Typography>
       </CardContent>
-      <CardActions disableSpacing>
+      {/* <CardActions disableSpacing>
         <IconButton aria-label="add to favorites">
           <FavoriteIcon />
         </IconButton>
@@ -821,7 +903,7 @@ function App(){
             We can add some more details here.
           </Typography>
         </CardContent>
-      </Collapse>
+      </Collapse> */}
     </Card>
         </Grid>
         <Grid item xs={3}>
@@ -842,15 +924,21 @@ function App(){
       />
       <CardMedia
         className={classes.media}
-        image={require ("/Users/Kevin/Desktop/CapStone/SmartCart/front-end/src/3.jpg")}
-        title={Target_Title_Query2}
+        //image={require ("/Users/Kevin/Desktop/CapStone/SmartCart/front-end/src/3.jpg")}
+        image = {Target_Image_Query2}
+        title = {Target_Title_Query2}
       />
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
-          {Target_Link_Query2}
+        <Link href={Target_Link_Query2} className={classes.link}>
+            Link to Product
+            <IconButton>
+              <LaunchIcon style={{fontSize:15}}/>
+            </IconButton>
+          </Link>
         </Typography>
       </CardContent>
-      <CardActions disableSpacing>
+      {/* <CardActions disableSpacing>
         <IconButton aria-label="add to favorites">
           <FavoriteIcon />
         </IconButton>
@@ -881,7 +969,7 @@ function App(){
             We can add some more details here.
           </Typography>
         </CardContent>
-      </Collapse>
+      </Collapse> */}
     </Card>
         </Grid>
         <Grid item xs={3}>
@@ -902,15 +990,21 @@ function App(){
       />
       <CardMedia
         className={classes.media}
-        image={require ("/Users/Kevin/Desktop/CapStone/SmartCart/front-end/src/4.jpg")}
-        title={Costco_Title_Query2}
+        //image={require ("/Users/Kevin/Desktop/CapStone/SmartCart/front-end/src/4.jpg")}
+        image = {Costco_Image_Query2}
+        title = {Costco_Title_Query2}
       />
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
-          {Costco_Link_Query2}
+        <Link href={Costco_Link_Query2} className={classes.link}>
+            Link to Product
+            <IconButton>
+              <LaunchIcon style={{fontSize:15}}/>
+            </IconButton>
+          </Link>
         </Typography>
       </CardContent>
-      <CardActions disableSpacing>
+      {/* <CardActions disableSpacing>
         <IconButton aria-label="add to favorites">
           <FavoriteIcon />
         </IconButton>
@@ -941,7 +1035,7 @@ function App(){
             We can add some more details here.
           </Typography>
         </CardContent>
-      </Collapse>
+      </Collapse> */}
     </Card>
         </Grid>
       </Grid>  
@@ -974,15 +1068,21 @@ function App(){
       <CardMedia
         className={classes.media}
         //image = {{uri:'https://m.media-amazon.com/images/I/51q509vv--L._AC_UL320_ML3_.jpg'}}
-        image={require ("/Users/Kevin/Desktop/CapStone/SmartCart/front-end/src/1.jpg")}
-        title={Amazon_Title_Query3}  
+        //image={require ("/Users/Kevin/Desktop/CapStone/SmartCart/front-end/src/1.jpg")}
+        image = {Amazon_Image_Query3}
+        title = {Amazon_Title_Query3}  
       />
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
-          {Amazon_Link_Query3}
+        <Link href={Amazon_Link_Query3} className={classes.link}>
+            Link to Product
+            <IconButton>
+              <LaunchIcon style={{fontSize:15}}/>
+            </IconButton>
+          </Link>
         </Typography>
       </CardContent>
-      <CardActions disableSpacing>
+      {/* <CardActions disableSpacing>
         <IconButton aria-label="add to favorites">
           <FavoriteIcon />
         </IconButton>
@@ -1013,7 +1113,7 @@ function App(){
             We can add some more details here.
           </Typography>
         </CardContent>
-      </Collapse>
+      </Collapse> */}
     </Card>
         </Grid>
         <Grid item xs={3}>
@@ -1034,15 +1134,21 @@ function App(){
       />
       <CardMedia
         className={classes.media}
-        image={require ("/Users/Kevin/Desktop/CapStone/SmartCart/front-end/src/2.jpg")}
-        title={Walmart_Title_Query3}
+        //image={require ("/Users/Kevin/Desktop/CapStone/SmartCart/front-end/src/2.jpg")}
+        image = {Walmart_Image_Query3}
+        title = {Walmart_Title_Query3}
       />
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
-          {Walmart_Link_Query3}
+        <Link href={Walmart_Link_Query3} className={classes.link}>
+            Link to Product
+            <IconButton>
+              <LaunchIcon style={{fontSize:15}}/>
+            </IconButton>
+          </Link>
         </Typography>
       </CardContent>
-      <CardActions disableSpacing>
+      {/* <CardActions disableSpacing>
         <IconButton aria-label="add to favorites">
           <FavoriteIcon />
         </IconButton>
@@ -1073,7 +1179,7 @@ function App(){
             We can add some more details here.
           </Typography>
         </CardContent>
-      </Collapse>
+      </Collapse> */}
     </Card>
         </Grid>
         <Grid item xs={3}>
@@ -1094,15 +1200,21 @@ function App(){
       />
       <CardMedia
         className={classes.media}
-        image={require ("/Users/Kevin/Desktop/CapStone/SmartCart/front-end/src/3.jpg")}
-        title={Target_Title_Query3}
+        //image={require ("/Users/Kevin/Desktop/CapStone/SmartCart/front-end/src/3.jpg")}
+        image = {Target_Image_Query3}
+        title = {Target_Title_Query3}
       />
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
-          {Target_Link_Query3}
+        <Link href={Target_Link_Query3} className={classes.link}>
+            Link to Product
+            <IconButton>
+              <LaunchIcon style={{fontSize:15}}/>
+            </IconButton>
+          </Link>
         </Typography>
       </CardContent>
-      <CardActions disableSpacing>
+      {/* <CardActions disableSpacing>
         <IconButton aria-label="add to favorites">
           <FavoriteIcon />
         </IconButton>
@@ -1133,7 +1245,7 @@ function App(){
             We can add some more details here.
           </Typography>
         </CardContent>
-      </Collapse>
+      </Collapse> */}
     </Card>
         </Grid>
         <Grid item xs={3}>
@@ -1154,15 +1266,21 @@ function App(){
       />
       <CardMedia
         className={classes.media}
-        image={require ("/Users/Kevin/Desktop/CapStone/SmartCart/front-end/src/4.jpg")}
-        title={Costco_Title_Query3}
+        //image={require ("/Users/Kevin/Desktop/CapStone/SmartCart/front-end/src/4.jpg")}
+        image = {Costco_Image_Query3}
+        title = {Costco_Title_Query3}
       />
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
-          {Costco_Link_Query3}
+        <Link href={Costco_Link_Query3} className={classes.link}>
+            Link to Product
+            <IconButton>
+              <LaunchIcon style={{fontSize:15}}/>
+            </IconButton>
+          </Link>
         </Typography>
       </CardContent>
-      <CardActions disableSpacing>
+      {/* <CardActions disableSpacing>
         <IconButton aria-label="add to favorites">
           <FavoriteIcon />
         </IconButton>
@@ -1193,7 +1311,7 @@ function App(){
             We can add some more details here.
           </Typography>
         </CardContent>
-      </Collapse>
+      </Collapse> */}
     </Card>
         </Grid>
       </Grid>  
@@ -1226,15 +1344,21 @@ function App(){
       <CardMedia
         className={classes.media}
         //image = {{uri:'https://m.media-amazon.com/images/I/51q509vv--L._AC_UL320_ML3_.jpg'}}
-        image={require ("/Users/Kevin/Desktop/CapStone/SmartCart/front-end/src/1.jpg")}
-        title={Amazon_Title_Query4}  
+        //image={require ("/Users/Kevin/Desktop/CapStone/SmartCart/front-end/src/1.jpg")}
+        image = {Amazon_Image_Query4}
+        title = {Amazon_Title_Query4}  
       />
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
-          {Amazon_Link_Query4}
+        <Link href={Amazon_Link_Query4} className={classes.link}>
+            Link to Product
+            <IconButton>
+              <LaunchIcon style={{fontSize:15}}/>
+            </IconButton>
+          </Link>
         </Typography>
       </CardContent>
-      <CardActions disableSpacing>
+      {/* <CardActions disableSpacing>
         <IconButton aria-label="add to favorites">
           <FavoriteIcon />
         </IconButton>
@@ -1265,7 +1389,7 @@ function App(){
             We can add some more details here.
           </Typography>
         </CardContent>
-      </Collapse>
+      </Collapse> */}
     </Card>
         </Grid>
         <Grid item xs={3}>
@@ -1286,15 +1410,21 @@ function App(){
       />
       <CardMedia
         className={classes.media}
-        image={require ("/Users/Kevin/Desktop/CapStone/SmartCart/front-end/src/2.jpg")}
-        title={Walmart_Title_Query4}
+        //image={require ("/Users/Kevin/Desktop/CapStone/SmartCart/front-end/src/2.jpg")}
+        image = {Walmart_Image_Query4}
+        title = {Walmart_Title_Query4}
       />
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
-          {Walmart_Link_Query4}
+        <Link href={Walmart_Link_Query4} className={classes.link}>
+            Link to Product
+            <IconButton>
+              <LaunchIcon style={{fontSize:15}}/>
+            </IconButton>
+          </Link>
         </Typography>
       </CardContent>
-      <CardActions disableSpacing>
+      {/* <CardActions disableSpacing>
         <IconButton aria-label="add to favorites">
           <FavoriteIcon />
         </IconButton>
@@ -1325,7 +1455,7 @@ function App(){
             We can add some more details here.
           </Typography>
         </CardContent>
-      </Collapse>
+      </Collapse> */}
     </Card>
         </Grid>
         <Grid item xs={3}>
@@ -1346,15 +1476,21 @@ function App(){
       />
       <CardMedia
         className={classes.media}
-        image={require ("/Users/Kevin/Desktop/CapStone/SmartCart/front-end/src/3.jpg")}
-        title={Target_Title_Query4}
+        //image={require ("/Users/Kevin/Desktop/CapStone/SmartCart/front-end/src/3.jpg")}
+        image = {Target_Image_Query4}
+        title = {Target_Title_Query4}
       />
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
-          {Target_Link_Query4}
+        <Link href={Target_Link_Query4} className={classes.link}>
+            Link to Product
+            <IconButton>
+              <LaunchIcon style={{fontSize:15}}/>
+            </IconButton>
+          </Link>
         </Typography>
       </CardContent>
-      <CardActions disableSpacing>
+      {/* <CardActions disableSpacing>
         <IconButton aria-label="add to favorites">
           <FavoriteIcon />
         </IconButton>
@@ -1385,7 +1521,7 @@ function App(){
             We can add some more details here.
           </Typography>
         </CardContent>
-      </Collapse>
+      </Collapse> */}
     </Card>
         </Grid>
         <Grid item xs={3}>
@@ -1406,15 +1542,21 @@ function App(){
       />
       <CardMedia
         className={classes.media}
-        image={require ("/Users/Kevin/Desktop/CapStone/SmartCart/front-end/src/4.jpg")}
-        title={Costco_Title_Query4}
+        //image={require ("/Users/Kevin/Desktop/CapStone/SmartCart/front-end/src/4.jpg")}
+        image = {Costco_Image_Query4}
+        title = {Costco_Title_Query4}
       />
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
-          {Costco_Link_Query4}
+        <Link href={Costco_Link_Query4} className={classes.link}>
+            Link to Product
+            <IconButton>
+              <LaunchIcon style={{fontSize:15}}/>
+            </IconButton>
+          </Link>
         </Typography>
       </CardContent>
-      <CardActions disableSpacing>
+      {/* <CardActions disableSpacing>
         <IconButton aria-label="add to favorites">
           <FavoriteIcon />
         </IconButton>
@@ -1445,7 +1587,7 @@ function App(){
             We can add some more details here.
           </Typography>
         </CardContent>
-      </Collapse>
+      </Collapse> */}
     </Card>
         </Grid>
       </Grid>  
@@ -1478,15 +1620,21 @@ function App(){
       <CardMedia
         className={classes.media}
         //image = {{uri:'https://m.media-amazon.com/images/I/51q509vv--L._AC_UL320_ML3_.jpg'}}
-        image={require ("/Users/Kevin/Desktop/CapStone/SmartCart/front-end/src/1.jpg")}
-        title={Amazon_Title_Query5}  
+        //image={require ("/Users/Kevin/Desktop/CapStone/SmartCart/front-end/src/1.jpg")}
+        image = {Amazon_Image_Query5}
+        title = {Amazon_Title_Query5}  
       />
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
-          {Amazon_Link_Query5}
+        <Link href={Amazon_Link_Query5} className={classes.link}>
+            Link to Product
+            <IconButton>
+              <LaunchIcon style={{fontSize:15}}/>
+            </IconButton>
+          </Link>
         </Typography>
       </CardContent>
-      <CardActions disableSpacing>
+      {/* <CardActions disableSpacing>
         <IconButton aria-label="add to favorites">
           <FavoriteIcon />
         </IconButton>
@@ -1517,7 +1665,7 @@ function App(){
             We can add some more details here.
           </Typography>
         </CardContent>
-      </Collapse>
+      </Collapse> */}
     </Card>
         </Grid>
         <Grid item xs={3}>
@@ -1538,15 +1686,21 @@ function App(){
       />
       <CardMedia
         className={classes.media}
-        image={require ("/Users/Kevin/Desktop/CapStone/SmartCart/front-end/src/2.jpg")}
-        title={Walmart_Title_Query5}
+        //image={require ("/Users/Kevin/Desktop/CapStone/SmartCart/front-end/src/2.jpg")}
+        image = {Walmart_Image_Query5}
+        title = {Walmart_Title_Query5}
       />
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
-          {Walmart_Link_Query5}
+        <Link href={Walmart_Link_Query5} className={classes.link}>
+            Link to Product
+            <IconButton>
+              <LaunchIcon style={{fontSize:15}}/>
+            </IconButton>
+          </Link>
         </Typography>
       </CardContent>
-      <CardActions disableSpacing>
+      {/* <CardActions disableSpacing>
         <IconButton aria-label="add to favorites">
           <FavoriteIcon />
         </IconButton>
@@ -1577,7 +1731,7 @@ function App(){
             We can add some more details here.
           </Typography>
         </CardContent>
-      </Collapse>
+      </Collapse> */}
     </Card>
         </Grid>
         <Grid item xs={3}>
@@ -1598,15 +1752,21 @@ function App(){
       />
       <CardMedia
         className={classes.media}
-        image={require ("/Users/Kevin/Desktop/CapStone/SmartCart/front-end/src/3.jpg")}
-        title={Target_Title_Query5}
+        //image={require ("/Users/Kevin/Desktop/CapStone/SmartCart/front-end/src/3.jpg")}
+        image = {Target_Image_Query5}
+        title = {Target_Title_Query5}
       />
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
-          {Target_Link_Query5}
+        <Link href={Target_Link_Query5} className={classes.link}>
+            Link to Product
+            <IconButton>
+              <LaunchIcon style={{fontSize:15}}/>
+            </IconButton>
+          </Link>
         </Typography>
       </CardContent>
-      <CardActions disableSpacing>
+      {/* <CardActions disableSpacing>
         <IconButton aria-label="add to favorites">
           <FavoriteIcon />
         </IconButton>
@@ -1637,7 +1797,7 @@ function App(){
             We can add some more details here.
           </Typography>
         </CardContent>
-      </Collapse>
+      </Collapse> */}
     </Card>
         </Grid>
         <Grid item xs={3}>
@@ -1658,15 +1818,21 @@ function App(){
       />
       <CardMedia
         className={classes.media}
-        image={require ("/Users/Kevin/Desktop/CapStone/SmartCart/front-end/src/4.jpg")}
-        title={Costco_Title_Query5}
+        //image={require ("/Users/Kevin/Desktop/CapStone/SmartCart/front-end/src/4.jpg")}
+        image = {Costco_Image_Query5}
+        title = {Costco_Title_Query5}
       />
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
-          {Costco_Link_Query5}
+        <Link href={Costco_Link_Query5} className={classes.link}>
+            Link to Product
+            <IconButton>
+              <LaunchIcon style={{fontSize:15}}/>
+            </IconButton>
+          </Link>
         </Typography>
       </CardContent>
-      <CardActions disableSpacing>
+      {/* <CardActions disableSpacing>
         <IconButton aria-label="add to favorites">
           <FavoriteIcon />
         </IconButton>
@@ -1697,7 +1863,7 @@ function App(){
             We can add some more details here.
           </Typography>
         </CardContent>
-      </Collapse>
+      </Collapse> */}
     </Card>
         </Grid>
       </Grid>  
