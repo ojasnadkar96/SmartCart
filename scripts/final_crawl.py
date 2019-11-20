@@ -8,6 +8,7 @@ import sys
 from time import sleep
 
 chrome_driver = 'C:/Users/Kevin/Desktop/CapStone/chromedriver.exe'
+#chrome_driver = 'E:/Data/MCS/Academics/4Q/Capstone/chromedriver.exe'
 
 def walmart_crawl(walmart_item):
 	walmart_headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.71 Safari/537.36'}
@@ -111,7 +112,7 @@ def real_crawl(search_term):
 		dict_query['Walmart_Title'] = w_title
 		dict_query['Walmart_Price'] = w_price
 		dict_query['Walmart_Link'] = w_link
-		dict_query['Walmar_Image'] = w_image
+		dict_query['Walmart_Image'] = w_image
 	except:
 		w_link = 'https://www.walmart.com'
 		dict_query['Walmart_Title'] = default_title

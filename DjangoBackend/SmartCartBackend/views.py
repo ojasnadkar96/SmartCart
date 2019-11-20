@@ -39,7 +39,7 @@ def connection_setup():
 	mycollection = mydb.test_crawl
 	return mycollection
 
-def real_crawl(json_item)
+def real_crawl(json_item):
 	dict_query = {}
 	dict_query['Item'] = json_item
 	default_title = 'CANNOT FIND ITEM'
@@ -51,7 +51,7 @@ def real_crawl(json_item)
 		dict_query['Walmart_Title'] = w_title
 		dict_query['Walmart_Price'] = w_price
 		dict_query['Walmart_Link'] = w_link
-		dict_query['Walmar_Image'] = w_image
+		dict_query['Walmart_Image'] = w_image
 	except:
 		w_link = 'https://www.walmart.com'
 		dict_query['Walmart_Title'] = default_title
@@ -121,11 +121,12 @@ def walmart_crawl(walmart_item):
 	walmart_soup = BeautifulSoup(walmart_page.content, 'lxml')
 	walmart_product = walmart_soup.find('li', class_='Grid-col u-size-6-12 u-size-1-4-m u-size-1-5-xl search-gridview-first-col-item search-gridview-first-grid-row-item')
 	walmart_price = walmart_product.find(class_="price-group").text
+	walmart_image = walmart_product.find('img')['src']
 	walmart_description = walmart_product.find('div', class_='search-result-product-title gridview')
 	walmart_anchor = walmart_description.find('a', class_='product-title-link line-clamp line-clamp-2')
 	walmart_link = 'https://www.walmart.com' + walmart_anchor['href']
 	walmart_title = re.findall(r"title=\"(.*?)\"",str(walmart_anchor))[0]
-	return walmart_title, walmart_price, walmart_link
+	return walmart_title, walmart_price, walmart_link, walmart_image
 	
 def target_crawl(target_item):
 	target_url = 'https://www.target.com/s?searchTerm=' + target_item + '&sortBy=PriceLow&Nao=0'
@@ -136,10 +137,14 @@ def target_crawl(target_item):
 	target_page = BeautifulSoup(target_innerHTML,"lxml")
 	target_price = target_page.find_all('span', class_='h-text-bs')[4].text
 	target_product = target_page.find('div', class_='flex-grow-one full-width')
+	target_picture = target_page.find('div', class_='Images__ImageContainer-sc-1gcxa3z-2 crxLuS')
+	picture_source = target_picture.find('picture')
+	target_image = picture_source.find('source')['srcset']
 	target_anchor = target_product.find('a')
 	target_title = target_anchor.text
 	target_link = 'https://www.target.com/' + target_anchor['href']
-	return target_title, target_price, target_link
+	target_driver.quit()
+	return target_title, target_price, target_link, target_image
 	
 def amazon_crawl(amazon_item):
 	amazon_headers = {"User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64;x64; rv:66.0) Gecko/20100101 Firefox/66.0", "Accept-Encoding":"gzip, deflate","Accept":"text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8", "DNT":"1","Connection":"close", "Upgrade-Insecure-Requests":"1"}
@@ -149,8 +154,9 @@ def amazon_crawl(amazon_item):
 	amazon_product = amazon_soup.find('span',class_='a-price')
 	amazon_price = amazon_product.find('span',class_='a-offscreen').text
 	amazon_title = amazon_soup.find('span',class_='a-size-base-plus a-color-base a-text-normal').text
+	amazon_image = amazon_soup.find('img', class_='s-image')['src']
 	amazon_link = 'https://www.amazon.com' + amazon_soup.find('a', class_='a-link-normal a-text-normal')['href']
-	return amazon_title, amazon_price, amazon_link
+	return amazon_title, amazon_price, amazon_link, amazon_image
 
 def rite_crawl(rite_item):
 	rite_headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.71 Safari/537.36'}
@@ -177,6 +183,7 @@ def costco_crawl(costco_item):
 	for costco_item in costco_grid:
 		costco_check = costco_item.find('div',class_="price")
 		if(costco_check is not None):
+			costco_image = costco_item.find('img', class_='img-responsive')['src']
 			costco_price = costco_check.text
 			costco_description = costco_item.find('p', class_='description')
 			costco_title = costco_description.find('a').text
@@ -187,7 +194,8 @@ def costco_crawl(costco_item):
 				costco_count = re.findall(r"\d+",str(costco_number[0]))[0]
 			else:
 				costco_count = -1
-			return costco_title, costco_price, costco_link
+			costco_driver.quit()
+			return costco_title, costco_price, costco_link, costco_image
 
 def convert_price_string_to_float(price):
 	space_strip = price.strip()
