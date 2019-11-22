@@ -234,7 +234,7 @@ def connection_setup():
 	mydb = myclient.test
 	mycollection = mydb.test_crawl
 	return mycollection
-	
+
 def main():
 	#handle = connection_setup()
 	#indexed = handle.find_one({'Item' : sys.argv[1]})
