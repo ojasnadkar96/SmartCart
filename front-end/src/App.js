@@ -102,10 +102,10 @@ function App(){
   const [Target_Price_Query1,set_Target_Price_Query1] = React.useState(" - ");
   const [Target_Link_Query1,set_Target_Link_Query1] = React.useState(" - ");
   const [Target_Image_Query1,set_Target_Image_Query1] = React.useState(" - ");
-  const [Costco_Title_Query1,set_Costco_Title_Query1] = React.useState("Not Found");
-  const [Costco_Price_Query1,set_Costco_Price_Query1] = React.useState(" - ");
-  const [Costco_Link_Query1,set_Costco_Link_Query1] = React.useState(" - ");
-  const [Costco_Image_Query1,set_Costco_Image_Query1] = React.useState(" - ");
+  const [Whole_Title_Query1,set_Whole_Title_Query1] = React.useState("Not Found");
+  const [Whole_Price_Query1,set_Whole_Price_Query1] = React.useState(" - ");
+  const [Whole_Link_Query1,set_Whole_Link_Query1] = React.useState(" - ");
+  const [Whole_Image_Query1,set_Whole_Image_Query1] = React.useState(" - ");
   
   const [Amazon_Title_Query2,set_Amazon_Title_Query2] = React.useState("Not Found");
   const [Amazon_Price_Query2,set_Amazon_Price_Query2] = React.useState(" - ");
@@ -119,10 +119,10 @@ function App(){
   const [Target_Price_Query2,set_Target_Price_Query2] = React.useState(" - ");
   const [Target_Link_Query2,set_Target_Link_Query2] = React.useState(" - ");
   const [Target_Image_Query2,set_Target_Image_Query2] = React.useState(" - ");
-  const [Costco_Title_Query2,set_Costco_Title_Query2] = React.useState("Not Found");
-  const [Costco_Price_Query2,set_Costco_Price_Query2] = React.useState(" - ");
-  const [Costco_Link_Query2,set_Costco_Link_Query2] = React.useState(" - ");
-  const [Costco_Image_Query2,set_Costco_Image_Query2] = React.useState(" - ");
+  const [Whole_Title_Query2,set_Whole_Title_Query2] = React.useState("Not Found");
+  const [Whole_Price_Query2,set_Whole_Price_Query2] = React.useState(" - ");
+  const [Whole_Link_Query2,set_Whole_Link_Query2] = React.useState(" - ");
+  const [Whole_Image_Query2,set_Whole_Image_Query2] = React.useState(" - ");
 
   const [Amazon_Title_Query3,set_Amazon_Title_Query3] = React.useState("Not Found");
   const [Amazon_Price_Query3,set_Amazon_Price_Query3] = React.useState(" - ");
@@ -136,10 +136,10 @@ function App(){
   const [Target_Price_Query3,set_Target_Price_Query3] = React.useState(" - ");
   const [Target_Link_Query3,set_Target_Link_Query3] = React.useState(" - ");
   const [Target_Image_Query3,set_Target_Image_Query3] = React.useState(" - ");
-  const [Costco_Title_Query3,set_Costco_Title_Query3] = React.useState("Not Found");
-  const [Costco_Price_Query3,set_Costco_Price_Query3] = React.useState(" - ");
-  const [Costco_Link_Query3,set_Costco_Link_Query3] = React.useState(" - ");
-  const [Costco_Image_Query3,set_Costco_Image_Query3] = React.useState(" - ");
+  const [Whole_Title_Query3,set_Whole_Title_Query3] = React.useState("Not Found");
+  const [Whole_Price_Query3,set_Whole_Price_Query3] = React.useState(" - ");
+  const [Whole_Link_Query3,set_Whole_Link_Query3] = React.useState(" - ");
+  const [Whole_Image_Query3,set_Whole_Image_Query3] = React.useState(" - ");
 
   const [Amazon_Title_Query4,set_Amazon_Title_Query4] = React.useState("Not Found");
   const [Amazon_Price_Query4,set_Amazon_Price_Query4] = React.useState(" - ");
@@ -153,10 +153,10 @@ function App(){
   const [Target_Price_Query4,set_Target_Price_Query4] = React.useState(" - ");
   const [Target_Link_Query4,set_Target_Link_Query4] = React.useState(" - ");
   const [Target_Image_Query4,set_Target_Image_Query4] = React.useState(" - ");
-  const [Costco_Title_Query4,set_Costco_Title_Query4] = React.useState("Not Found");
-  const [Costco_Price_Query4,set_Costco_Price_Query4] = React.useState(" - ");
-  const [Costco_Link_Query4,set_Costco_Link_Query4] = React.useState(" - ");
-  const [Costco_Image_Query4,set_Costco_Image_Query4] = React.useState(" - ");
+  const [Whole_Title_Query4,set_Whole_Title_Query4] = React.useState("Not Found");
+  const [Whole_Price_Query4,set_Whole_Price_Query4] = React.useState(" - ");
+  const [Whole_Link_Query4,set_Whole_Link_Query4] = React.useState(" - ");
+  const [Whole_Image_Query4,set_Whole_Image_Query4] = React.useState(" - ");
 
   const [Amazon_Title_Query5,set_Amazon_Title_Query5] = React.useState("Not Found");
   const [Amazon_Price_Query5,set_Amazon_Price_Query5] = React.useState(" - ");
@@ -170,10 +170,10 @@ function App(){
   const [Target_Price_Query5,set_Target_Price_Query5] = React.useState(" - ");
   const [Target_Link_Query5,set_Target_Link_Query5] = React.useState(" - ");
   const [Target_Image_Query5,set_Target_Image_Query5] = React.useState(" - ");
-  const [Costco_Title_Query5,set_Costco_Title_Query5] = React.useState("Not Found");
-  const [Costco_Price_Query5,set_Costco_Price_Query5] = React.useState(" - ");
-  const [Costco_Link_Query5,set_Costco_Link_Query5] = React.useState(" - ");
-  const [Costco_Image_Query5,set_Costco_Image_Query5] = React.useState(" - ");
+  const [Whole_Title_Query5,set_Whole_Title_Query5] = React.useState("Not Found");
+  const [Whole_Price_Query5,set_Whole_Price_Query5] = React.useState(" - ");
+  const [Whole_Link_Query5,set_Whole_Link_Query5] = React.useState(" - ");
+  const [Whole_Image_Query5,set_Whole_Image_Query5] = React.useState(" - ");
 
   const [result1,set_Result1] = React.useState(null);
   const [result2,set_Result2] = React.useState(null);
@@ -239,10 +239,10 @@ function App(){
         set_Target_Price_Query1(response.data.Target_Price);
         set_Target_Link_Query1(response.data.Target_Link);
         set_Target_Image_Query1(response.data.Target_Image);
-        set_Costco_Title_Query1(response.data.Costco_Title);
-        set_Costco_Price_Query1(response.data.Costco_Price);
-        set_Costco_Link_Query1(response.data.Costco_Link);
-        set_Costco_Image_Query1(response.data.Costco_Image);
+        set_Whole_Title_Query1(response.data.Whole_Title);
+        set_Whole_Price_Query1(response.data.Whole_Price);
+        set_Whole_Link_Query1(response.data.Whole_Link);
+        set_Whole_Image_Query1(response.data.Whole_Image);
         set_Result1(true);
       })
       .catch(function(error){
@@ -267,10 +267,10 @@ function App(){
         set_Target_Price_Query2(response.data.Target_Price);
         set_Target_Link_Query2(response.data.Target_Link);
         set_Target_Image_Query2(response.data.Target_Image);
-        set_Costco_Title_Query2(response.data.Costco_Title);
-        set_Costco_Price_Query2(response.data.Costco_Price);
-        set_Costco_Link_Query2(response.data.Costco_Link);
-        set_Costco_Image_Query2(response.data.Costco_Image);
+        set_Whole_Title_Query2(response.data.Whole_Title);
+        set_Whole_Price_Query2(response.data.Whole_Price);
+        set_Whole_Link_Query2(response.data.Whole_Link);
+        set_Whole_Image_Query2(response.data.Whole_Image);
         set_Result2(true);
       })
       .catch(function(error){
@@ -295,10 +295,10 @@ function App(){
         set_Target_Price_Query3(response.data.Target_Price);
         set_Target_Link_Query3(response.data.Target_Link);
         set_Target_Image_Query3(response.data.Target_Image);
-        set_Costco_Title_Query3(response.data.Costco_Title);
-        set_Costco_Price_Query3(response.data.Costco_Price);
-        set_Costco_Link_Query3(response.data.Costco_Link);
-        set_Costco_Image_Query3(response.data.Costco_Image);
+        set_Whole_Title_Query3(response.data.Whole_Title);
+        set_Whole_Price_Query3(response.data.Whole_Price);
+        set_Whole_Link_Query3(response.data.Whole_Link);
+        set_Whole_Image_Query3(response.data.Whole_Image);
         set_Result3(true);
       })
       .catch(function(error){
@@ -323,10 +323,10 @@ function App(){
         set_Target_Price_Query4(response.data.Target_Price);
         set_Target_Link_Query4(response.data.Target_Link);
         set_Target_Image_Query4(response.data.Target_Image);
-        set_Costco_Title_Query4(response.data.Costco_Title);
-        set_Costco_Price_Query4(response.data.Costco_Price);
-        set_Costco_Link_Query4(response.data.Costco_Link);
-        set_Costco_Image_Query4(response.data.Costco_Image);
+        set_Whole_Title_Query4(response.data.Whole_Title);
+        set_Whole_Price_Query4(response.data.Whole_Price);
+        set_Whole_Link_Query4(response.data.Whole_Link);
+        set_Whole_Image_Query4(response.data.Whole_Image);
         set_Result4(true);
       })
       .catch(function(error){
@@ -351,10 +351,10 @@ function App(){
         set_Target_Price_Query5(response.data.Target_Price);
         set_Target_Link_Query5(response.data.Target_Link);
         set_Target_Image_Query5(response.data.Target_Image);
-        set_Costco_Title_Query5(response.data.Costco_Title);
-        set_Costco_Price_Query5(response.data.Costco_Price);
-        set_Costco_Link_Query5(response.data.Costco_Link);
-        set_Costco_Image_Query5(response.data.Costco_Image);
+        set_Whole_Title_Query5(response.data.Whole_Title);
+        set_Whole_Price_Query5(response.data.Whole_Price);
+        set_Whole_Link_Query5(response.data.Whole_Link);
+        set_Whole_Image_Query5(response.data.Whole_Image);
         set_Result5(true);
       })
       .catch(function(error){
@@ -708,18 +708,18 @@ function App(){
             <MoreVertIcon />
           </IconButton>
         }
-        title={Costco_Title_Query1}
-        subheader={Costco_Price_Query1}
+        title={Whole_Title_Query1}
+        subheader={Whole_Price_Query1}
       />
       <CardMedia
         className={classes.media}
         //image={require ("/Users/Kevin/Desktop/CapStone/SmartCart/front-end/src/4.jpg")}
-        image = {Costco_Image_Query1}
-        title = {Costco_Title_Query1}
+        image = {Whole_Image_Query1}
+        title = {Whole_Title_Query1}
       />
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
-        <Link href={Costco_Link_Query1} className={classes.link}>
+        <Link href={Whole_Link_Query1} className={classes.link}>
             Link to Product
             <IconButton>
               <LaunchIcon style={{fontSize:15}}/>
@@ -985,18 +985,18 @@ function App(){
             <MoreVertIcon />
           </IconButton>
         }
-        title={Costco_Title_Query2}
-        subheader={Costco_Price_Query2}
+        title={Whole_Title_Query2}
+        subheader={Whole_Price_Query2}
       />
       <CardMedia
         className={classes.media}
         //image={require ("/Users/Kevin/Desktop/CapStone/SmartCart/front-end/src/4.jpg")}
-        image = {Costco_Image_Query2}
-        title = {Costco_Title_Query2}
+        image = {Whole_Image_Query2}
+        title = {Whole_Title_Query2}
       />
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
-        <Link href={Costco_Link_Query2} className={classes.link}>
+        <Link href={Whole_Link_Query2} className={classes.link}>
             Link to Product
             <IconButton>
               <LaunchIcon style={{fontSize:15}}/>
@@ -1261,18 +1261,18 @@ function App(){
             <MoreVertIcon />
           </IconButton>
         }
-        title={Costco_Title_Query3}
-        subheader={Costco_Price_Query3}
+        title={Whole_Title_Query3}
+        subheader={Whole_Price_Query3}
       />
       <CardMedia
         className={classes.media}
         //image={require ("/Users/Kevin/Desktop/CapStone/SmartCart/front-end/src/4.jpg")}
-        image = {Costco_Image_Query3}
-        title = {Costco_Title_Query3}
+        image = {Whole_Image_Query3}
+        title = {Whole_Title_Query3}
       />
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
-        <Link href={Costco_Link_Query3} className={classes.link}>
+        <Link href={Whole_Link_Query3} className={classes.link}>
             Link to Product
             <IconButton>
               <LaunchIcon style={{fontSize:15}}/>
@@ -1537,18 +1537,18 @@ function App(){
             <MoreVertIcon />
           </IconButton>
         }
-        title={Costco_Title_Query4}
-        subheader={Costco_Price_Query4}
+        title={Whole_Title_Query4}
+        subheader={Whole_Price_Query4}
       />
       <CardMedia
         className={classes.media}
         //image={require ("/Users/Kevin/Desktop/CapStone/SmartCart/front-end/src/4.jpg")}
-        image = {Costco_Image_Query4}
-        title = {Costco_Title_Query4}
+        image = {Whole_Image_Query4}
+        title = {Whole_Title_Query4}
       />
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
-        <Link href={Costco_Link_Query4} className={classes.link}>
+        <Link href={Whole_Link_Query4} className={classes.link}>
             Link to Product
             <IconButton>
               <LaunchIcon style={{fontSize:15}}/>
@@ -1813,18 +1813,18 @@ function App(){
             <MoreVertIcon />
           </IconButton>
         }
-        title={Costco_Title_Query5}
-        subheader={Costco_Price_Query5}
+        title={Whole_Title_Query5}
+        subheader={Whole_Price_Query5}
       />
       <CardMedia
         className={classes.media}
         //image={require ("/Users/Kevin/Desktop/CapStone/SmartCart/front-end/src/4.jpg")}
-        image = {Costco_Image_Query5}
-        title = {Costco_Title_Query5}
+        image = {Whole_Image_Query5}
+        title = {Whole_Title_Query5}
       />
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
-        <Link href={Costco_Link_Query5} className={classes.link}>
+        <Link href={Whole_Link_Query5} className={classes.link}>
             Link to Product
             <IconButton>
               <LaunchIcon style={{fontSize:15}}/>

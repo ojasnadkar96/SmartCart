@@ -96,7 +96,6 @@ def real_crawl(json_item):
 		dict_query['Rite_Title'] = default_title
 		dict_query['Rite_Price'] = default_price
 		dict_query['Rite_Link'] = r_link
-	'''
 	try:
 		c_title, c_cost, c_link, c_image = costco_crawl(json_item)
 		c_price = convert_price_string_to_float(c_cost)
@@ -110,9 +109,24 @@ def real_crawl(json_item):
 		dict_query['Costco_Price'] = default_price
 		dict_query['Costco_Link'] = c_link
 		dict_query['Costco_Image'] = default_image
+	'''
+	try:
+		wf_title, wf_cost, wf_link, wf_image = whole_crawl(json_item)
+		wf_price = convert_price_string_to_float(wf_cost)
+		dict_query['Whole_Title'] = wf_title
+		dict_query['Whole_Price'] = wf_price
+		dict_query['Whole_Link'] = wf_link
+		dict_query['Whole_Image'] = wf_image
+	except:
+		wf_link = 'https://products.wholefoodsmarket.com/search?sort=relevance&store=10614'
+		dict_query['Whole_Title'] = default_title
+		dict_query['Whole_Price'] = default_price
+		dict_query['Whole_Link'] = wf_link
+		dict_query['Whole_Image'] = default_image
 	return JsonResponse(dict_query)
 
 chrome_driver = 'C:/Users/Kevin/Desktop/CapStone/chromedriver.exe'
+#chrome_driver = 'E:/Data/MCS/Academics/4Q/Capstone/chromedriver.exe'
 
 def walmart_crawl(walmart_item):
 	walmart_headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.71 Safari/537.36'}
@@ -196,6 +210,50 @@ def costco_crawl(costco_item):
 				costco_count = -1
 			costco_driver.quit()
 			return costco_title, costco_price, costco_link, costco_image
+
+def ebay_crawl(ebay_item):
+	ebay_headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.71 Safari/537.36'}
+	ebay_url = 'https://www.ebay.com/sch/i.html?_from=R40&_nkw=' + ebay_item + '&_sop=15'
+	ebay_page = requests.get(url=ebay_url, headers=ebay_headers)
+	ebay_soup = BeautifulSoup(ebay_page.content, 'lxml')
+	ebay_product = ebay_soup.find('div', class_='s-item__wrapper clearfix')
+	ebay_anchor = ebay_product.find('a', class_='s-item__link')
+	ebay_link = ebay_anchor['href']
+	ebay_title = ebay_anchor.find('h3',class_='s-item__title').text
+	ebay_image = ebay_product.find('img', class_='s-item__image-img')['src']
+	ebay_money = ebay_product.find('span', class_='s-item__price').text
+	ebay_price = ebay_money.split(' ')[0]
+	return ebay_title, ebay_price, ebay_link, ebay_image
+
+def heb_crawl(heb_item):
+	heb_headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.71 Safari/537.36'}
+	heb_url = 'https://www.heb.com/search/results?Ns=product.salePrice|0&q=' + heb_item
+	heb_page = requests.get(url=heb_url, headers=heb_headers)
+	heb_soup = BeautifulSoup(heb_page.content, 'lxml')
+	heb_product = heb_soup.find('li', class_='responsivegriditem product-grid-large-fifth product-grid-small-6')
+	heb_script = heb_product.find('script').text
+	heb_json = json.loads(heb_script)
+	heb_price = heb_json['price']
+	heb_title = heb_json['name']
+	heb_anchor = heb_product.find('a')['href']
+	heb_link = 'https://www.heb.com' + heb_anchor
+	heb_image = heb_product.find('img')['src']
+	return heb_title, heb_price, heb_link, heb_image
+
+def whole_crawl(whole_item):
+	whole_url = 'https://products.wholefoodsmarket.com/search?sort=price&store=10614&text=' + whole_item
+	whole_driver = webdriver.Chrome(executable_path=chrome_driver)
+	whole_driver.get(whole_url)
+	whole_innerHTML = whole_driver.page_source
+	whole_soup = BeautifulSoup(whole_innerHTML,"lxml")
+	whole_product = whole_soup.find('a', class_='ProductCard-Root--3g5WI')
+	whole_link = 'https://products.wholefoodsmarket.com' + whole_product['href']
+	whole_price = whole_product.find('div', class_='ProductCard-Price--1uInW').text
+	whole_title = whole_product.find('div', class_='ProductCard-Name--1o2Gg').text
+	whole_picture = whole_product.find('div', class_='LazyImage-Image--1HP-y')['style']
+	whole_image = re.findall(r'(?:(?:https?|ftp):\/\/)?[\w/\-?=%.]+\.[\w/\-?=%.]+', str(whole_picture))[0]
+	whole_driver.quit()
+	return whole_title, whole_price, whole_link, whole_image
 
 def convert_price_string_to_float(price):
 	space_strip = price.strip()
