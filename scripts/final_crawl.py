@@ -138,28 +138,29 @@ def whole_crawl(whole_item):
 	whole_driver.quit()
 	return whole_title, whole_price, whole_link, whole_image
 
-def convert_price_string_to_float(price):
+def clean_price_string(price):
 	space_strip = price.strip()
 	price_strip = space_strip.strip('$')
-	float_price = float(price_strip)
-	return float_price
+	price_string = str(price_strip)
+	return price_string
 
-def convert_price_string_to_float_wf(price_wf):
+def clean_price_string_wf(price_wf):
 	strip_wf = re.sub('[^0-9]','', price_wf)
 	float_wf = float(strip_wf)
 	float_wf = float_wf/100.0
-	return float_wf
+	string_wf = str(float_wf)
+	return string_wf
 
 def real_crawl(search_term):
 	query_item = sys.argv[1]
 	dict_query = {}
 	dict_query['Item'] = query_item
 	default_title = 'CANNOT FIND ITEM'
-	default_price = 0.0
+	default_price = '0.0'
 	default_image = 'NO IMAGE'
 	try:
 		w_title, w_cost, w_link, w_image = walmart_crawl(query_item)
-		w_price = convert_price_string_to_float(w_cost)
+		w_price = clean_price_string(w_cost)
 		dict_query['Walmart_Title'] = w_title
 		dict_query['Walmart_Price'] = w_price
 		dict_query['Walmart_Link'] = w_link
@@ -172,7 +173,7 @@ def real_crawl(search_term):
 		dict_query['Walmart_Image'] = default_image
 	try:
 		t_title, t_cost, t_link, t_image = target_crawl(query_item)
-		t_price = convert_price_string_to_float(t_cost)
+		t_price = clean_price_string(t_cost)
 		dict_query['Target_Title'] = t_title
 		dict_query['Target_Price'] = t_price
 		dict_query['Target_Link'] = t_link
@@ -185,7 +186,7 @@ def real_crawl(search_term):
 		dict_query['Target_Image'] = default_image
 	try:
 		a_title, a_cost, a_link, a_image = amazon_crawl(query_item)
-		a_price = convert_price_string_to_float(a_cost)
+		a_price = clean_price_string(a_cost)
 		dict_query['Amazon_Title'] = a_title
 		dict_query['Amazon_Price'] = a_price
 		dict_query['Amazon_Link'] = a_link
@@ -199,7 +200,7 @@ def real_crawl(search_term):
 	'''
 	try:
 		r_title, r_cost, r_link = rite_crawl(query_item)
-		r_price = convert_price_string_to_float(r_cost)
+		r_price = clean_price_string(r_cost)
 		dict_query['Rite_Title'] = r_title
 		dict_query['Rite_Price'] = r_price
 		dict_query['Rite_Link'] = r_link
@@ -210,7 +211,7 @@ def real_crawl(search_term):
 		dict_query['Rite_Link'] = r_link
 	try:
 		c_title, c_cost, c_link, c_image = costco_crawl(query_item)
-		c_price = convert_price_string_to_float(c_cost)
+		c_price = clean_price_string(c_cost)
 		dict_query['Costco_Title'] = c_title
 		dict_query['Costco_Price'] = c_price
 		dict_query['Costco_Link'] = c_link
@@ -225,9 +226,9 @@ def real_crawl(search_term):
 	try:
 		wf_title, wf_cost, wf_link, wf_image = whole_crawl(query_item)
 		if '¢' in wf_cost:
-			wf_price = convert_price_string_to_float_wf(wf_cost)
+			wf_price = clean_price_string_wf(wf_cost)
 		else:
-			wf_price = convert_price_string_to_float(wf_cost)
+			wf_price = clean_price_string(wf_cost)
 		dict_query['Whole_Title'] = wf_title
 		dict_query['Whole_Price'] = wf_price
 		dict_query['Whole_Link'] = wf_link
