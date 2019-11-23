@@ -28,7 +28,7 @@ def target_crawl(target_item):
 	target_url = 'https://www.target.com/s?searchTerm=' + target_item + '&sortBy=PriceLow&Nao=0'
 	target_driver = webdriver.Chrome(executable_path=chrome_driver)
 	target_driver.get(target_url)
-	sleep(1)
+	sleep(5)
 	target_innerHTML = target_driver.page_source
 	target_page = BeautifulSoup(target_innerHTML,"lxml")
 	target_price = target_page.find_all('span', class_='h-text-bs')[4].text
@@ -123,13 +123,14 @@ def heb_crawl(heb_item):
 	return heb_title, heb_price, heb_link, heb_image
 
 def whole_crawl(whole_item):
-	whole_url = "https://products.wholefoodsmarket.com/search?sort=price&store=10614&text=' + whole_item
+	whole_url = 'https://products.wholefoodsmarket.com/search?sort=price&store=10614&text=' + whole_item
 	whole_driver = webdriver.Chrome(executable_path=chrome_driver)
 	whole_driver.get(whole_url)
+	sleep(2)
 	whole_innerHTML = whole_driver.page_source
 	whole_soup = BeautifulSoup(whole_innerHTML,"lxml")
 	whole_product = whole_soup.find('a', class_='ProductCard-Root--3g5WI')
-	whole_link = "https://products.wholefoodsmarket.com" + whole_product['href']
+	whole_link = 'https://products.wholefoodsmarket.com' + whole_product['href']
 	whole_price = whole_product.find('div', class_='ProductCard-Price--1uInW').text
 	whole_title = whole_product.find('div', class_='ProductCard-Name--1o2Gg').text
 	whole_picture = whole_product.find('div', class_='LazyImage-Image--1HP-y')['style']
@@ -142,6 +143,12 @@ def convert_price_string_to_float(price):
 	price_strip = space_strip.strip('$')
 	float_price = float(price_strip)
 	return float_price
+
+def convert_price_string_to_float_wf(price_wf):
+	strip_wf = re.sub('[^0-9]','', price_wf)
+	float_wf = float(strip_wf)
+	float_wf = float_wf/100.0
+	return float_wf
 
 def real_crawl(search_term):
 	query_item = sys.argv[1]
@@ -189,6 +196,7 @@ def real_crawl(search_term):
 		dict_query['Amazon_Price'] = default_price
 		dict_query['Amazon_Link'] = a_link
 		dict_query['Amazon_Image'] = default_image
+	'''
 	try:
 		r_title, r_cost, r_link = rite_crawl(query_item)
 		r_price = convert_price_string_to_float(r_cost)
@@ -213,9 +221,13 @@ def real_crawl(search_term):
 		dict_query['Costco_Price'] = default_price
 		dict_query['Costco_Link'] = c_link
 		dict_query['Costco_Image'] = default_image
+	'''
 	try:
 		wf_title, wf_cost, wf_link, wf_image = whole_crawl(query_item)
-		wf_price = convert_price_string_to_float(wf_cost)
+		if '¢' in wf_cost:
+			wf_price = convert_price_string_to_float_wf(wf_cost)
+		else:
+			wf_price = convert_price_string_to_float(wf_cost)
 		dict_query['Whole_Title'] = wf_title
 		dict_query['Whole_Price'] = wf_price
 		dict_query['Whole_Link'] = wf_link
@@ -229,6 +241,7 @@ def real_crawl(search_term):
 	print(json.dumps(dict_query, indent=4, sort_keys=False))
 	return dict_query
 
+#TODO: db and collection names finalize
 def connection_setup():
 	myclient = pymongo.MongoClient()
 	mydb = myclient.test

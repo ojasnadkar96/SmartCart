@@ -33,6 +33,7 @@ def findPrice(item):
 			#print("CANNOT INSERT INTO DB")
 	return real_result
 
+#TODO: db and collection names finalize
 def connection_setup():
 	myclient = pymongo.MongoClient()
 	mydb = myclient.test
@@ -112,7 +113,10 @@ def real_crawl(json_item):
 	'''
 	try:
 		wf_title, wf_cost, wf_link, wf_image = whole_crawl(json_item)
-		wf_price = convert_price_string_to_float(wf_cost)
+		if '¢' in wf_cost:
+			wf_price = convert_price_string_to_float_wf(wf_cost)
+		else:
+			wf_price = convert_price_string_to_float(wf_cost)
 		dict_query['Whole_Title'] = wf_title
 		dict_query['Whole_Price'] = wf_price
 		dict_query['Whole_Link'] = wf_link
@@ -125,8 +129,8 @@ def real_crawl(json_item):
 		dict_query['Whole_Image'] = default_image
 	return JsonResponse(dict_query)
 
-chrome_driver = 'C:/Users/Kevin/Desktop/CapStone/chromedriver.exe'
-#chrome_driver = 'E:/Data/MCS/Academics/4Q/Capstone/chromedriver.exe'
+#chrome_driver = 'C:/Users/Kevin/Desktop/CapStone/chromedriver.exe'
+chrome_driver = 'E:/Data/MCS/Academics/4Q/Capstone/chromedriver.exe'
 
 def walmart_crawl(walmart_item):
 	walmart_headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.71 Safari/537.36'}
@@ -146,7 +150,7 @@ def target_crawl(target_item):
 	target_url = 'https://www.target.com/s?searchTerm=' + target_item + '&sortBy=PriceLow&Nao=0'
 	target_driver = webdriver.Chrome(executable_path=chrome_driver)
 	target_driver.get(target_url)
-	sleep(1)
+	sleep(5)
 	target_innerHTML = target_driver.page_source
 	target_page = BeautifulSoup(target_innerHTML,"lxml")
 	target_price = target_page.find_all('span', class_='h-text-bs')[4].text
@@ -244,6 +248,7 @@ def whole_crawl(whole_item):
 	whole_url = 'https://products.wholefoodsmarket.com/search?sort=price&store=10614&text=' + whole_item
 	whole_driver = webdriver.Chrome(executable_path=chrome_driver)
 	whole_driver.get(whole_url)
+	sleep(2)
 	whole_innerHTML = whole_driver.page_source
 	whole_soup = BeautifulSoup(whole_innerHTML,"lxml")
 	whole_product = whole_soup.find('a', class_='ProductCard-Root--3g5WI')
@@ -259,4 +264,10 @@ def convert_price_string_to_float(price):
 	space_strip = price.strip()
 	price_strip = space_strip.strip('$')
 	float_price = float(price_strip)
-	return float_price	
+	return float_price
+
+def convert_price_string_to_float_wf(price_wf):
+	strip_wf = re.sub('[^0-9]','', price_wf)
+	float_wf = float(strip_wf)
+	float_wf = float_wf/100.0
+	return float_wf
