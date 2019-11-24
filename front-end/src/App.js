@@ -27,6 +27,10 @@ import LaunchIcon from '@material-ui/icons/Launch';
 import { red } from '@material-ui/core/colors';
 import Chip from '@material-ui/core/Chip';
 import Link from '@material-ui/core/Link';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
 import './App.css';
 
 const useStyles = makeStyles(theme => ({
@@ -79,9 +83,30 @@ const useStyles = makeStyles(theme => ({
   link: {
     margin: theme.spacing(1),
   },
+  bigAvatar: {
+    margin:10,
+    width:40,
+    height:40,
+  },
+  formControl: {
+    margin: theme.spacing(1),
+    minWidth: 120,
+  },
+  selectEmpty: {
+    marginTop: theme.spacing(2),
+  },
 }));
 
+const backgroundStyle = {
+  //backgroundImage: `url('/Users/Kevin/Desktop/CapStone/SmartCart/front-end/src/background.jpg')`,
+};
+
 function App(){
+
+  //Used for the SortBy dropdown
+  const inputLabel = React.useRef(null);
+  const [labelWidth, setLabelWidth] = React.useState(0);
+  const [sortType, set_sortType] = React.useState('');
 
   const [Search_Query,set_Search_Query] = React.useState(null);
   const [Search_Query1,set_Search_Query1] = React.useState(null);
@@ -90,91 +115,136 @@ function App(){
   const [Search_Query4,set_Search_Query4] = React.useState(null);
   const [Search_Query5,set_Search_Query5] = React.useState(null);
 
-  const [Amazon_Title_Query1,set_Amazon_Title_Query1] = React.useState("Not Found");
-  const [Amazon_Price_Query1,set_Amazon_Price_Query1] = React.useState(" - ");
-  const [Amazon_Link_Query1,set_Amazon_Link_Query1] = React.useState(" - ");
-  const [Amazon_Image_Query1,set_Amazon_Image_Query1] = React.useState(" - ");
-  const [Walmart_Title_Query1,set_Walmart_Title_Query1] = React.useState("Not Found");
-  const [Walmart_Price_Query1,set_Walmart_Price_Query1] = React.useState(" - ");
-  const [Walmart_Link_Query1,set_Walmart_Link_Query1] = React.useState(" - ");
-  const [Walmart_Image_Query1,set_Walmart_Image_Query1] = React.useState(" - ");
-  const [Target_Title_Query1,set_Target_Title_Query1] = React.useState("Not Found");
-  const [Target_Price_Query1,set_Target_Price_Query1] = React.useState(" - ");
-  const [Target_Link_Query1,set_Target_Link_Query1] = React.useState(" - ");
-  const [Target_Image_Query1,set_Target_Image_Query1] = React.useState(" - ");
-  const [Whole_Title_Query1,set_Whole_Title_Query1] = React.useState("Not Found");
-  const [Whole_Price_Query1,set_Whole_Price_Query1] = React.useState(" - ");
-  const [Whole_Link_Query1,set_Whole_Link_Query1] = React.useState(" - ");
-  const [Whole_Image_Query1,set_Whole_Image_Query1] = React.useState(" - ");
+  const Logos = {
+    AmazonLogo: require("/Users/Kevin/Desktop/CapStone/SmartCart/front-end/src/amazon_logo.jpg"),
+    WalmartLogo: require("/Users/Kevin/Desktop/CapStone/SmartCart/front-end/src/walmart_logo.png"),
+    TargetLogo: require("/Users/Kevin/Desktop/CapStone/SmartCart/front-end/src/target_logo.png"),
+    WholeLogo: require("/Users/Kevin/Desktop/CapStone/SmartCart/front-end/src/whole_logo.jpg"),
+  };
+
+  const [First_Title_Query1,set_First_Title_Query1] = React.useState("Not Found");
+  const [First_Price_Query1,set_First_Price_Query1] = React.useState(" - ");
+  const [First_Link_Query1,set_First_Link_Query1] = React.useState(" - ");
+  const [First_Image_Query1,set_First_Image_Query1] = React.useState("Not Found");
+  const [First_Logo_Query1,set_First_Logo_Query1] = React.useState("Not Found");
+  const [Second_Title_Query1,set_Second_Title_Query1] = React.useState("Not Found");
+  const [Second_Price_Query1,set_Second_Price_Query1] = React.useState(" - ");
+  const [Second_Link_Query1,set_Second_Link_Query1] = React.useState(" - ");
+  const [Second_Image_Query1,set_Second_Image_Query1] = React.useState("Not Found");
+  const [Seecond_Logo_Query1,set_Second_Logo_Query1] = React.useState("Not Found");
+  const [Third_Title_Query1,set_Third_Title_Query1] = React.useState("Not Found");
+  const [Third_Price_Query1,set_Third_Price_Query1] = React.useState(" - ");
+  const [Third_Link_Query1,set_Third_Link_Query1] = React.useState(" - ");
+  const [Third_Image_Query1,set_Third_Image_Query1] = React.useState("Not Found");
+  const [Third_Logo_Query1,set_Third_Logo_Query1] = React.useState("Not Found");
+  const [Fourth_Title_Query1,set_Fourth_Title_Query1] = React.useState("Not Found");
+  const [Fourth_Price_Query1,set_Fourth_Price_Query1] = React.useState(" - ");
+  const [Fourth_Link_Query1,set_Fourth_Link_Query1] = React.useState(" - ");
+  const [Fourth_Image_Query1,set_Fourth_Image_Query1] = React.useState("Not Found");
+  const [Fourth_Logo_Query1,set_Fourth_Logo_Query1] = React.useState("Not Found");
+
+  const [First_Title_Query2,set_First_Title_Query2] = React.useState("Not Found");
+  const [First_Price_Query2,set_First_Price_Query2] = React.useState(" - ");
+  const [First_Link_Query2,set_First_Link_Query2] = React.useState(" - ");
+  const [First_Image_Query2,set_First_Image_Query2] = React.useState("Not Found");
+  const [First_Logo_Query2,set_First_Logo_Query2] = React.useState("Not Found");
+  const [Second_Title_Query2,set_Second_Title_Query2] = React.useState("Not Found");
+  const [Second_Price_Query2,set_Second_Price_Query2] = React.useState(" - ");
+  const [Second_Link_Query2,set_Second_Link_Query2] = React.useState(" - ");
+  const [Second_Image_Query2,set_Second_Image_Query2] = React.useState("Not Found");
+  const [Second_Logo_Query2,set_Second_Logo_Query2] = React.useState("Not Found");
+  const [Third_Title_Query2,set_Third_Title_Query2] = React.useState("Not Found");
+  const [Third_Price_Query2,set_Third_Price_Query2] = React.useState(" - ");
+  const [Third_Link_Query2,set_Third_Link_Query2] = React.useState(" - ");
+  const [Third_Image_Query2,set_Third_Image_Query2] = React.useState("Not Found");
+  const [Third_Logo_Query2,set_Third_Logo_Query2] = React.useState("Not Found");
+  const [Fourth_Title_Query2,set_Fourth_Title_Query2] = React.useState("Not Found");
+  const [Fourth_Price_Query2,set_Fourth_Price_Query2] = React.useState(" - ");
+  const [Fourth_Link_Query2,set_Fourth_Link_Query2] = React.useState(" - ");
+  const [Fourth_Image_Query2,set_Fourth_Image_Query2] = React.useState("Not Found");
+  const [Fourth_Logo_Query2,set_Fourth_Logo_Query2] = React.useState("Not Found");
+
+  // const [Amazon_Title_Query1,set_Amazon_Title_Query1] = React.useState("Not Found");
+  // const [Amazon_Price_Query1,set_Amazon_Price_Query1] = React.useState(" - ");
+  // const [Amazon_Link_Query1,set_Amazon_Link_Query1] = React.useState(" - ");
+  // const [Amazon_Image_Query1,set_Amazon_Image_Query1] = React.useState(" - ");
+  // const [Walmart_Title_Query1,set_Walmart_Title_Query1] = React.useState("Not Found");
+  // const [Walmart_Price_Query1,set_Walmart_Price_Query1] = React.useState(" - ");
+  // const [Walmart_Link_Query1,set_Walmart_Link_Query1] = React.useState(" - ");
+  // const [Walmart_Image_Query1,set_Walmart_Image_Query1] = React.useState(" - ");
+  // const [Target_Title_Query1,set_Target_Title_Query1] = React.useState("Not Found");
+  // const [Target_Price_Query1,set_Target_Price_Query1] = React.useState(" - ");
+  // const [Target_Link_Query1,set_Target_Link_Query1] = React.useState(" - ");
+  // const [Target_Image_Query1,set_Target_Image_Query1] = React.useState(" - ");
+  // const [Whole_Title_Query1,set_Whole_Title_Query1] = React.useState("Not Found");
+  // const [Whole_Price_Query1,set_Whole_Price_Query1] = React.useState(" - ");
+  // const [Whole_Link_Query1,set_Whole_Link_Query1] = React.useState(" - ");
+  // const [Whole_Image_Query1,set_Whole_Image_Query1] = React.useState(" - ");
   
-  const [Amazon_Title_Query2,set_Amazon_Title_Query2] = React.useState("Not Found");
-  const [Amazon_Price_Query2,set_Amazon_Price_Query2] = React.useState(" - ");
-  const [Amazon_Link_Query2,set_Amazon_Link_Query2] = React.useState(" - ");
-  const [Amazon_Image_Query2,set_Amazon_Image_Query2] = React.useState(" - ");
-  const [Walmart_Title_Query2,set_Walmart_Title_Query2] = React.useState("Not Found");
-  const [Walmart_Price_Query2,set_Walmart_Price_Query2] = React.useState(" - ");
-  const [Walmart_Link_Query2,set_Walmart_Link_Query2] = React.useState(" - ");
-  const [Walmart_Image_Query2,set_Walmart_Image_Query2] = React.useState(" - ");
-  const [Target_Title_Query2,set_Target_Title_Query2]   = React.useState("Not Found");
-  const [Target_Price_Query2,set_Target_Price_Query2] = React.useState(" - ");
-  const [Target_Link_Query2,set_Target_Link_Query2] = React.useState(" - ");
-  const [Target_Image_Query2,set_Target_Image_Query2] = React.useState(" - ");
-  const [Whole_Title_Query2,set_Whole_Title_Query2] = React.useState("Not Found");
-  const [Whole_Price_Query2,set_Whole_Price_Query2] = React.useState(" - ");
-  const [Whole_Link_Query2,set_Whole_Link_Query2] = React.useState(" - ");
-  const [Whole_Image_Query2,set_Whole_Image_Query2] = React.useState(" - ");
+  const [First_Title_Query3,set_First_Title_Query3] = React.useState("Not Found");
+  const [First_Price_Query3,set_First_Price_Query3] = React.useState(" - ");
+  const [First_Link_Query3,set_First_Link_Query3] = React.useState(" - ");
+  const [First_Image_Query3,set_First_Image_Query3] = React.useState("Not Found");
+  const [First_Logo_Query3,set_First_Logo_Query3] = React.useState("Not Found");
+  const [Second_Title_Query3,set_Second_Title_Query3] = React.useState("Not Found");
+  const [Second_Price_Query3,set_Second_Price_Query3] = React.useState(" - ");
+  const [Second_Link_Query3,set_Second_Link_Query3] = React.useState(" - ");
+  const [Second_Image_Query3,set_Second_Image_Query3] = React.useState("Not Found");
+  const [Second_Logo_Query3,set_Second_Logo_Query3] = React.useState("Not Found");
+  const [Third_Title_Query3,set_Third_Title_Query3] = React.useState("Not Found");
+  const [Third_Price_Query3,set_Third_Price_Query3] = React.useState(" - ");
+  const [Third_Link_Query3,set_Third_Link_Query3] = React.useState(" - ");
+  const [Third_Image_Query3,set_Third_Image_Query3] = React.useState("Not Found");
+  const [Third_Logo_Query3,set_Third_Logo_Query3] = React.useState("Not Found");
+  const [Fourth_Title_Query3,set_Fourth_Title_Query3] = React.useState("Not Found");
+  const [Fourth_Price_Query3,set_Fourth_Price_Query3] = React.useState(" - ");
+  const [Fourth_Link_Query3,set_Fourth_Link_Query3] = React.useState(" - ");
+  const [Fourth_Image_Query3,set_Fourth_Image_Query3] = React.useState("Not Found");
+  const [Fourth_Logo_Query3,set_Fourth_Logo_Query3] = React.useState("Not Found");
 
-  const [Amazon_Title_Query3,set_Amazon_Title_Query3] = React.useState("Not Found");
-  const [Amazon_Price_Query3,set_Amazon_Price_Query3] = React.useState(" - ");
-  const [Amazon_Link_Query3,set_Amazon_Link_Query3] = React.useState(" - ");
-  const [Amazon_Image_Query3,set_Amazon_Image_Query3] = React.useState(" - ");
-  const [Walmart_Title_Query3,set_Walmart_Title_Query3] = React.useState("Not Found");
-  const [Walmart_Price_Query3,set_Walmart_Price_Query3] = React.useState(" - ");
-  const [Walmart_Link_Query3,set_Walmart_Link_Query3] = React.useState(" - ");
-  const [Walmart_Image_Query3,set_Walmart_Image_Query3] = React.useState(" - ");
-  const [Target_Title_Query3,set_Target_Title_Query3] = React.useState("Not Found");
-  const [Target_Price_Query3,set_Target_Price_Query3] = React.useState(" - ");
-  const [Target_Link_Query3,set_Target_Link_Query3] = React.useState(" - ");
-  const [Target_Image_Query3,set_Target_Image_Query3] = React.useState(" - ");
-  const [Whole_Title_Query3,set_Whole_Title_Query3] = React.useState("Not Found");
-  const [Whole_Price_Query3,set_Whole_Price_Query3] = React.useState(" - ");
-  const [Whole_Link_Query3,set_Whole_Link_Query3] = React.useState(" - ");
-  const [Whole_Image_Query3,set_Whole_Image_Query3] = React.useState(" - ");
+  const [First_Title_Query4,set_First_Title_Query4] = React.useState("Not Found");
+  const [First_Price_Query4,set_First_Price_Query4] = React.useState(" - ");
+  const [First_Link_Query4,set_First_Link_Query4] = React.useState(" - ");
+  const [First_Image_Query4,set_First_Image_Query4] = React.useState("Not Found");
+  const [First_Logo_Query4,set_First_Logo_Query4] = React.useState("Not Found");
+  const [Second_Title_Query4,set_Second_Title_Query4] = React.useState("Not Found");
+  const [Second_Price_Query4,set_Second_Price_Query4] = React.useState(" - ");
+  const [Second_Link_Query4,set_Second_Link_Query4] = React.useState(" - ");
+  const [Second_Image_Query4,set_Second_Image_Query4] = React.useState("Not Found");
+  const [Second_Logo_Query4,set_Second_Logo_Query4] = React.useState("Not Found");
+  const [Third_Title_Query4,set_Third_Title_Query4] = React.useState("Not Found");
+  const [Third_Price_Query4,set_Third_Price_Query4] = React.useState(" - ");
+  const [Third_Link_Query4,set_Third_Link_Query4] = React.useState(" - ");
+  const [Third_Image_Query4,set_Third_Image_Query4] = React.useState("Not Found");
+  const [Third_Logo_Query4,set_Third_Logo_Query4] = React.useState("Not Found");
+  const [Fourth_Title_Query4,set_Fourth_Title_Query4] = React.useState("Not Found");
+  const [Fourth_Price_Query4,set_Fourth_Price_Query4] = React.useState(" - ");
+  const [Fourth_Link_Query4,set_Fourth_Link_Query4] = React.useState(" - ");
+  const [Fourth_Image_Query4,set_Fourth_Image_Query4] = React.useState("Not Found");
+  const [Fourth_Logo_Query4,set_Fourth_Logo_Query4] = React.useState("Not Found");
 
-  const [Amazon_Title_Query4,set_Amazon_Title_Query4] = React.useState("Not Found");
-  const [Amazon_Price_Query4,set_Amazon_Price_Query4] = React.useState(" - ");
-  const [Amazon_Link_Query4,set_Amazon_Link_Query4] = React.useState(" - ");
-  const [Amazon_Image_Query4,set_Amazon_Image_Query4] = React.useState(" - ");
-  const [Walmart_Title_Query4,set_Walmart_Title_Query4] = React.useState("Not Found");
-  const [Walmart_Price_Query4,set_Walmart_Price_Query4] = React.useState(" - ");
-  const [Walmart_Link_Query4,set_Walmart_Link_Query4] = React.useState(" - ");
-  const [Walmart_Image_Query4,set_Walmart_Image_Query4] = React.useState(" - ");
-  const [Target_Title_Query4,set_Target_Title_Query4] = React.useState("Not Found");
-  const [Target_Price_Query4,set_Target_Price_Query4] = React.useState(" - ");
-  const [Target_Link_Query4,set_Target_Link_Query4] = React.useState(" - ");
-  const [Target_Image_Query4,set_Target_Image_Query4] = React.useState(" - ");
-  const [Whole_Title_Query4,set_Whole_Title_Query4] = React.useState("Not Found");
-  const [Whole_Price_Query4,set_Whole_Price_Query4] = React.useState(" - ");
-  const [Whole_Link_Query4,set_Whole_Link_Query4] = React.useState(" - ");
-  const [Whole_Image_Query4,set_Whole_Image_Query4] = React.useState(" - ");
+  const [First_Title_Query5,set_First_Title_Query5] = React.useState("Not Found");
+  const [First_Price_Query5,set_First_Price_Query5] = React.useState(" - ");
+  const [First_Link_Query5,set_First_Link_Query5] = React.useState(" - ");
+  const [First_Image_Query5,set_First_Image_Query5] = React.useState("Not Found");
+  const [First_Logo_Query5,set_First_Logo_Query5] = React.useState("Not Found");
+  const [Second_Title_Query5,set_Second_Title_Query5] = React.useState("Not Found");
+  const [Second_Price_Query5,set_Second_Price_Query5] = React.useState(" - ");
+  const [Second_Link_Query5,set_Second_Link_Query5] = React.useState(" - ");
+  const [Second_Image_Query5,set_Second_Image_Query5] = React.useState("Not Found");
+  const [Second_Logo_Query5,set_Second_Logo_Query5] = React.useState("Not Found");
+  const [Third_Title_Query5,set_Third_Title_Query5] = React.useState("Not Found");
+  const [Third_Price_Query5,set_Third_Price_Query5] = React.useState(" - ");
+  const [Third_Link_Query5,set_Third_Link_Query5] = React.useState(" - ");
+  const [Third_Image_Query5,set_Third_Image_Query5] = React.useState("Not Found");
+  const [Third_Logo_Query5,set_Third_Logo_Query5] = React.useState("Not Found");
+  const [Fourth_Title_Query5,set_Fourth_Title_Query5] = React.useState("Not Found");
+  const [Fourth_Price_Query5,set_Fourth_Price_Query5] = React.useState(" - ");
+  const [Fourth_Link_Query5,set_Fourth_Link_Query5] = React.useState(" - ");
+  const [Fourth_Image_Query5,set_Fourth_Image_Query5] = React.useState("Not Found");
+  const [Fourth_Logo_Query5,set_Fourth_Logo_Query5] = React.useState("Not Found");
 
-  const [Amazon_Title_Query5,set_Amazon_Title_Query5] = React.useState("Not Found");
-  const [Amazon_Price_Query5,set_Amazon_Price_Query5] = React.useState(" - ");
-  const [Amazon_Link_Query5,set_Amazon_Link_Query5] = React.useState(" - ");
-  const [Amazon_Image_Query5,set_Amazon_Image_Query5] = React.useState(" - ");
-  const [Walmart_Title_Query5,set_Walmart_Title_Query5] = React.useState("Not Found");
-  const [Walmart_Price_Query5,set_Walmart_Price_Query5] = React.useState(" - ");
-  const [Walmart_Link_Query5,set_Walmart_Link_Query5] = React.useState(" - ");
-  const [Walmart_Image_Query5,set_Walmart_Image_Query5] = React.useState(" - ");
-  const [Target_Title_Query5,set_Target_Title_Query5] = React.useState("Not Found");
-  const [Target_Price_Query5,set_Target_Price_Query5] = React.useState(" - ");
-  const [Target_Link_Query5,set_Target_Link_Query5] = React.useState(" - ");
-  const [Target_Image_Query5,set_Target_Image_Query5] = React.useState(" - ");
-  const [Whole_Title_Query5,set_Whole_Title_Query5] = React.useState("Not Found");
-  const [Whole_Price_Query5,set_Whole_Price_Query5] = React.useState(" - ");
-  const [Whole_Link_Query5,set_Whole_Link_Query5] = React.useState(" - ");
-  const [Whole_Image_Query5,set_Whole_Image_Query5] = React.useState(" - ");
-
+  
   const [result1,set_Result1] = React.useState(null);
   const [result2,set_Result2] = React.useState(null);
   const [result3,set_Result3] = React.useState(null);
@@ -227,50 +297,89 @@ function App(){
       axios.post('http://127.0.0.1:8000/findprice/',{item:Search_Query1}) 
       .then(function(response){
         console.log(response);
-        set_Amazon_Title_Query1(response.data.Amazon_Title);
-        set_Amazon_Price_Query1(response.data.Amazon_Price);
-        set_Amazon_Link_Query1(response.data.Amazon_Link);
-        set_Amazon_Image_Query1(response.data.Amazon_Image);
-        set_Walmart_Title_Query1(response.data.Walmart_Title);
-        set_Walmart_Price_Query1(response.data.Walmart_Price);
-        set_Walmart_Link_Query1(response.data.Walmart_Link);
-        set_Walmart_Image_Query1(response.data.Walmart_Image);
-        set_Target_Title_Query1(response.data.Target_Title);
-        set_Target_Price_Query1(response.data.Target_Price);
-        set_Target_Link_Query1(response.data.Target_Link);
-        set_Target_Image_Query1(response.data.Target_Image);
-        set_Whole_Title_Query1(response.data.Whole_Title);
-        set_Whole_Price_Query1(response.data.Whole_Price);
-        set_Whole_Link_Query1(response.data.Whole_Link);
-        set_Whole_Image_Query1(response.data.Whole_Image);
+        // set_Amazon_Title_Query1(response.data.Amazon_Title);
+        // set_Amazon_Price_Query1(response.data.Amazon_Price);
+        // set_Amazon_Link_Query1(response.data.Amazon_Link);
+        // set_Amazon_Image_Query1(response.data.Amazon_Image);
+        // set_Walmart_Title_Query1(response.data.Walmart_Title);
+        // set_Walmart_Price_Query1(response.data.Walmart_Price);
+        // set_Walmart_Link_Query1(response.data.Walmart_Link);
+        // set_Walmart_Image_Query1(response.data.Walmart_Image);
+        // set_Target_Title_Query1(response.data.Target_Title);
+        // set_Target_Price_Query1(response.data.Target_Price);
+        // set_Target_Link_Query1(response.data.Target_Link);
+        // set_Target_Image_Query1(response.data.Target_Image);
+        // set_Whole_Title_Query1(response.data.Whole_Title);
+        // set_Whole_Price_Query1(response.data.Whole_Price);
+        // set_Whole_Link_Query1(response.data.Whole_Link);
+        // set_Whole_Image_Query1(response.data.Whole_Image);
+
+        //trying only 1 state
+        set_First_Title_Query1(response.data.Amazon_Title);
+        set_First_Price_Query1(response.data.Amazon_Price);
+        set_First_Link_Query1(response.data.Amazon_Link);
+        set_First_Image_Query1(response.data.Amazon_Image);
+        set_Second_Title_Query1(response.data.Walmart_Title);
+        set_Second_Price_Query1(response.data.Walmart_Price);
+        set_Second_Link_Query1(response.data.Walmart_Link);
+        set_Second_Image_Query1(response.data.Walmart_Image);
+        set_Third_Title_Query1(response.data.Target_Title);
+        set_Third_Price_Query1(response.data.Target_Price);
+        set_Third_Link_Query1(response.data.Target_Link);
+        set_Third_Image_Query1(response.data.Target_Image);
+        set_Fourth_Title_Query1(response.data.Whole_Title);
+        set_Fourth_Price_Query1(response.data.Whole_Price);
+        set_Fourth_Link_Query1(response.data.Whole_Link);
+        set_Fourth_Image_Query1(response.data.Whole_Image);
+
         set_Result1(true);
       })
       .catch(function(error){
         console.log(error);
       })
     }
-
+    
     if(Search_Query2 !== null)
     {
       axios.post('http://127.0.0.1:8000/findprice/',{item:Search_Query2}) 
       .then(function(response){
         console.log(response);
-        set_Amazon_Title_Query2(response.data.Amazon_Title);
-        set_Amazon_Price_Query2(response.data.Amazon_Price);
-        set_Amazon_Link_Query2(response.data.Amazon_Link);
-        set_Amazon_Image_Query2(response.data.Amazon_Image);
-        set_Walmart_Title_Query2(response.data.Walmart_Title);
-        set_Walmart_Price_Query2(response.data.Walmart_Price);
-        set_Walmart_Link_Query2(response.data.Walmart_Link);
-        set_Walmart_Image_Query2(response.data.Walmart_Image);
-        set_Target_Title_Query2(response.data.Target_Title);
-        set_Target_Price_Query2(response.data.Target_Price);
-        set_Target_Link_Query2(response.data.Target_Link);
-        set_Target_Image_Query2(response.data.Target_Image);
-        set_Whole_Title_Query2(response.data.Whole_Title);
-        set_Whole_Price_Query2(response.data.Whole_Price);
-        set_Whole_Link_Query2(response.data.Whole_Link);
-        set_Whole_Image_Query2(response.data.Whole_Image);
+
+        // set_Amazon_Title_Query2(response.data.Amazon_Title);
+        // set_Amazon_Price_Query2(response.data.Amazon_Price);
+        // set_Amazon_Link_Query2(response.data.Amazon_Link);
+        // set_Amazon_Image_Query2(response.data.Amazon_Image);
+        // set_Walmart_Title_Query2(response.data.Walmart_Title);
+        // set_Walmart_Price_Query2(response.data.Walmart_Price);
+        // set_Walmart_Link_Query2(response.data.Walmart_Link);
+        // set_Walmart_Image_Query2(response.data.Walmart_Image);
+        // set_Target_Title_Query2(response.data.Target_Title);
+        // set_Target_Price_Query2(response.data.Target_Price);
+        // set_Target_Link_Query2(response.data.Target_Link);
+        // set_Target_Image_Query2(response.data.Target_Image);
+        // set_Whole_Title_Query2(response.data.Whole_Title);
+        // set_Whole_Price_Query2(response.data.Whole_Price);
+        // set_Whole_Link_Query2(response.data.Whole_Link);
+        // set_Whole_Image_Query2(response.data.Whole_Image);
+
+        //replacing the state variables so that we can reuse the existing one
+        set_First_Title_Query2(response.data.Amazon_Title);
+        set_First_Price_Query2(response.data.Amazon_Price);
+        set_First_Link_Query2(response.data.Amazon_Link);
+        set_First_Image_Query2(response.data.Amazon_Image);
+        set_Second_Title_Query2(response.data.Walmart_Title);
+        set_Second_Price_Query2(response.data.Walmart_Price);
+        set_Second_Link_Query2(response.data.Walmart_Link);
+        set_Second_Image_Query2(response.data.Walmart_Image);
+        set_Third_Title_Query2(response.data.Target_Title);
+        set_Third_Price_Query2(response.data.Target_Price);
+        set_Third_Link_Query2(response.data.Target_Link);
+        set_Third_Image_Query2(response.data.Target_Image);
+        set_Fourth_Title_Query2(response.data.Whole_Title);
+        set_Fourth_Price_Query2(response.data.Whole_Price);
+        set_Fourth_Link_Query2(response.data.Whole_Link);
+        set_Fourth_Image_Query2(response.data.Whole_Image);
+
         set_Result2(true);
       })
       .catch(function(error){
@@ -283,22 +392,22 @@ function App(){
       axios.post('http://127.0.0.1:8000/findprice/',{item:Search_Query3}) 
       .then(function(response){
         console.log(response);
-        set_Amazon_Title_Query3(response.data.Amazon_Title);
-        set_Amazon_Price_Query3(response.data.Amazon_Price);
-        set_Amazon_Link_Query3(response.data.Amazon_Link);
-        set_Amazon_Image_Query3(response.data.Amazon_Image);
-        set_Walmart_Title_Query3(response.data.Walmart_Title);
-        set_Walmart_Price_Query3(response.data.Walmart_Price);
-        set_Walmart_Link_Query3(response.data.Walmart_Link);
-        set_Walmart_Image_Query3(response.data.Walmart_Image);
-        set_Target_Title_Query3(response.data.Target_Title);
-        set_Target_Price_Query3(response.data.Target_Price);
-        set_Target_Link_Query3(response.data.Target_Link);
-        set_Target_Image_Query3(response.data.Target_Image);
-        set_Whole_Title_Query3(response.data.Whole_Title);
-        set_Whole_Price_Query3(response.data.Whole_Price);
-        set_Whole_Link_Query3(response.data.Whole_Link);
-        set_Whole_Image_Query3(response.data.Whole_Image);
+        set_First_Title_Query3(response.data.Amazon_Title);
+        set_First_Price_Query3(response.data.Amazon_Price);
+        set_First_Link_Query3(response.data.Amazon_Link);
+        set_First_Image_Query3(response.data.Amazon_Image);
+        set_Second_Title_Query3(response.data.Walmart_Title);
+        set_Second_Price_Query3(response.data.Walmart_Price);
+        set_Second_Link_Query3(response.data.Walmart_Link);
+        set_Second_Image_Query3(response.data.Walmart_Image);
+        set_Third_Title_Query3(response.data.Target_Title);
+        set_Third_Price_Query3(response.data.Target_Price);
+        set_Third_Link_Query3(response.data.Target_Link);
+        set_Third_Image_Query3(response.data.Target_Image);
+        set_Fourth_Title_Query3(response.data.Whole_Title);
+        set_Fourth_Price_Query3(response.data.Whole_Price);
+        set_Fourth_Link_Query3(response.data.Whole_Link);
+        set_Fourth_Image_Query3(response.data.Whole_Image);
         set_Result3(true);
       })
       .catch(function(error){
@@ -311,22 +420,22 @@ function App(){
       axios.post('http://127.0.0.1:8000/findprice/',{item:Search_Query4}) 
       .then(function(response){
         console.log(response);
-        set_Amazon_Title_Query4(response.data.Amazon_Title);
-        set_Amazon_Price_Query4(response.data.Amazon_Price);
-        set_Amazon_Link_Query4(response.data.Amazon_Link);
-        set_Amazon_Image_Query4(response.data.Amazon_Image);
-        set_Walmart_Title_Query4(response.data.Walmart_Title);
-        set_Walmart_Price_Query4(response.data.Walmart_Price);
-        set_Walmart_Link_Query4(response.data.Walmart_Link);
-        set_Walmart_Image_Query4(response.data.Walmart_Image);
-        set_Target_Title_Query4(response.data.Target_Title);
-        set_Target_Price_Query4(response.data.Target_Price);
-        set_Target_Link_Query4(response.data.Target_Link);
-        set_Target_Image_Query4(response.data.Target_Image);
-        set_Whole_Title_Query4(response.data.Whole_Title);
-        set_Whole_Price_Query4(response.data.Whole_Price);
-        set_Whole_Link_Query4(response.data.Whole_Link);
-        set_Whole_Image_Query4(response.data.Whole_Image);
+        set_First_Title_Query4(response.data.Amazon_Title);
+        set_First_Price_Query4(response.data.Amazon_Price);
+        set_First_Link_Query4(response.data.Amazon_Link);
+        set_First_Image_Query4(response.data.Amazon_Image);
+        set_Second_Title_Query4(response.data.Walmart_Title);
+        set_Second_Price_Query4(response.data.Walmart_Price);
+        set_Second_Link_Query4(response.data.Walmart_Link);
+        set_Second_Image_Query4(response.data.Walmart_Image);
+        set_Third_Title_Query4(response.data.Target_Title);
+        set_Third_Price_Query4(response.data.Target_Price);
+        set_Third_Link_Query4(response.data.Target_Link);
+        set_Third_Image_Query4(response.data.Target_Image);
+        set_Fourth_Title_Query4(response.data.Whole_Title);
+        set_Fourth_Price_Query4(response.data.Whole_Price);
+        set_Fourth_Link_Query4(response.data.Whole_Link);
+        set_Fourth_Image_Query4(response.data.Whole_Image);
         set_Result4(true);
       })
       .catch(function(error){
@@ -339,29 +448,401 @@ function App(){
       axios.post('http://127.0.0.1:8000/findprice/',{item:Search_Query5}) 
       .then(function(response){
         console.log(response);
-        set_Amazon_Title_Query5(response.data.Amazon_Title);
-        set_Amazon_Price_Query5(response.data.Amazon_Price);
-        set_Amazon_Link_Query5(response.data.Amazon_Link);
-        set_Amazon_Image_Query5(response.data.Amazon_Image);
-        set_Walmart_Title_Query5(response.data.Walmart_Title);
-        set_Walmart_Price_Query5(response.data.Walmart_Price);
-        set_Walmart_Link_Query5(response.data.Walmart_Link);
-        set_Walmart_Image_Query5(response.data.Walmart_Image);
-        set_Target_Title_Query5(response.data.Target_Title);
-        set_Target_Price_Query5(response.data.Target_Price);
-        set_Target_Link_Query5(response.data.Target_Link);
-        set_Target_Image_Query5(response.data.Target_Image);
-        set_Whole_Title_Query5(response.data.Whole_Title);
-        set_Whole_Price_Query5(response.data.Whole_Price);
-        set_Whole_Link_Query5(response.data.Whole_Link);
-        set_Whole_Image_Query5(response.data.Whole_Image);
+        set_First_Title_Query5(response.data.Amazon_Title);
+        set_First_Price_Query5(response.data.Amazon_Price);
+        set_First_Link_Query5(response.data.Amazon_Link);
+        set_First_Image_Query5(response.data.Amazon_Image);
+        set_Second_Title_Query5(response.data.Walmart_Title);
+        set_Second_Price_Query5(response.data.Walmart_Price);
+        set_Second_Link_Query5(response.data.Walmart_Link);
+        set_Second_Image_Query5(response.data.Walmart_Image);
+        set_Third_Title_Query5(response.data.Target_Title);
+        set_Third_Price_Query5(response.data.Target_Price);
+        set_Third_Link_Query5(response.data.Target_Link);
+        set_Third_Image_Query5(response.data.Target_Image);
+        set_Fourth_Title_Query5(response.data.Whole_Title);
+        set_Fourth_Price_Query5(response.data.Whole_Price);
+        set_Fourth_Link_Query5(response.data.Whole_Link);
+        set_Fourth_Image_Query5(response.data.Whole_Image);
         set_Result5(true);
       })
       .catch(function(error){
         console.log(error);
       })
     }
+  };
 
+  var Obj;
+  var AmazonObject = {};
+  var WalmartObject = {};
+  var TargetObject = {};
+  var WholeObject = {};
+
+  const sortByCumulativePrice = () => {
+    var countAmazon = 0; 
+    var priceAmazon = 0;
+    var countWalmart = 0;
+    var priceWalmart = 0;
+    var countTarget = 0;
+    var priceTarget = 0;
+    var countWhole = 0;
+    var priceWhole = 0;
+
+    AmazonObject.name = "Amazon";
+    WalmartObject.name = "Walmart";
+    TargetObject.name = "Target";
+    WholeObject.name = "WholeFoods";
+
+    if(Search_Query1!==null)
+    {
+
+      if(First_Price_Query1 === '0.0')
+        countAmazon++;
+      if(Second_Price_Query1 === '0.0')
+        countWalmart++;
+      if(Third_Price_Query1 === '0.0')
+        countTarget++
+      if(Fourth_Price_Query1 === '0.0')
+        countWhole++;
+      
+      priceAmazon += parseFloat(First_Price_Query1);
+      priceWalmart += parseFloat(Second_Price_Query1);
+      priceTarget += parseFloat(Third_Price_Query1);
+      priceWhole += parseFloat(Fourth_Price_Query1);
+      
+      setDataForQuery1();
+    }
+    
+    if(Search_Query2!==null)
+    {
+      if(First_Price_Query2 === '0.0')
+        countAmazon++;
+      if(Second_Price_Query2 === '0.0')
+        countWalmart++;
+      if(Third_Price_Query2 === '0.0')
+        countTarget++
+      if(Fourth_Price_Query2 === '0.0')
+        countWhole++;
+      
+      priceAmazon += parseFloat(First_Price_Query2);
+      priceWalmart += parseFloat(Second_Price_Query2);
+      priceTarget += parseFloat(Third_Price_Query2);
+      priceWhole += parseFloat(Fourth_Price_Query2);
+       
+      setDataForQuery2();
+    }
+
+    if(Search_Query3!==null)
+    {
+      if(First_Price_Query3 === '0.0')
+        countAmazon++;
+      if(Second_Price_Query3 === '0.0')
+        countWalmart++;
+      if(Third_Price_Query3 === '0.0')
+        countTarget++
+      if(Fourth_Price_Query3 === '0.0')
+        countWhole++;
+      
+      priceAmazon += parseFloat(First_Price_Query3);
+      priceWalmart += parseFloat(Second_Price_Query3);
+      priceTarget += parseFloat(Third_Price_Query3);
+      priceWhole += parseFloat(Fourth_Price_Query3);
+       
+      setDataForQuery3();
+    }
+
+    if(Search_Query4!==null)
+    {
+      if(First_Price_Query4 === '0.0')
+        countAmazon++;
+      if(Second_Price_Query4 === '0.0')
+        countWalmart++;
+      if(Third_Price_Query4 === '0.0')
+        countTarget++
+      if(Fourth_Price_Query4 === '0.0')
+        countWhole++;
+      
+      priceAmazon += parseFloat(First_Price_Query4);
+      priceWalmart += parseFloat(Second_Price_Query4);
+      priceTarget += parseFloat(Third_Price_Query4);
+      priceWhole += parseFloat(Fourth_Price_Query4);
+       
+      setDataForQuery4();
+    }
+
+    if(Search_Query5!==null)
+    {
+      if(First_Price_Query5 === '0.0')
+        countAmazon++;
+      if(Second_Price_Query5 === '0.0')
+        countWalmart++;
+      if(Third_Price_Query5 === '0.0')
+        countTarget++
+      if(Fourth_Price_Query5 === '0.0')
+        countWhole++;
+      
+      priceAmazon += parseFloat(First_Price_Query5);
+      priceWalmart += parseFloat(Second_Price_Query5);
+      priceTarget += parseFloat(Third_Price_Query5);
+      priceWhole += parseFloat(Fourth_Price_Query5);
+
+      setDataForQuery5();
+    }
+
+    AmazonObject.count = countAmazon; 
+    AmazonObject.price = priceAmazon;
+    WalmartObject.count = countWalmart; 
+    WalmartObject.price = priceWalmart;
+    TargetObject.count = countTarget
+    TargetObject.price = priceTarget;
+    WholeObject.count = countWhole;
+    WholeObject.price = priceWhole;
+
+    Obj = [AmazonObject,WalmartObject,TargetObject,WholeObject];
+    Obj.sort(customComparator);
+
+    setDataForCumulativeSorting();
+    console.log(Obj);
+  };
+
+  const customComparator = (Item1, Item2) => {
+      if(Item1.count === Item2.count)
+        return Item1.price - Item2.price;
+
+      return Item1.count - Item2.count;
+  };
+
+  const setDataForCumulativeSorting = () => {
+
+    if(Search_Query1 !== null)
+    {
+      set_First_Title_Query1(Obj[0].Title_Query1);
+      set_First_Price_Query1(Obj[0].Price_Query1);
+      set_First_Image_Query1(Obj[0].Image_Query1);
+      set_First_Link_Query1(Obj[0].Link_Query1);
+      set_Second_Title_Query1(Obj[1].Title_Query1);
+      set_Second_Price_Query1(Obj[1].Price_Query1);
+      set_Second_Image_Query1(Obj[1].Image_Query1);
+      set_Second_Link_Query1(Obj[1].Link_Query1);
+      set_Third_Title_Query1(Obj[2].Title_Query1);
+      set_Third_Price_Query1(Obj[2].Price_Query1);
+      set_Third_Image_Query1(Obj[2].Image_Query1);
+      set_Third_Link_Query1(Obj[2].Link_Query1);
+      set_Fourth_Title_Query1(Obj[3].Title_Query1);
+      set_Fourth_Price_Query1(Obj[3].Price_Query1);
+      set_Fourth_Image_Query1(Obj[3].Image_Query1);
+      set_Fourth_Link_Query1(Obj[3].Link_Query1);
+    }
+
+    if(Search_Query2 !== null)
+    {
+      set_First_Title_Query2(Obj[0].Title_Query2);
+      set_First_Price_Query2(Obj[0].Price_Query2);
+      set_First_Image_Query2(Obj[0].Image_Query2);
+      set_First_Link_Query2(Obj[0].Link_Query2);
+      set_Second_Title_Query2(Obj[1].Title_Query2);
+      set_Second_Price_Query2(Obj[1].Price_Query2);
+      set_Second_Image_Query2(Obj[1].Image_Query2);
+      set_Second_Link_Query2(Obj[1].Link_Query2);
+      set_Third_Title_Query2(Obj[2].Title_Query2);
+      set_Third_Price_Query2(Obj[2].Price_Query2);
+      set_Third_Image_Query2(Obj[2].Image_Query2);
+      set_Third_Link_Query2(Obj[2].Link_Query2);
+      set_Fourth_Title_Query2(Obj[3].Title_Query2);
+      set_Fourth_Price_Query2(Obj[3].Price_Query2);
+      set_Fourth_Image_Query2(Obj[3].Image_Query2);
+      set_Fourth_Link_Query2(Obj[3].Link_Query2);
+    }
+
+    if(Search_Query3 !== null)
+    {
+      set_First_Title_Query3(Obj[0].Title_Query3);
+      set_First_Price_Query3(Obj[0].Price_Query3);
+      set_First_Image_Query3(Obj[0].Image_Query3);
+      set_First_Link_Query3(Obj[0].Link_Query3);
+      set_Second_Title_Query3(Obj[1].Title_Query3);
+      set_Second_Price_Query3(Obj[1].Price_Query3);
+      set_Second_Image_Query3(Obj[1].Image_Query3);
+      set_Second_Link_Query3(Obj[1].Link_Query3);
+      set_Third_Title_Query3(Obj[2].Title_Query3);
+      set_Third_Price_Query3(Obj[2].Price_Query3);
+      set_Third_Image_Query3(Obj[2].Image_Query3);
+      set_Third_Link_Query3(Obj[2].Link_Query3);
+      set_Fourth_Title_Query3(Obj[3].Title_Query3);
+      set_Fourth_Price_Query3(Obj[3].Price_Query3);
+      set_Fourth_Image_Query3(Obj[3].Image_Query3);
+      set_Fourth_Link_Query3(Obj[3].Link_Query3);
+    }
+
+    if(Search_Query4 !== null)
+    {
+      set_First_Title_Query4(Obj[0].Title_Query4);
+      set_First_Price_Query4(Obj[0].Price_Query4);
+      set_First_Image_Query4(Obj[0].Image_Query4);
+      set_First_Link_Query4(Obj[0].Link_Query4);
+      set_Second_Title_Query4(Obj[1].Title_Query4);
+      set_Second_Price_Query4(Obj[1].Price_Query4);
+      set_Second_Image_Query4(Obj[1].Image_Query4);
+      set_Second_Link_Query4(Obj[1].Link_Query4);
+      set_Third_Title_Query4(Obj[2].Title_Query4);
+      set_Third_Price_Query4(Obj[2].Price_Query4);
+      set_Third_Image_Query4(Obj[2].Image_Query4);
+      set_Third_Link_Query4(Obj[2].Link_Query4);
+      set_Fourth_Title_Query4(Obj[3].Title_Query4);
+      set_Fourth_Price_Query4(Obj[3].Price_Query4);
+      set_Fourth_Image_Query4(Obj[3].Image_Query4);
+      set_Fourth_Link_Query4(Obj[3].Link_Query4);
+    }
+
+    if(Search_Query5 !== null)
+    {
+      set_First_Title_Query5(Obj[0].Title_Query5);
+      set_First_Price_Query5(Obj[0].Price_Query5);
+      set_First_Image_Query5(Obj[0].Image_Query5);
+      set_First_Link_Query5(Obj[0].Link_Query5);
+      set_Second_Title_Query5(Obj[1].Title_Query5);
+      set_Second_Price_Query5(Obj[1].Price_Query5);
+      set_Second_Image_Query5(Obj[1].Image_Query5);
+      set_Second_Link_Query5(Obj[1].Link_Query5);
+      set_Third_Title_Query5(Obj[2].Title_Query5);
+      set_Third_Price_Query5(Obj[2].Price_Query5);
+      set_Third_Image_Query5(Obj[2].Image_Query5);
+      set_Third_Link_Query5(Obj[2].Link_Query5);
+      set_Fourth_Title_Query5(Obj[3].Title_Query5);
+      set_Fourth_Price_Query5(Obj[3].Price_Query5);
+      set_Fourth_Image_Query5(Obj[3].Image_Query5);
+      set_Fourth_Link_Query5(Obj[3].Link_Query5);
+    }
+  };
+
+  const setDataForQuery1 = () => {
+    // AmazonObject.Title_Query1 = Amazon_Title_Query1;
+    // AmazonObject.Price_Query1 = Amazon_Price_Query1;
+    // AmazonObject.Image_Query1 = Amazon_Image_Query1;
+    // AmazonObject.Link_Query1 = Amazon_Link_Query1;
+    // WalmartObject.Title_Query1 = Walmart_Title_Query1;
+    // WalmartObject.Price_Query1 = Walmart_Price_Query1;
+    // WalmartObject.Image_Query1 = Walmart_Image_Query1;
+    // WalmartObject.Link_Query1 = Walmart_Link_Query1;
+    // TargetObject.Title_Query1 = Target_Title_Query1;
+    // TargetObject.Price_Query1 = Target_Price_Query1;
+    // TargetObject.Image_Query1 = Target_Image_Query1;
+    // TargetObject.Link_Query1 = Target_Link_Query1;
+    // WholeObject.Title_Query1 = Whole_Title_Query1;
+    // WholeObject.Price_Query1 = Whole_Price_Query1;
+    // WholeObject.Image_Query1 = Whole_Image_Query1;
+    // WholeObject.Link_Query1 = Whole_Link_Query1;
+
+    //trying using only 1 state
+    AmazonObject.Title_Query1 = First_Title_Query1;
+    AmazonObject.Price_Query1 = First_Price_Query1;
+    AmazonObject.Image_Query1 = First_Image_Query1;
+    AmazonObject.Link_Query1 = First_Link_Query1;
+    WalmartObject.Title_Query1 = Second_Title_Query1;
+    WalmartObject.Price_Query1 = Second_Price_Query1;
+    WalmartObject.Image_Query1 = Second_Image_Query1;
+    WalmartObject.Link_Query1 = Second_Link_Query1;
+    TargetObject.Title_Query1 = Third_Title_Query1;
+    TargetObject.Price_Query1 = Third_Price_Query1;
+    TargetObject.Image_Query1 = Third_Image_Query1;
+    TargetObject.Link_Query1 = Third_Link_Query1;
+    WholeObject.Title_Query1 = Fourth_Title_Query1;
+    WholeObject.Price_Query1 = Fourth_Price_Query1;
+    WholeObject.Image_Query1 = Fourth_Image_Query1;
+    WholeObject.Link_Query1 = Fourth_Link_Query1;
+  };
+
+  const setDataForQuery2 = () => {
+    // AmazonObject.Title_Query2 = Amazon_Title_Query2;
+    // AmazonObject.Price_Query2 = Amazon_Price_Query2;
+    // AmazonObject.Image_Query2 = Amazon_Image_Query2;
+    // AmazonObject.Link_Query2 = Amazon_Link_Query2;
+    // WalmartObject.Title_Query2 = Walmart_Title_Query2;
+    // WalmartObject.Price_Query2 = Walmart_Price_Query2;
+    // WalmartObject.Image_Query2 = Walmart_Image_Query2;
+    // WalmartObject.Link_Query2 = Walmart_Link_Query2;
+    // TargetObject.Title_Query2 = Target_Title_Query2;
+    // TargetObject.Price_Query2 = Target_Price_Query2;
+    // TargetObject.Image_Query2 = Target_Image_Query2;
+    // TargetObject.Link_Query2 = Target_Link_Query2;
+    // WholeObject.Title_Query2 = Whole_Title_Query2;
+    // WholeObject.Price_Query2 = Whole_Price_Query2;
+    // WholeObject.Image_Query2 = Whole_Image_Query2;
+    // WholeObject.Link_Query2 = Whole_Link_Query2;
+
+    AmazonObject.Title_Query2 = First_Title_Query2;
+    AmazonObject.Price_Query2 = First_Price_Query2;
+    AmazonObject.Image_Query2 = First_Image_Query2;
+    AmazonObject.Link_Query2 = First_Link_Query2;
+    WalmartObject.Title_Query2 = Second_Title_Query2;
+    WalmartObject.Price_Query2 = Second_Price_Query2;
+    WalmartObject.Image_Query2 = Second_Image_Query2;
+    WalmartObject.Link_Query2 = Second_Link_Query2;
+    TargetObject.Title_Query2 = Third_Title_Query2;
+    TargetObject.Price_Query2 = Third_Price_Query2;
+    TargetObject.Image_Query2 = Third_Image_Query2;
+    TargetObject.Link_Query2 = Third_Link_Query2;
+    WholeObject.Title_Query2 = Fourth_Title_Query2;
+    WholeObject.Price_Query2 = Fourth_Price_Query2;
+    WholeObject.Image_Query2 = Fourth_Image_Query2;
+    WholeObject.Link_Query2 = Fourth_Link_Query2;
+  };
+
+  const setDataForQuery3 = () => {
+    AmazonObject.Title_Query3 = First_Title_Query3;
+    AmazonObject.Price_Query3 = First_Price_Query3;
+    AmazonObject.Image_Query3 = First_Image_Query3;
+    AmazonObject.Link_Query3 = First_Link_Query3;
+    WalmartObject.Title_Query3 = Second_Title_Query3;
+    WalmartObject.Price_Query3 = Second_Price_Query3;
+    WalmartObject.Image_Query3 = Second_Image_Query3;
+    WalmartObject.Link_Query3 = Second_Link_Query3;
+    TargetObject.Title_Query3 = Third_Title_Query3;
+    TargetObject.Price_Query3 = Third_Price_Query3;
+    TargetObject.Image_Query3 = Third_Image_Query3;
+    TargetObject.Link_Query3 = Third_Link_Query3;
+    WholeObject.Title_Query3 = Fourth_Title_Query3;
+    WholeObject.Price_Query3 = Fourth_Price_Query3;
+    WholeObject.Image_Query3 = Fourth_Image_Query3;
+    WholeObject.Link_Query3 = Fourth_Link_Query3;
+  };
+
+  const setDataForQuery4 = () => {
+    AmazonObject.Title_Query4 = First_Title_Query4;
+    AmazonObject.Price_Query4 = First_Price_Query4;
+    AmazonObject.Image_Query4 = First_Image_Query4;
+    AmazonObject.Link_Query4 = First_Link_Query4;
+    WalmartObject.Title_Query4 = Second_Title_Query4;
+    WalmartObject.Price_Query4 = Second_Price_Query4;
+    WalmartObject.Image_Query4 = Second_Image_Query4;
+    WalmartObject.Link_Query4 = Second_Link_Query4;
+    TargetObject.Title_Query4 = Third_Title_Query4;
+    TargetObject.Price_Query4 = Third_Price_Query4;
+    TargetObject.Image_Query4 = Third_Image_Query4;
+    TargetObject.Link_Query4 = Third_Link_Query4;
+    WholeObject.Title_Query4 = Fourth_Title_Query4;
+    WholeObject.Price_Query4 = Fourth_Price_Query4;
+    WholeObject.Image_Query4 = Fourth_Image_Query4;
+    WholeObject.Link_Query4 = Fourth_Link_Query4;
+  };
+
+  const setDataForQuery5 = () => {
+    AmazonObject.Title_Query5 = First_Title_Query5;
+    AmazonObject.Price_Query5 = First_Price_Query5;
+    AmazonObject.Image_Query5 = First_Image_Query5;
+    AmazonObject.Link_Query5 = First_Link_Query5;
+    WalmartObject.Title_Query5 = Second_Title_Query5;
+    WalmartObject.Price_Query5 = Second_Price_Query5;
+    WalmartObject.Image_Query5 = Second_Image_Query5;
+    WalmartObject.Link_Query5 = Second_Link_Query5;
+    TargetObject.Title_Query5 = Third_Title_Query5;
+    TargetObject.Price_Query5 = Third_Price_Query5;
+    TargetObject.Image_Query5 = Third_Image_Query5;
+    TargetObject.Link_Query5 = Third_Link_Query5;
+    WholeObject.Title_Query5 = Fourth_Title_Query5;
+    WholeObject.Price_Query5 = Fourth_Price_Query5;
+    WholeObject.Image_Query5 = Fourth_Image_Query5;
+    WholeObject.Link_Query5 = Fourth_Link_Query5;
   };
 
   const onAdd = () => {
@@ -381,8 +862,11 @@ function App(){
     }
   };
 
-  const CardStyleAmazon = {
-    height: 32,
+  const handleSort = (event) => {
+    if(event.target.value === 1)
+      sortByCumulativePrice();
+    else
+      console.log(Obj);
   };
 
   // componentDidMount(){
@@ -429,7 +913,7 @@ function App(){
     </div>
     <br></br>
     <br></br>
-      <div>
+      <div style = {backgroundStyle}>
       <form className={classes.container} noValidate autoComplete="off">
       <TextField
         id="outlined-full-width"
@@ -494,35 +978,60 @@ function App(){
         Submit
       </Button>
       </div>
+      <div>
+      <FormControl variant="outlined" className={classes.formControl}>
+        <InputLabel ref={inputLabel} id="demo-simple-select-outlined-label">
+          SortBy
+        </InputLabel>
+        <Select
+          labelId="demo-simple-select-outlined-label"
+          id="demo-simple-select-outlined"
+          value={sortType}
+          onChange={handleSort}
+          labelWidth={labelWidth}
+        >
+          <MenuItem value="">
+            <em>None</em>
+          </MenuItem>
+          <MenuItem value={1}>Cumulative Sort</MenuItem>
+          <MenuItem value={2}>Individual Sort</MenuItem>
+        </Select>
+      </FormControl>
+      </div>
       </div>
       <br></br>
-      { result1 !== null &&
+      { result1 == null &&
       <div className={classes.root}>
       <Grid container spacing={3}>
         <Grid item xs={3}>
       <Card className={classes.card}>
       <CardHeader
         avatar={
-          <Avatar aria-label="recipe" className={classes.avatar}>
-            1
-          </Avatar>
+          // <Avatar aria-label="recipe" className={classes.avatar}>
+          //   1
+          // </Avatar>
+          <Avatar 
+            alt="Amazon_Logo" 
+            src={Logos.AmazonLogo} 
+            className={classes.bigAvatar} 
+            />
         }
         action={
           <IconButton aria-label="settings">
             <MoreVertIcon />
           </IconButton>
         }
-        title={Amazon_Title_Query1}
-        subheader={Amazon_Price_Query1}
+        title={First_Title_Query1}
+        subheader={First_Price_Query1}
       />
       <CardMedia 
         className={classes.media} 
-        title={Amazon_Title_Query1} 
-        image = {Amazon_Image_Query1}
+        title={First_Title_Query1} 
+        image = {First_Image_Query1}
         /> 
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
-          <Link href={Amazon_Link_Query1} className={classes.link}>
+          <Link href={First_Link_Query1} className={classes.link}>
             Link to Product
             <IconButton>
               <LaunchIcon style={{fontSize:15}}/>
@@ -568,27 +1077,32 @@ function App(){
         <Card className={classes.card}>
       <CardHeader
         avatar={
-          <Avatar aria-label="recipe" className={classes.avatar}>
-            2
-          </Avatar>
+          // <Avatar aria-label="recipe" className={classes.avatar}>
+          //   2
+          // </Avatar>
+          <Avatar 
+            alt="Walmart_Logo" 
+            src={require("/Users/Kevin/Desktop/CapStone/SmartCart/front-end/src/walmart_logo.png")} 
+            className={classes.bigAvatar} 
+            />
         }
         action={
           <IconButton aria-label="settings">
             <MoreVertIcon/>
           </IconButton>
         }
-        title={Walmart_Title_Query1}
-        subheader={Walmart_Price_Query1}
+        title={Second_Title_Query1}
+        subheader={Second_Price_Query1}
       />
       <CardMedia
         className={classes.media}
         //image={require ("/Users/Kevin/Desktop/CapStone/SmartCart/front-end/src/2.jpg")}
-        image = {Walmart_Image_Query1}
-        title = {Walmart_Title_Query1}
+        image = {Second_Image_Query1}
+        title = {Second_Title_Query1}
       />
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
-        <Link href={Walmart_Link_Query1} className={classes.link}>
+        <Link href={Second_Link_Query1} className={classes.link}>
             Link to Product
             <IconButton>
               <LaunchIcon style={{fontSize:15}}/>
@@ -633,27 +1147,32 @@ function App(){
         <Card className={classes.card}>
       <CardHeader
         avatar={
-          <Avatar aria-label="recipe" className={classes.avatar}>
-            3
-          </Avatar>
+          // <Avatar aria-label="recipe" className={classes.avatar}>
+          //   3
+          // </Avatar>
+          <Avatar 
+            alt="Target_Logo" 
+            src={require("/Users/Kevin/Desktop/CapStone/SmartCart/front-end/src/target_logo.png")} 
+            className={classes.bigAvatar} 
+            />
         }
         action={
           <IconButton aria-label="settings">
             <MoreVertIcon />
           </IconButton>
         }
-        title={Target_Title_Query1}
-        subheader={Target_Price_Query1}
+        title={Third_Title_Query1}
+        subheader={Third_Price_Query1}
       />
       <CardMedia
         className={classes.media}
         //image={require ("/Users/Kevin/Desktop/CapStone/SmartCart/front-end/src/3.jpg")}
-        image = {Target_Image_Query1}
-        title = {Target_Title_Query1}
+        image = {Third_Image_Query1}
+        title = {Third_Title_Query1}
       />
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
-        <Link href={Target_Link_Query1} className={classes.link}>
+        <Link href={Third_Link_Query1} className={classes.link}>
             Link to Product
             <IconButton>
               <LaunchIcon style={{fontSize:15}}/>
@@ -699,27 +1218,32 @@ function App(){
         <Card className={classes.card}>
       <CardHeader
         avatar={
-          <Avatar aria-label="recipe" className={classes.avatar}>
-            4
-          </Avatar>
-        }
+          // <Avatar aria-label="recipe" className={classes.avatar}>
+          //   4
+          // </Avatar>
+          <Avatar 
+            alt="Whole_Logo" 
+            src={require("/Users/Kevin/Desktop/CapStone/SmartCart/front-end/src/whole_logo.jpg")} 
+            className={classes.bigAvatar} 
+            />
+          }
         action={
           <IconButton aria-label="settings">
             <MoreVertIcon />
           </IconButton>
         }
-        title={Whole_Title_Query1}
-        subheader={Whole_Price_Query1}
+        title={Fourth_Title_Query1}
+        subheader={Fourth_Price_Query1}
       />
       <CardMedia
         className={classes.media}
         //image={require ("/Users/Kevin/Desktop/CapStone/SmartCart/front-end/src/4.jpg")}
-        image = {Whole_Image_Query1}
-        title = {Whole_Title_Query1}
+        image = {Fourth_Image_Query1}
+        title = {Fourth_Title_Query1}
       />
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
-        <Link href={Whole_Link_Query1} className={classes.link}>
+        <Link href={Fourth_Link_Query1} className={classes.link}>
             Link to Product
             <IconButton>
               <LaunchIcon style={{fontSize:15}}/>
@@ -740,7 +1264,7 @@ function App(){
           })}
           onClick={handleExpandClick}
           aria-expanded={expanded}
-          aria-label="show more"
+          aria-label="show   more"
         >
         <ExpandMoreIcon/> 
         </IconButton>
@@ -785,20 +1309,20 @@ function App(){
             <MoreVertIcon />
           </IconButton>
         }
-        title = {Amazon_Title_Query2}
-        subheader={Amazon_Price_Query2}
+        title = {First_Title_Query2}
+        subheader={First_Price_Query2}
       />
       <CardMedia
         className={classes.media}
         //image = {{uri:'https://via.placeholder.com/350x150'}}
         //image = {{uri:'https://m.media-amazon.com/images/I/51q509vv--L._AC_UL320_ML3_.jpg'}}
         //image={require("/Users/Kevin/Desktop/CapStone/SmartCart/front-end/src/1.jpg")}
-        image = {Amazon_Image_Query2}
-        title = {Amazon_Title_Query2}  
+        image = {First_Image_Query2}
+        title = {First_Title_Query2}  
       />
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
-        <Link href={Amazon_Link_Query2} className={classes.link}>
+        <Link href={First_Link_Query2} className={classes.link}>
             Link to Product
             <IconButton>
               <LaunchIcon style={{fontSize:15}}/>
@@ -853,18 +1377,18 @@ function App(){
             <MoreVertIcon />
           </IconButton>
         }
-        title={Walmart_Title_Query2}
-        subheader={Walmart_Price_Query2}
+        title={Second_Title_Query2}
+        subheader={Second_Price_Query2}
       />
       <CardMedia
         className={classes.media}
         //image={require ("/Users/Kevin/Desktop/CapStone/SmartCart/front-end/src/2.jpg")}
-        image = {Walmart_Image_Query2}
-        title = {Walmart_Title_Query2}
+        image = {Second_Image_Query2}
+        title = {Second_Title_Query2}
       />
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
-        <Link href={Walmart_Link_Query2} className={classes.link}>
+        <Link href={Second_Link_Query2} className={classes.link}>
             Link to Product
             <IconButton>
               <LaunchIcon style={{fontSize:15}}/>
@@ -919,18 +1443,18 @@ function App(){
             <MoreVertIcon />
           </IconButton>
         }
-        title={Target_Title_Query2}
-        subheader={Target_Price_Query2}
+        title={Third_Title_Query2}
+        subheader={Third_Price_Query2}
       />
       <CardMedia
         className={classes.media}
         //image={require ("/Users/Kevin/Desktop/CapStone/SmartCart/front-end/src/3.jpg")}
-        image = {Target_Image_Query2}
-        title = {Target_Title_Query2}
+        image = {Third_Image_Query2}
+        title = {Third_Title_Query2}
       />
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
-        <Link href={Target_Link_Query2} className={classes.link}>
+        <Link href={Third_Link_Query2} className={classes.link}>
             Link to Product
             <IconButton>
               <LaunchIcon style={{fontSize:15}}/>
@@ -985,18 +1509,18 @@ function App(){
             <MoreVertIcon />
           </IconButton>
         }
-        title={Whole_Title_Query2}
-        subheader={Whole_Price_Query2}
+        title={Fourth_Title_Query2}
+        subheader={Fourth_Price_Query2}
       />
       <CardMedia
         className={classes.media}
         //image={require ("/Users/Kevin/Desktop/CapStone/SmartCart/front-end/src/4.jpg")}
-        image = {Whole_Image_Query2}
-        title = {Whole_Title_Query2}
+        image = {Fourth_Image_Query2}
+        title = {Fourth_Title_Query2}
       />
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
-        <Link href={Whole_Link_Query2} className={classes.link}>
+        <Link href={Fourth_Link_Query2} className={classes.link}>
             Link to Product
             <IconButton>
               <LaunchIcon style={{fontSize:15}}/>
@@ -1062,19 +1586,19 @@ function App(){
             <MoreVertIcon />
           </IconButton>
         }
-        title = {Amazon_Title_Query3}
-        subheader={Amazon_Price_Query3}
+        title = {First_Title_Query3}
+        subheader={First_Price_Query3}
       />
       <CardMedia
         className={classes.media}
         //image = {{uri:'https://m.media-amazon.com/images/I/51q509vv--L._AC_UL320_ML3_.jpg'}}
         //image={require ("/Users/Kevin/Desktop/CapStone/SmartCart/front-end/src/1.jpg")}
-        image = {Amazon_Image_Query3}
-        title = {Amazon_Title_Query3}  
+        image = {First_Image_Query3}
+        title = {First_Title_Query3}  
       />
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
-        <Link href={Amazon_Link_Query3} className={classes.link}>
+        <Link href={First_Link_Query3} className={classes.link}>
             Link to Product
             <IconButton>
               <LaunchIcon style={{fontSize:15}}/>
@@ -1129,18 +1653,18 @@ function App(){
             <MoreVertIcon />
           </IconButton>
         }
-        title={Walmart_Title_Query3}
-        subheader={Walmart_Price_Query3}
+        title={Second_Title_Query3}
+        subheader={Second_Price_Query3}
       />
       <CardMedia
         className={classes.media}
         //image={require ("/Users/Kevin/Desktop/CapStone/SmartCart/front-end/src/2.jpg")}
-        image = {Walmart_Image_Query3}
-        title = {Walmart_Title_Query3}
+        image = {Second_Image_Query3}
+        title = {Second_Title_Query3}
       />
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
-        <Link href={Walmart_Link_Query3} className={classes.link}>
+        <Link href={Second_Link_Query3} className={classes.link}>
             Link to Product
             <IconButton>
               <LaunchIcon style={{fontSize:15}}/>
@@ -1195,18 +1719,18 @@ function App(){
             <MoreVertIcon />
           </IconButton>
         }
-        title={Target_Title_Query3}
-        subheader={Target_Price_Query3}
+        title={Third_Title_Query3}
+        subheader={Third_Price_Query3}
       />
       <CardMedia
         className={classes.media}
         //image={require ("/Users/Kevin/Desktop/CapStone/SmartCart/front-end/src/3.jpg")}
-        image = {Target_Image_Query3}
-        title = {Target_Title_Query3}
+        image = {Third_Image_Query3}
+        title = {Third_Title_Query3}
       />
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
-        <Link href={Target_Link_Query3} className={classes.link}>
+        <Link href={Third_Link_Query3} className={classes.link}>
             Link to Product
             <IconButton>
               <LaunchIcon style={{fontSize:15}}/>
@@ -1261,18 +1785,18 @@ function App(){
             <MoreVertIcon />
           </IconButton>
         }
-        title={Whole_Title_Query3}
-        subheader={Whole_Price_Query3}
+        title={Fourth_Title_Query3}
+        subheader={Fourth_Price_Query3}
       />
       <CardMedia
         className={classes.media}
         //image={require ("/Users/Kevin/Desktop/CapStone/SmartCart/front-end/src/4.jpg")}
-        image = {Whole_Image_Query3}
-        title = {Whole_Title_Query3}
+        image = {Fourth_Image_Query3}
+        title = {Fourth_Title_Query3}
       />
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
-        <Link href={Whole_Link_Query3} className={classes.link}>
+        <Link href={Fourth_Link_Query3} className={classes.link}>
             Link to Product
             <IconButton>
               <LaunchIcon style={{fontSize:15}}/>
@@ -1338,19 +1862,19 @@ function App(){
             <MoreVertIcon />
           </IconButton>
         }
-        title = {Amazon_Title_Query4}
-        subheader={Amazon_Price_Query4}
+        title = {First_Title_Query4}
+        subheader={First_Price_Query4}
       />
       <CardMedia
         className={classes.media}
         //image = {{uri:'https://m.media-amazon.com/images/I/51q509vv--L._AC_UL320_ML3_.jpg'}}
         //image={require ("/Users/Kevin/Desktop/CapStone/SmartCart/front-end/src/1.jpg")}
-        image = {Amazon_Image_Query4}
-        title = {Amazon_Title_Query4}  
+        image = {First_Image_Query4}
+        title = {First_Title_Query4}  
       />
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
-        <Link href={Amazon_Link_Query4} className={classes.link}>
+        <Link href={First_Link_Query4} className={classes.link}>
             Link to Product
             <IconButton>
               <LaunchIcon style={{fontSize:15}}/>
@@ -1405,18 +1929,18 @@ function App(){
             <MoreVertIcon />
           </IconButton>
         }
-        title={Walmart_Title_Query4}
-        subheader={Walmart_Price_Query4}
+        title={Second_Title_Query4}
+        subheader={Second_Price_Query4}
       />
       <CardMedia
         className={classes.media}
         //image={require ("/Users/Kevin/Desktop/CapStone/SmartCart/front-end/src/2.jpg")}
-        image = {Walmart_Image_Query4}
-        title = {Walmart_Title_Query4}
+        image = {Second_Image_Query4}
+        title = {Second_Title_Query4}
       />
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
-        <Link href={Walmart_Link_Query4} className={classes.link}>
+        <Link href={Second_Link_Query4} className={classes.link}>
             Link to Product
             <IconButton>
               <LaunchIcon style={{fontSize:15}}/>
@@ -1471,18 +1995,18 @@ function App(){
             <MoreVertIcon />
           </IconButton>
         }
-        title={Target_Title_Query4}
-        subheader={Target_Price_Query4}
+        title={Third_Title_Query4}
+        subheader={Third_Price_Query4}
       />
       <CardMedia
         className={classes.media}
         //image={require ("/Users/Kevin/Desktop/CapStone/SmartCart/front-end/src/3.jpg")}
-        image = {Target_Image_Query4}
-        title = {Target_Title_Query4}
+        image = {Third_Image_Query4}
+        title = {Third_Title_Query4}
       />
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
-        <Link href={Target_Link_Query4} className={classes.link}>
+        <Link href={Third_Link_Query4} className={classes.link}>
             Link to Product
             <IconButton>
               <LaunchIcon style={{fontSize:15}}/>
@@ -1537,18 +2061,18 @@ function App(){
             <MoreVertIcon />
           </IconButton>
         }
-        title={Whole_Title_Query4}
-        subheader={Whole_Price_Query4}
+        title={Fourth_Title_Query4}
+        subheader={Fourth_Price_Query4}
       />
       <CardMedia
         className={classes.media}
         //image={require ("/Users/Kevin/Desktop/CapStone/SmartCart/front-end/src/4.jpg")}
-        image = {Whole_Image_Query4}
-        title = {Whole_Title_Query4}
+        image = {Fourth_Image_Query4}
+        title = {Fourth_Title_Query4}
       />
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
-        <Link href={Whole_Link_Query4} className={classes.link}>
+        <Link href={Fourth_Link_Query4} className={classes.link}>
             Link to Product
             <IconButton>
               <LaunchIcon style={{fontSize:15}}/>
@@ -1614,19 +2138,19 @@ function App(){
             <MoreVertIcon />
           </IconButton>
         }
-        title = {Amazon_Title_Query5}
-        subheader={Amazon_Price_Query5}
+        title = {First_Title_Query5}
+        subheader={First_Price_Query5}
       />
       <CardMedia
         className={classes.media}
         //image = {{uri:'https://m.media-amazon.com/images/I/51q509vv--L._AC_UL320_ML3_.jpg'}}
         //image={require ("/Users/Kevin/Desktop/CapStone/SmartCart/front-end/src/1.jpg")}
-        image = {Amazon_Image_Query5}
-        title = {Amazon_Title_Query5}  
+        image = {First_Image_Query5}
+        title = {First_Title_Query5}  
       />
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
-        <Link href={Amazon_Link_Query5} className={classes.link}>
+        <Link href={First_Link_Query5} className={classes.link}>
             Link to Product
             <IconButton>
               <LaunchIcon style={{fontSize:15}}/>
@@ -1681,18 +2205,18 @@ function App(){
             <MoreVertIcon />
           </IconButton>
         }
-        title={Walmart_Title_Query5}
-        subheader={Walmart_Price_Query5}
+        title={Second_Title_Query5}
+        subheader={Second_Price_Query5}
       />
       <CardMedia
         className={classes.media}
         //image={require ("/Users/Kevin/Desktop/CapStone/SmartCart/front-end/src/2.jpg")}
-        image = {Walmart_Image_Query5}
-        title = {Walmart_Title_Query5}
+        image = {Second_Image_Query5}
+        title = {Second_Title_Query5}
       />
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
-        <Link href={Walmart_Link_Query5} className={classes.link}>
+        <Link href={Second_Link_Query5} className={classes.link}>
             Link to Product
             <IconButton>
               <LaunchIcon style={{fontSize:15}}/>
@@ -1747,18 +2271,18 @@ function App(){
             <MoreVertIcon />
           </IconButton>
         }
-        title={Target_Title_Query5}
-        subheader={Target_Price_Query5}
+        title={Third_Title_Query5}
+        subheader={Third_Price_Query5}
       />
       <CardMedia
         className={classes.media}
         //image={require ("/Users/Kevin/Desktop/CapStone/SmartCart/front-end/src/3.jpg")}
-        image = {Target_Image_Query5}
-        title = {Target_Title_Query5}
+        image = {Third_Image_Query5}
+        title = {Third_Title_Query5}
       />
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
-        <Link href={Target_Link_Query5} className={classes.link}>
+        <Link href={Third_Link_Query5} className={classes.link}>
             Link to Product
             <IconButton>
               <LaunchIcon style={{fontSize:15}}/>
@@ -1813,18 +2337,18 @@ function App(){
             <MoreVertIcon />
           </IconButton>
         }
-        title={Whole_Title_Query5}
-        subheader={Whole_Price_Query5}
+        title={Fourth_Title_Query5}
+        subheader={Fourth_Price_Query5}
       />
       <CardMedia
         className={classes.media}
         //image={require ("/Users/Kevin/Desktop/CapStone/SmartCart/front-end/src/4.jpg")}
-        image = {Whole_Image_Query5}
-        title = {Whole_Title_Query5}
+        image = {Fourth_Image_Query5}
+        title = {Fourth_Title_Query5}
       />
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
-        <Link href={Whole_Link_Query5} className={classes.link}>
+        <Link href={Fourth_Link_Query5} className={classes.link}>
             Link to Product
             <IconButton>
               <LaunchIcon style={{fontSize:15}}/>
