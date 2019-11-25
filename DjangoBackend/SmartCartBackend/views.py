@@ -30,15 +30,12 @@ def findPrice(item):
 	query_dict = {}
 	query_dict['Item'] = search_query['item']
 	indexed = mycollection.find_one(query_dict)
-	print(indexed)
 	if  indexed is not None:
 		del indexed['_id']
 		return JsonResponse(indexed)
 	else:
 		real_result = real_crawl(search_query['item'])
 		global global_dict
-		print("global:", global_dict)
-		print("type:", type(global_dict))
 		try:
 			mycollection.insert_one(global_dict)
 		except:
@@ -136,8 +133,8 @@ def real_crawl(json_item):
 	global_dict = dict_query
 	return JsonResponse(dict_query)
 
-#chrome_driver = 'C:/Users/Kevin/Desktop/CapStone/chromedriver.exe'
-chrome_driver = 'E:/Data/MCS/Academics/4Q/Capstone/chromedriver.exe'
+chrome_driver = 'C:/Users/Kevin/Desktop/CapStone/chromedriver.exe'
+#chrome_driver = 'E:/Data/MCS/Academics/4Q/Capstone/chromedriver.exe'
 
 def walmart_crawl(walmart_item):
 	page_count = 0
