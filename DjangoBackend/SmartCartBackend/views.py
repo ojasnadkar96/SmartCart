@@ -15,30 +15,35 @@ import re
 from selenium import webdriver
 import sys
 from time import sleep
+import pymongo
 
 # Create your views here.
+
+global_dict = {}
 
 @api_view(["POST"])
 def findPrice(item):
 	search_query = json.loads(item.body)
-	#handle = connection_setup()
-	#indexed = handle.find_one({'Item' : search_query['item']})
-	#if  indexed is not None:
-		#return indexed
-	#else:
-	real_result = real_crawl(search_query['item'])
-		#try:
-			#handle.insert_one(real_result)
-		#except:
-			#print("CANNOT INSERT INTO DB")
-	return real_result
-
-#TODO: db and collection names finalize
-def connection_setup():
 	myclient = pymongo.MongoClient()
 	mydb = myclient.test
 	mycollection = mydb.test_crawl
-	return mycollection
+	query_dict = {}
+	query_dict['Item'] = search_query['item']
+	indexed = mycollection.find_one(query_dict)
+	print(indexed)
+	if  indexed is not None:
+		del indexed['_id']
+		return JsonResponse(indexed)
+	else:
+		real_result = real_crawl(search_query['item'])
+		global global_dict
+		print("global:", global_dict)
+		print("type:", type(global_dict))
+		try:
+			mycollection.insert_one(global_dict)
+		except:
+			print("CANNOT INSERT INTO DB")
+	return real_result
 
 def real_crawl(json_item):
 	dict_query = {}
@@ -127,10 +132,12 @@ def real_crawl(json_item):
 		dict_query['Whole_Price'] = default_price
 		dict_query['Whole_Link'] = wf_link
 		dict_query['Whole_Image'] = default_image
+	global global_dict
+	global_dict = dict_query
 	return JsonResponse(dict_query)
 
-chrome_driver = 'C:/Users/Kevin/Desktop/CapStone/chromedriver.exe'
-#chrome_driver = 'E:/Data/MCS/Academics/4Q/Capstone/chromedriver.exe'
+#chrome_driver = 'C:/Users/Kevin/Desktop/CapStone/chromedriver.exe'
+chrome_driver = 'E:/Data/MCS/Academics/4Q/Capstone/chromedriver.exe'
 
 def walmart_crawl(walmart_item):
 	page_count = 0
