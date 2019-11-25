@@ -133,19 +133,53 @@ chrome_driver = 'C:/Users/Kevin/Desktop/CapStone/chromedriver.exe'
 #chrome_driver = 'E:/Data/MCS/Academics/4Q/Capstone/chromedriver.exe'
 
 def walmart_crawl(walmart_item):
-	walmart_headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.71 Safari/537.36'}
-	walmart_url = 'https://www.walmart.com/search/?page=1&query=' + walmart_item + '&sort=price_low'
+	walmart_headers = {"User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64;x64; rv:66.0) Gecko/20100101 Firefox/66.0", "Accept-Encoding":"gzip, deflate","Accept":"text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8", "DNT":"1","Connection":"close", "Upgrade-Insecure-Requests":"1"}
+	walmart_url = 'https://www.walmart.com/search/?page=1&query=' + walmart_item + '&soft_sort=true&sort=price_low'
 	walmart_page = requests.get(url=walmart_url, headers=walmart_headers)
 	walmart_soup = BeautifulSoup(walmart_page.content, 'lxml')
-	walmart_product = walmart_soup.find('li', class_='Grid-col u-size-6-12 u-size-1-4-m u-size-1-5-xl search-gridview-first-col-item search-gridview-first-grid-row-item')
-	walmart_price = walmart_product.find(class_="price-group").text
-	walmart_image = walmart_product.find('img')['src']
-	walmart_description = walmart_product.find('div', class_='search-result-product-title gridview')
-	walmart_anchor = walmart_description.find('a', class_='product-title-link line-clamp line-clamp-2')
-	walmart_link = 'https://www.walmart.com' + walmart_anchor['href']
-	walmart_title = re.findall(r"title=\"(.*?)\"",str(walmart_anchor))[0]
+	walmart_grid = walmart_soup.find('ul', class_='search-result-gridview-items soft-sort four-items')
+	walmart_products = walmart_grid.find_all('li')
+	page_flag = 0
+	for walmart_product in walmart_products:
+		walmart_element = walmart_product.find(class_="price-group")
+		if walmart_element is not None:
+			page_flag = 1
+			walmart_price = walmart_element.text
+			walmart_image = walmart_product.find('img')['src']
+			walmart_description = walmart_product.find('div', class_='search-result-product-title gridview')
+			walmart_anchor = walmart_description.find('a', class_='product-title-link line-clamp line-clamp-2')
+			walmart_link = 'https://www.walmart.com' + walmart_anchor['href']
+			walmart_title = re.findall(r"title=\"(.*?)\"",str(walmart_anchor))[0]
+			break
+	#if page_flag == 0:
+		#rec_title, rec_price, rec_link, rec_image = walmart_second_page(walmart_item, 2)
+		#return rec_title, rec_price, rec_link, rec_image 
 	return walmart_title, walmart_price, walmart_link, walmart_image
-	
+
+'''
+def walmart_second_page(rec_item, rec_page):
+	next_page = rec_page + 1
+	walmart_headers = {"User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64;x64; rv:66.0) Gecko/20100101 Firefox/66.0", "Accept-Encoding":"gzip, deflate","Accept":"text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8", "DNT":"1","Connection":"close", "Upgrade-Insecure-Requests":"1"}
+	walmart_url = 'https://www.walmart.com/search/?page=' + str(rec_page) + '&query=' + walmart_item + '&soft_sort=true&sort=price_low'
+	walmart_page = requests.get(url=walmart_url, headers=walmart_headers)
+	walmart_soup = BeautifulSoup(walmart_page.content, 'lxml')
+	walmart_grid = walmart_soup.find('ul', class_='search-result-gridview-items soft-sort four-items')
+	walmart_products = walmart_grid.find_all('li')
+	page_flag = 0
+	for walmart_product in walmart_products:
+		walmart_element = walmart_product.find(class_="price-group")
+		if walmart_element is not None:
+			page_flag = 1
+			walmart_price = walmart_element.text
+			walmart_image = walmart_product.find('img')['src']
+			walmart_description = walmart_product.find('div', class_='search-result-product-title gridview')
+			walmart_anchor = walmart_description.find('a', class_='product-title-link line-clamp line-clamp-2')
+			walmart_link = 'https://www.walmart.com' + walmart_anchor['href']
+			walmart_title = re.findall(r"title=\"(.*?)\"",str(walmart_anchor))[0]
+			break
+	return walmart_title, walmart_price, walmart_link, walmart_image
+'''
+
 def target_crawl(target_item):
 	target_url = 'https://www.target.com/s?searchTerm=' + target_item + '&sortBy=PriceLow&Nao=0'
 	target_driver = webdriver.Chrome(executable_path=chrome_driver)
@@ -153,17 +187,22 @@ def target_crawl(target_item):
 	sleep(5)
 	target_innerHTML = target_driver.page_source
 	target_page = BeautifulSoup(target_innerHTML,"lxml")
-	target_price = target_page.find_all('span', class_='h-text-bs')[4].text
-	target_product = target_page.find('div', class_='flex-grow-one full-width')
-	target_picture = target_page.find('div', class_='Images__ImageContainer-sc-1gcxa3z-2 crxLuS')
-	picture_source = target_picture.find('picture')
-	target_image = picture_source.find('source')['srcset']
-	target_anchor = target_product.find('a')
-	target_title = target_anchor.text
-	target_link = 'https://www.target.com/' + target_anchor['href']
+	target_grid = target_page.find_all('li', class_='h-padding-a-none h-display-flex Col-favj32-0 bkaXIn')
+	for target_item in target_grid:
+		target_element = target_item.find(lambda tag: tag.name == 'span' and tag.get('class') == ['h-text-bs'])
+		if target_element is not None:
+			target_price = target_element.text
+			target_product = target_page.find('div', class_='flex-grow-one full-width')
+			target_picture = target_page.find('div', class_='Images__ImageContainer-sc-1gcxa3z-2 crxLuS')
+			picture_source = target_picture.find('picture')
+			target_image = picture_source.find('source')['srcset']
+			target_anchor = target_product.find('a')
+			target_title = target_anchor.text
+			target_link = 'https://www.target.com/' + target_anchor['href']
+			break
 	target_driver.quit()
 	return target_title, target_price, target_link, target_image
-	
+
 def amazon_crawl(amazon_item):
 	amazon_headers = {"User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64;x64; rv:66.0) Gecko/20100101 Firefox/66.0", "Accept-Encoding":"gzip, deflate","Accept":"text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8", "DNT":"1","Connection":"close", "Upgrade-Insecure-Requests":"1"}
 	amazon_url = 'https://www.amazon.com/s?k=' + amazon_item + '&s=price-asc-rank&ref=sr_st_price-asc-rank'
