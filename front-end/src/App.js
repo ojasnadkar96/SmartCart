@@ -1059,7 +1059,7 @@ function App(){
       </div>
       </div>
       <br></br>
-      { result1 == null &&
+      { result1 !== null &&
       <div className={classes.root}>
       <Grid container spacing={3}>
         <Grid item xs={3}>
