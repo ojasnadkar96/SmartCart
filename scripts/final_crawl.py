@@ -11,43 +11,34 @@ chrome_driver = 'C:/Users/Kevin/Desktop/CapStone/chromedriver.exe'
 #chrome_driver = 'E:/Data/MCS/Academics/4Q/Capstone/chromedriver.exe'
 
 def walmart_crawl(walmart_item):
-	walmart_headers = {"User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64;x64; rv:66.0) Gecko/20100101 Firefox/66.0", "Accept-Encoding":"gzip, deflate","Accept":"text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8", "DNT":"1","Connection":"close", "Upgrade-Insecure-Requests":"1"}
-	walmart_url = 'https://www.walmart.com/search/?page=1&query=' + walmart_item + '&soft_sort=true&sort=price_low'
-	walmart_page = requests.get(url=walmart_url, headers=walmart_headers)
-	walmart_soup = BeautifulSoup(walmart_page.content, 'lxml')
-	walmart_grid = walmart_soup.find('ul', class_='search-result-gridview-items soft-sort four-items')
-	walmart_products = walmart_grid.find_all('li')
-	page_flag = 0
-	for walmart_product in walmart_products:
-		walmart_element = walmart_product.find(class_="price-group")
-		if walmart_element is not None:
-			page_flag = 1
-			walmart_price = walmart_element.text
-			walmart_image = walmart_product.find('img')['src']
-			walmart_description = walmart_product.find('div', class_='search-result-product-title gridview')
-			walmart_anchor = walmart_description.find('a', class_='product-title-link line-clamp line-clamp-2')
-			walmart_link = 'https://www.walmart.com' + walmart_anchor['href']
-			walmart_title = re.findall(r"title=\"(.*?)\"",str(walmart_anchor))[0]
+	page_count = 0
+	while True:
+		page_count = page_count + 1
+		title, price, link, image = walmart_rec(walmart_item, page_count)
+		if rec_invoke(title, price, link, image) == False:
 			break
-	#if page_flag == 0:
-		#rec_title, rec_price, rec_link, rec_image = walmart_second_page(walmart_item, 2)
-		#return rec_title, rec_price, rec_link, rec_image 
-	return walmart_title, walmart_price, walmart_link, walmart_image
+	return title, price, link, image
 	
-'''
-def walmart_second_page(rec_item, rec_page):
+def rec_invoke(w_t, w_p, w_l, w_i):
+	if w_t == '' and w_p == '' and w_l == '' and w_i == '':
+		return True
+	return False
+
+def walmart_rec(rec_item, rec_page):
 	next_page = rec_page + 1
 	walmart_headers = {"User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64;x64; rv:66.0) Gecko/20100101 Firefox/66.0", "Accept-Encoding":"gzip, deflate","Accept":"text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8", "DNT":"1","Connection":"close", "Upgrade-Insecure-Requests":"1"}
-	walmart_url = 'https://www.walmart.com/search/?page=' + str(rec_page) + '&query=' + walmart_item + '&soft_sort=true&sort=price_low'
+	walmart_url = 'https://www.walmart.com/search/?page=' + str(rec_page) + '&query=' + rec_item + '&soft_sort=true&sort=price_low'
 	walmart_page = requests.get(url=walmart_url, headers=walmart_headers)
 	walmart_soup = BeautifulSoup(walmart_page.content, 'lxml')
 	walmart_grid = walmart_soup.find('ul', class_='search-result-gridview-items soft-sort four-items')
 	walmart_products = walmart_grid.find_all('li')
-	page_flag = 0
+	walmart_price = ''
+	walmart_title = ''
+	walmart_link = ''
+	walmart_image = ''
 	for walmart_product in walmart_products:
 		walmart_element = walmart_product.find(class_="price-group")
 		if walmart_element is not None:
-			page_flag = 1
 			walmart_price = walmart_element.text
 			walmart_image = walmart_product.find('img')['src']
 			walmart_description = walmart_product.find('div', class_='search-result-product-title gridview')
@@ -56,7 +47,6 @@ def walmart_second_page(rec_item, rec_page):
 			walmart_title = re.findall(r"title=\"(.*?)\"",str(walmart_anchor))[0]
 			break
 	return walmart_title, walmart_price, walmart_link, walmart_image
-'''
 
 def target_crawl(target_item):
 	target_url = 'https://www.target.com/s?searchTerm=' + target_item + '&sortBy=PriceLow&Nao=0'
