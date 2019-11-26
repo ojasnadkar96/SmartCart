@@ -126,6 +126,7 @@ function App(){
     WalmartLogo: require("/Users/Kevin/Desktop/CapStone/SmartCart/front-end/src/walmart_logo.png"),
     TargetLogo: require("/Users/Kevin/Desktop/CapStone/SmartCart/front-end/src/target_logo.png"),
     WholeLogo: require("/Users/Kevin/Desktop/CapStone/SmartCart/front-end/src/whole_logo.jpg"),
+    Logo: require("/Users/Kevin/Desktop/CapStone/SmartCart/front-end/src/logo.jpg"),
   };
 
   const [Amazon_Title_Query1,set_Amazon_Title_Query1] = React.useState("Not Found");
@@ -393,21 +394,29 @@ function App(){
         set_First_Price_Query1(response.data.Amazon_Price);
         set_First_Link_Query1(response.data.Amazon_Link);
         set_First_Image_Query1(response.data.Amazon_Image);
+        if(response.data.Amazon_Title === "CANNOT FIND ITEM")
+          set_First_Image_Query1(Logos.Logo);
         set_First_Logo_Query1(Logos.AmazonLogo);
         set_Second_Title_Query1(response.data.Walmart_Title);
         set_Second_Price_Query1(response.data.Walmart_Price);
         set_Second_Link_Query1(response.data.Walmart_Link);
         set_Second_Image_Query1(response.data.Walmart_Image);
+        if(response.data.Walmart_Title === "CANNOT FIND ITEM")
+          set_Second_Image_Query1(Logos.Logo);
         set_Second_Logo_Query1(Logos.WalmartLogo);
         set_Third_Title_Query1(response.data.Target_Title);
         set_Third_Price_Query1(response.data.Target_Price);
         set_Third_Link_Query1(response.data.Target_Link);
         set_Third_Image_Query1(response.data.Target_Image);
+        if(response.data.Target_Title === "CANNOT FIND ITEM")
+          set_Third_Image_Query1(Logos.Logo);
         set_Third_Logo_Query1(Logos.TargetLogo);
         set_Fourth_Title_Query1(response.data.Whole_Title);
         set_Fourth_Price_Query1(response.data.Whole_Price);
         set_Fourth_Link_Query1(response.data.Whole_Link);
         set_Fourth_Image_Query1(response.data.Whole_Image);
+        if(response.data.Whole_Title === "CANNOT FIND ITEM")
+          set_Fourth_Image_Query1(Logos.Logo);
         set_Fourth_Logo_Query1(Logos.WholeLogo);
 
         set_Result1(true);
@@ -445,21 +454,29 @@ function App(){
         set_First_Price_Query2(response.data.Amazon_Price);
         set_First_Link_Query2(response.data.Amazon_Link);
         set_First_Image_Query2(response.data.Amazon_Image);
+        if(response.data.Amazon_Title === "CANNOT FIND ITEM")
+          set_First_Image_Query2(Logos.Logo);
         set_First_Logo_Query2(Logos.AmazonLogo);
         set_Second_Title_Query2(response.data.Walmart_Title);
         set_Second_Price_Query2(response.data.Walmart_Price);
         set_Second_Link_Query2(response.data.Walmart_Link);
         set_Second_Image_Query2(response.data.Walmart_Image);
+        if(response.data.Walmart_Title === "CANNOT FIND ITEM")
+          set_Second_Image_Query2(Logos.Logo);
         set_Second_Logo_Query2(Logos.WalmartLogo);
         set_Third_Title_Query2(response.data.Target_Title);
         set_Third_Price_Query2(response.data.Target_Price);
         set_Third_Link_Query2(response.data.Target_Link);
         set_Third_Image_Query2(response.data.Target_Image);
+        if(response.data.Target_Title === "CANNOT FIND ITEM")
+          set_Third_Image_Query2(Logos.Logo);
         set_Third_Logo_Query2(Logos.TargetLogo);
         set_Fourth_Title_Query2(response.data.Whole_Title);
         set_Fourth_Price_Query2(response.data.Whole_Price);
         set_Fourth_Link_Query2(response.data.Whole_Link);
         set_Fourth_Image_Query2(response.data.Whole_Image);
+        if(response.data.Whole_Title === "CANNOT FIND ITEM")
+          set_Fourth_Image_Query2(Logos.Logo);
         set_Fourth_Logo_Query2(Logos.WholeLogo);
 
         set_Result2(true);
@@ -496,21 +513,29 @@ function App(){
         set_First_Price_Query3(response.data.Amazon_Price);
         set_First_Link_Query3(response.data.Amazon_Link);
         set_First_Image_Query3(response.data.Amazon_Image);
+        if(response.data.Amazon_Title === "CANNOT FIND ITEM")
+          set_First_Image_Query3(Logos.Logo);
         set_First_Logo_Query3(Logos.AmazonLogo);
         set_Second_Title_Query3(response.data.Walmart_Title);
         set_Second_Price_Query3(response.data.Walmart_Price);
         set_Second_Link_Query3(response.data.Walmart_Link);
         set_Second_Image_Query3(response.data.Walmart_Image);
+        if(response.data.Walmart_Title === "CANNOT FIND ITEM")
+          set_Second_Image_Query3(Logos.Logo);
         set_Second_Logo_Query3(Logos.WalmartLogo);
         set_Third_Title_Query3(response.data.Target_Title);
         set_Third_Price_Query3(response.data.Target_Price);
         set_Third_Link_Query3(response.data.Target_Link);
         set_Third_Image_Query3(response.data.Target_Image);
+        if(response.data.Target_Title === "CANNOT FIND ITEM")
+          set_Third_Image_Query3(Logos.Logo);
         set_Third_Logo_Query3(Logos.TargetLogo);
         set_Fourth_Title_Query3(response.data.Whole_Title);
         set_Fourth_Price_Query3(response.data.Whole_Price);
         set_Fourth_Link_Query3(response.data.Whole_Link);
         set_Fourth_Image_Query3(response.data.Whole_Image);
+        if(response.data.Whole_Title === "CANNOT FIND ITEM")
+          set_Fourth_Image_Query3(Logos.Logo);
         set_Fourth_Logo_Query3(Logos.WholeLogo);
         set_Result3(true);
       })
@@ -546,21 +571,29 @@ function App(){
         set_First_Price_Query4(response.data.Amazon_Price);
         set_First_Link_Query4(response.data.Amazon_Link);
         set_First_Image_Query4(response.data.Amazon_Image);
+        if(response.data.Amazon_Title === "CANNOT FIND ITEM")
+          set_First_Image_Query4(Logos.Logo);
         set_First_Logo_Query4(Logos.AmazonLogo);
         set_Second_Title_Query4(response.data.Walmart_Title);
         set_Second_Price_Query4(response.data.Walmart_Price);
         set_Second_Link_Query4(response.data.Walmart_Link);
         set_Second_Image_Query4(response.data.Walmart_Image);
+        if(response.data.Walmart_Title === "CANNOT FIND ITEM")
+          set_Second_Image_Query4(Logos.Logo);
         set_Second_Logo_Query4(Logos.WalmartLogo);
         set_Third_Title_Query4(response.data.Target_Title);
         set_Third_Price_Query4(response.data.Target_Price);
         set_Third_Link_Query4(response.data.Target_Link);
         set_Third_Image_Query4(response.data.Target_Image);
+        if(response.data.Target_Title === "CANNOT FIND ITEM")
+          set_Third_Image_Query4(Logos.Logo);
         set_Third_Logo_Query4(Logos.TargetLogo);
         set_Fourth_Title_Query4(response.data.Whole_Title);
         set_Fourth_Price_Query4(response.data.Whole_Price);
         set_Fourth_Link_Query4(response.data.Whole_Link);
         set_Fourth_Image_Query4(response.data.Whole_Image);
+        if(response.data.Whole_Title === "CANNOT FIND ITEM")
+          set_Fourth_Image_Query4(Logos.Logo);
         set_Fourth_Logo_Query4(Logos.WholeLogo);
         set_Result4(true);
       })
@@ -596,21 +629,29 @@ function App(){
         set_First_Price_Query5(response.data.Amazon_Price);
         set_First_Link_Query5(response.data.Amazon_Link);
         set_First_Image_Query5(response.data.Amazon_Image);
+        if(response.data.Amazon_Title === "CANNOT FIND ITEM")
+          set_First_Image_Query5(Logos.Logo);
         set_First_Logo_Query5(Logos.AmazonLogo);
         set_Second_Title_Query5(response.data.Walmart_Title);
         set_Second_Price_Query5(response.data.Walmart_Price);
         set_Second_Link_Query5(response.data.Walmart_Link);
         set_Second_Image_Query5(response.data.Walmart_Image);
+        if(response.data.Walmart_Title === "CANNOT FIND ITEM")
+          set_Second_Image_Query5(Logos.Logo);
         set_Second_Logo_Query5(Logos.WalmartLogo);
         set_Third_Title_Query5(response.data.Target_Title);
         set_Third_Price_Query5(response.data.Target_Price);
         set_Third_Link_Query5(response.data.Target_Link);
         set_Third_Image_Query5(response.data.Target_Image);
+        if(response.data.Target_Title === "CANNOT FIND ITEM")
+          set_Third_Image_Query5(Logos.Logo);
         set_Third_Logo_Query5(Logos.TargetLogo);
         set_Fourth_Title_Query5(response.data.Whole_Title);
         set_Fourth_Price_Query5(response.data.Whole_Price);
         set_Fourth_Link_Query5(response.data.Whole_Link);
         set_Fourth_Image_Query5(response.data.Whole_Image);
+        if(response.data.Whole_Title === "CANNOT FIND ITEM")
+          set_Fourth_Image_Query5(Logos.Logo);
         set_Fourth_Logo_Query5(Logos.WholeLogo);
         set_Result5(true);
       })
@@ -767,21 +808,29 @@ function App(){
       set_First_Title_Query1(Obj[0].Title_Query1);
       set_First_Price_Query1(Obj[0].Price_Query1);
       set_First_Image_Query1(Obj[0].Image_Query1);
+      if(Obj[0].Title_Query1 === "CANNOT FIND ITEM")
+        set_First_Image_Query1(Logos.Logo);
       set_First_Link_Query1(Obj[0].Link_Query1);
       set_First_Logo_Query1(Obj[0].Logo_Query1);
       set_Second_Title_Query1(Obj[1].Title_Query1);
       set_Second_Price_Query1(Obj[1].Price_Query1);
       set_Second_Image_Query1(Obj[1].Image_Query1);
+      if(Obj[1].Title_Query1 === "CANNOT FIND ITEM")
+        set_Second_Image_Query1(Logos.Logo);
       set_Second_Link_Query1(Obj[1].Link_Query1);
       set_Second_Logo_Query1(Obj[1].Logo_Query1);
       set_Third_Title_Query1(Obj[2].Title_Query1);
       set_Third_Price_Query1(Obj[2].Price_Query1);
       set_Third_Image_Query1(Obj[2].Image_Query1);
+      if(Obj[2].Title_Query1 === "CANNOT FIND ITEM")
+        set_Third_Image_Query1(Logos.Logo);
       set_Third_Link_Query1(Obj[2].Link_Query1);
       set_Third_Logo_Query1(Obj[2].Logo_Query1);
       set_Fourth_Title_Query1(Obj[3].Title_Query1);
       set_Fourth_Price_Query1(Obj[3].Price_Query1);
       set_Fourth_Image_Query1(Obj[3].Image_Query1);
+      if(Obj[3].Title_Query1 === "CANNOT FIND ITEM")
+        set_Fourth_Image_Query1(Logos.Logo);
       set_Fourth_Link_Query1(Obj[3].Link_Query1);
       set_Fourth_Logo_Query1(Obj[3].Logo_Query1);
     }
@@ -791,21 +840,29 @@ function App(){
       set_First_Title_Query2(Obj[0].Title_Query2);
       set_First_Price_Query2(Obj[0].Price_Query2);
       set_First_Image_Query2(Obj[0].Image_Query2);
+      if(Obj[0].Title_Query2 === "CANNOT FIND ITEM")
+        set_First_Image_Query2(Logos.Logo);
       set_First_Link_Query2(Obj[0].Link_Query2);
       set_First_Logo_Query2(Obj[0].Logo_Query2);
       set_Second_Title_Query2(Obj[1].Title_Query2);
       set_Second_Price_Query2(Obj[1].Price_Query2);
       set_Second_Image_Query2(Obj[1].Image_Query2);
+      if(Obj[1].Title_Query2 === "CANNOT FIND ITEM")
+        set_Second_Image_Query2(Logos.Logo);
       set_Second_Link_Query2(Obj[1].Link_Query2);
       set_Second_Logo_Query2(Obj[1].Logo_Query2);
       set_Third_Title_Query2(Obj[2].Title_Query2);
       set_Third_Price_Query2(Obj[2].Price_Query2);
       set_Third_Image_Query2(Obj[2].Image_Query2);
+      if(Obj[2].Title_Query2 === "CANNOT FIND ITEM")
+        set_Third_Image_Query2(Logos.Logo);
       set_Third_Link_Query2(Obj[2].Link_Query2);
       set_Third_Logo_Query2(Obj[2].Logo_Query2);
       set_Fourth_Title_Query2(Obj[3].Title_Query2);
       set_Fourth_Price_Query2(Obj[3].Price_Query2);
       set_Fourth_Image_Query2(Obj[3].Image_Query2);
+      if(Obj[3].Title_Query2 === "CANNOT FIND ITEM")
+        set_Fourth_Image_Query2(Logos.Logo);
       set_Fourth_Link_Query2(Obj[3].Link_Query2);
       set_Fourth_Logo_Query2(Obj[3].Logo_Query2);
     }
@@ -815,21 +872,29 @@ function App(){
       set_First_Title_Query3(Obj[0].Title_Query3);
       set_First_Price_Query3(Obj[0].Price_Query3);
       set_First_Image_Query3(Obj[0].Image_Query3);
+      if(Obj[0].Title_Query3 === "CANNOT FIND ITEM")
+        set_First_Image_Query3(Logos.Logo);
       set_First_Link_Query3(Obj[0].Link_Query3);
       set_First_Logo_Query3(Obj[0].Logo_Query3);
       set_Second_Title_Query3(Obj[1].Title_Query3);
       set_Second_Price_Query3(Obj[1].Price_Query3);
       set_Second_Image_Query3(Obj[1].Image_Query3);
+      if(Obj[1].Title_Query3 === "CANNOT FIND ITEM")
+        set_Second_Image_Query3(Logos.Logo);
       set_Second_Link_Query3(Obj[1].Link_Query3);
       set_Second_Logo_Query3(Obj[1].Logo_Query3);
       set_Third_Title_Query3(Obj[2].Title_Query3);
       set_Third_Price_Query3(Obj[2].Price_Query3);
       set_Third_Image_Query3(Obj[2].Image_Query3);
+      if(Obj[2].Title_Query3 === "CANNOT FIND ITEM")
+        set_Third_Image_Query3(Logos.Logo);
       set_Third_Link_Query3(Obj[2].Link_Query3);
       set_Third_Logo_Query3(Obj[2].Logo_Query3);
       set_Fourth_Title_Query3(Obj[3].Title_Query3);
       set_Fourth_Price_Query3(Obj[3].Price_Query3);
       set_Fourth_Image_Query3(Obj[3].Image_Query3);
+      if(Obj[3].Title_Query3 === "CANNOT FIND ITEM")
+        set_Fourth_Image_Query3(Logos.Logo);
       set_Fourth_Link_Query3(Obj[3].Link_Query3);
       set_Fourth_Logo_Query3(Obj[3].Logo_Query3);
     }
@@ -839,21 +904,29 @@ function App(){
       set_First_Title_Query4(Obj[0].Title_Query4);
       set_First_Price_Query4(Obj[0].Price_Query4);
       set_First_Image_Query4(Obj[0].Image_Query4);
+      if(Obj[0].Title_Query4 === "CANNOT FIND ITEM")
+        set_First_Image_Query4(Logos.Logo);
       set_First_Link_Query4(Obj[0].Link_Query4);
       set_First_Logo_Query4(Obj[0].Logo_Query4);
       set_Second_Title_Query4(Obj[1].Title_Query4);
       set_Second_Price_Query4(Obj[1].Price_Query4);
       set_Second_Image_Query4(Obj[1].Image_Query4);
+      if(Obj[1].Title_Query4 === "CANNOT FIND ITEM")
+        set_Second_Image_Query4(Logos.Logo);
       set_Second_Link_Query4(Obj[1].Link_Query4);
       set_Second_Logo_Query4(Obj[1].Logo_Query4);
       set_Third_Title_Query4(Obj[2].Title_Query4);
       set_Third_Price_Query4(Obj[2].Price_Query4);
       set_Third_Image_Query4(Obj[2].Image_Query4);
+      if(Obj[2].Title_Query4 === "CANNOT FIND ITEM")
+        set_Third_Image_Query4(Logos.Logo);
       set_Third_Link_Query4(Obj[2].Link_Query4);
       set_Third_Logo_Query4(Obj[2].Logo_Query4);
       set_Fourth_Title_Query4(Obj[3].Title_Query4);
       set_Fourth_Price_Query4(Obj[3].Price_Query4);
       set_Fourth_Image_Query4(Obj[3].Image_Query4);
+      if(Obj[3].Title_Query4 === "CANNOT FIND ITEM")
+        set_Fourth_Image_Query4(Logos.Logo);
       set_Fourth_Link_Query4(Obj[3].Link_Query4);
       set_Fourth_Logo_Query4(Obj[3].Logo_Query4);
     }
@@ -863,21 +936,29 @@ function App(){
       set_First_Title_Query5(Obj[0].Title_Query5);
       set_First_Price_Query5(Obj[0].Price_Query5);
       set_First_Image_Query5(Obj[0].Image_Query5);
+      if(Obj[0].Title_Query5 === "CANNOT FIND ITEM")
+        set_First_Image_Query5(Logos.Logo);
       set_First_Link_Query5(Obj[0].Link_Query5);
       set_First_Logo_Query5(Obj[0].Logo_Query5);
       set_Second_Title_Query5(Obj[1].Title_Query5);
       set_Second_Price_Query5(Obj[1].Price_Query5);
       set_Second_Image_Query5(Obj[1].Image_Query5);
+      if(Obj[1].Title_Query5 === "CANNOT FIND ITEM")
+        set_Second_Image_Query5(Logos.Logo);
       set_Second_Link_Query5(Obj[1].Link_Query5)
       set_Second_Logo_Query5(Obj[1].Logo_Query5);;
       set_Third_Title_Query5(Obj[2].Title_Query5);
       set_Third_Price_Query5(Obj[2].Price_Query5);
       set_Third_Image_Query5(Obj[2].Image_Query5);
+      if(Obj[2].Title_Query5 === "CANNOT FIND ITEM")
+        set_Third_Image_Query5(Logos.Logo);
       set_Third_Link_Query5(Obj[2].Link_Query5);
       set_Third_Logo_Query5(Obj[2].Logo_Query5);
       set_Fourth_Title_Query5(Obj[3].Title_Query5);
       set_Fourth_Price_Query5(Obj[3].Price_Query5);
       set_Fourth_Image_Query5(Obj[3].Image_Query5);
+      if(Obj[3].Title_Query5 === "CANNOT FIND ITEM")
+        set_Fourth_Image_Query5(Logos.Logo);
       set_Fourth_Link_Query5(Obj[3].Link_Query5);
       set_Fourth_Logo_Query5(Obj[3].Logo_Query5);
     }
@@ -1125,21 +1206,29 @@ function App(){
     set_First_Title_Query1(Obj[0].Title_Query1);
     set_First_Price_Query1(Obj[0].Price_Query1);
     set_First_Image_Query1(Obj[0].Image_Query1);
+    if(Obj[0].Title_Query1 === "CANNOT FIND ITEM")
+        set_First_Image_Query1(Logos.Logo);
     set_First_Link_Query1(Obj[0].Link_Query1);
     set_First_Logo_Query1(Obj[0].Logo_Query1);
     set_Second_Title_Query1(Obj[1].Title_Query1);
     set_Second_Price_Query1(Obj[1].Price_Query1);
     set_Second_Image_Query1(Obj[1].Image_Query1);
+    if(Obj[1].Title_Query1 === "CANNOT FIND ITEM")
+        set_Second_Image_Query1(Logos.Logo);
     set_Second_Link_Query1(Obj[1].Link_Query1);
     set_Second_Logo_Query1(Obj[1].Logo_Query1);
     set_Third_Title_Query1(Obj[2].Title_Query1);
     set_Third_Price_Query1(Obj[2].Price_Query1);
     set_Third_Image_Query1(Obj[2].Image_Query1);
+    if(Obj[2].Title_Query1 === "CANNOT FIND ITEM")
+        set_Third_Image_Query1(Logos.Logo);
     set_Third_Link_Query1(Obj[2].Link_Query1);
     set_Third_Logo_Query1(Obj[2].Logo_Query1);
     set_Fourth_Title_Query1(Obj[3].Title_Query1);
     set_Fourth_Price_Query1(Obj[3].Price_Query1);
     set_Fourth_Image_Query1(Obj[3].Image_Query1);
+    if(Obj[3].Title_Query1 === "CANNOT FIND ITEM")
+        set_Fourth_Image_Query1(Logos.Logo);
     set_Fourth_Link_Query1(Obj[3].Link_Query1);
     set_Fourth_Logo_Query1(Obj[3].Logo_Query1);
   };
@@ -1148,21 +1237,29 @@ function App(){
     set_First_Title_Query2(Obj[0].Title_Query2);
     set_First_Price_Query2(Obj[0].Price_Query2);
     set_First_Image_Query2(Obj[0].Image_Query2);
+    if(Obj[0].Title_Query2 === "CANNOT FIND ITEM")
+        set_First_Image_Query2(Logos.Logo);
     set_First_Link_Query2(Obj[0].Link_Query2);
     set_First_Logo_Query2(Obj[0].Logo_Query2);
     set_Second_Title_Query2(Obj[1].Title_Query2);
     set_Second_Price_Query2(Obj[1].Price_Query2);
     set_Second_Image_Query2(Obj[1].Image_Query2);
+    if(Obj[1].Title_Query2 === "CANNOT FIND ITEM")
+        set_Second_Image_Query2(Logos.Logo);
     set_Second_Link_Query2(Obj[1].Link_Query2);
     set_Second_Logo_Query2(Obj[1].Logo_Query2);
     set_Third_Title_Query2(Obj[2].Title_Query2);
     set_Third_Price_Query2(Obj[2].Price_Query2);
     set_Third_Image_Query2(Obj[2].Image_Query2);
+    if(Obj[2].Title_Query2 === "CANNOT FIND ITEM")
+        set_Third_Image_Query2(Logos.Logo);
     set_Third_Link_Query2(Obj[2].Link_Query2);
     set_Third_Logo_Query2(Obj[2].Logo_Query2);
     set_Fourth_Title_Query2(Obj[3].Title_Query2);
     set_Fourth_Price_Query2(Obj[3].Price_Query2);
     set_Fourth_Image_Query2(Obj[3].Image_Query2);
+    if(Obj[3].Title_Query2 === "CANNOT FIND ITEM")
+        set_Fourth_Image_Query2(Logos.Logo);
     set_Fourth_Link_Query2(Obj[3].Link_Query2);
     set_Fourth_Logo_Query2(Obj[3].Logo_Query2);
   };
@@ -1171,21 +1268,29 @@ function App(){
     set_First_Title_Query3(Obj[0].Title_Query3);
     set_First_Price_Query3(Obj[0].Price_Query3);
     set_First_Image_Query3(Obj[0].Image_Query3);
+    if(Obj[0].Title_Query3 === "CANNOT FIND ITEM")
+        set_First_Image_Query3(Logos.Logo);
     set_First_Link_Query3(Obj[0].Link_Query3);
     set_First_Logo_Query3(Obj[0].Logo_Query3);
     set_Second_Title_Query3(Obj[1].Title_Query3);
     set_Second_Price_Query3(Obj[1].Price_Query3);
     set_Second_Image_Query3(Obj[1].Image_Query3);
+    if(Obj[1].Title_Query3 === "CANNOT FIND ITEM")
+        set_Second_Image_Query3(Logos.Logo);
     set_Second_Link_Query3(Obj[1].Link_Query3);
     set_Second_Logo_Query3(Obj[1].Logo_Query3);
     set_Third_Title_Query3(Obj[2].Title_Query3);
     set_Third_Price_Query3(Obj[2].Price_Query3);
     set_Third_Image_Query3(Obj[2].Image_Query3);
+    if(Obj[2].Title_Query3 === "CANNOT FIND ITEM")
+        set_Third_Image_Query3(Logos.Logo);
     set_Third_Link_Query3(Obj[2].Link_Query3);
     set_Third_Logo_Query3(Obj[2].Logo_Query3);
     set_Fourth_Title_Query3(Obj[3].Title_Query3);
     set_Fourth_Price_Query3(Obj[3].Price_Query3);
     set_Fourth_Image_Query3(Obj[3].Image_Query3);
+    if(Obj[3].Title_Query3 === "CANNOT FIND ITEM")
+        set_Fourth_Image_Query3(Logos.Logo);
     set_Fourth_Link_Query3(Obj[3].Link_Query3);
     set_Fourth_Logo_Query3(Obj[3].Logo_Query3);
   };
@@ -1194,21 +1299,29 @@ function App(){
     set_First_Title_Query4(Obj[0].Title_Query4);
     set_First_Price_Query4(Obj[0].Price_Query4);
     set_First_Image_Query4(Obj[0].Image_Query4);
+    if(Obj[0].Title_Query4 === "CANNOT FIND ITEM")
+        set_First_Image_Query4(Logos.Logo);
     set_First_Link_Query4(Obj[0].Link_Query4);
     set_First_Logo_Query4(Obj[0].Logo_Query4);
     set_Second_Title_Query4(Obj[1].Title_Query4);
     set_Second_Price_Query4(Obj[1].Price_Query4);
     set_Second_Image_Query4(Obj[1].Image_Query4);
+    if(Obj[1].Title_Query4 === "CANNOT FIND ITEM")
+        set_Second_Image_Query4(Logos.Logo);
     set_Second_Link_Query4(Obj[1].Link_Query4);
     set_Second_Logo_Query4(Obj[1].Logo_Query4);
     set_Third_Title_Query4(Obj[2].Title_Query4);
     set_Third_Price_Query4(Obj[2].Price_Query4);
     set_Third_Image_Query4(Obj[2].Image_Query4);
+    if(Obj[2].Title_Query4 === "CANNOT FIND ITEM")
+        set_Third_Image_Query4(Logos.Logo);
     set_Third_Link_Query4(Obj[2].Link_Query4);
     set_Third_Logo_Query4(Obj[2].Logo_Query4);
     set_Fourth_Title_Query4(Obj[3].Title_Query4);
     set_Fourth_Price_Query4(Obj[3].Price_Query4);
     set_Fourth_Image_Query4(Obj[3].Image_Query4);
+    if(Obj[3].Title_Query4 === "CANNOT FIND ITEM")
+        set_Fourth_Image_Query4(Logos.Logo);
     set_Fourth_Link_Query4(Obj[3].Link_Query4);
     set_Fourth_Logo_Query4(Obj[3].Logo_Query4);
   };
@@ -1217,21 +1330,29 @@ function App(){
     set_First_Title_Query5(Obj[0].Title_Query5);
     set_First_Price_Query5(Obj[0].Price_Query5);
     set_First_Image_Query5(Obj[0].Image_Query5);
+    if(Obj[0].Title_Query5 === "CANNOT FIND ITEM")
+        set_First_Image_Query5(Logos.Logo);
     set_First_Link_Query5(Obj[0].Link_Query5);
     set_First_Logo_Query5(Obj[0].Logo_Query5);
     set_Second_Title_Query5(Obj[1].Title_Query5);
     set_Second_Price_Query5(Obj[1].Price_Query5);
     set_Second_Image_Query5(Obj[1].Image_Query5);
+    if(Obj[1].Title_Query5 === "CANNOT FIND ITEM")
+        set_Second_Image_Query5(Logos.Logo);
     set_Second_Link_Query5(Obj[1].Link_Query5)
     set_Second_Logo_Query5(Obj[1].Logo_Query5);;
     set_Third_Title_Query5(Obj[2].Title_Query5);
     set_Third_Price_Query5(Obj[2].Price_Query5);
     set_Third_Image_Query5(Obj[2].Image_Query5);
+    if(Obj[2].Title_Query5 === "CANNOT FIND ITEM")
+        set_Third_Image_Query5(Logos.Logo);
     set_Third_Link_Query5(Obj[2].Link_Query5);
     set_Third_Logo_Query5(Obj[2].Logo_Query5);
     set_Fourth_Title_Query5(Obj[3].Title_Query5);
     set_Fourth_Price_Query5(Obj[3].Price_Query5);
     set_Fourth_Image_Query5(Obj[3].Image_Query5);
+    if(Obj[3].Title_Query5 === "CANNOT FIND ITEM")
+        set_Fourth_Image_Query5(Logos.Logo);
     set_Fourth_Link_Query5(Obj[3].Link_Query5);
     set_Fourth_Logo_Query5(Obj[3].Logo_Query5);
   };
