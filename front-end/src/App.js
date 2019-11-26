@@ -1525,8 +1525,8 @@ function App(){
           <MenuItem value="">
             <em>None</em>
           </MenuItem>
-          <MenuItem value={1}>Cumulative Sort</MenuItem>
-          <MenuItem value={2}>Individual Sort</MenuItem>
+          <MenuItem value={1}>Sort By Store</MenuItem>
+          <MenuItem value={2}>Sort By Item</MenuItem>
         </Select>
       </FormControl>
       </div>

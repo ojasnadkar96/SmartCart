@@ -47,7 +47,7 @@ def real_crawl(json_item):
 	dict_query['Item'] = json_item
 	default_title = 'CANNOT FIND ITEM'
 	default_price = '0.0'
-	default_image = 'NO IMAGE'
+	default_image = "/Users/Kevin/Desktop/CapStone/SmartCart/front-end/src/logo.jpg"
 	try:
 		w_title, w_cost, w_link, w_image = walmart_crawl(json_item)
 		w_price = clean_price_string(w_cost)
