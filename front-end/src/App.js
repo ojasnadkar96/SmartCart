@@ -62,14 +62,16 @@ const useStyles = makeStyles(theme => ({
     maxWidth: 345,
   },
   media: {
-    height: 0,
+    height: 70,
     paddingTop: '56.25%', // 16:9
+    width: '60%',
+    marginLeft: '20%',
   },
   expand: {
     transform: 'rotate(0deg)',
     marginLeft: 'auto',
     transition: theme.transitions.create('transform', {
-      duration: theme.transitions.duration.shortest,
+    duration: theme.transitions.duration.shortest,
     }),
   },
   expandOpen: {
@@ -1516,8 +1518,7 @@ function App(){
     if(event.target.value === 1)
       sortByCumulativePrice();
     if(event.target.value === 2)
-      sortByIndividualPrice();
-      
+      sortByIndividualPrice();    
   };
 
   // componentDidMount(){
