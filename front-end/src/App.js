@@ -98,7 +98,21 @@ const useStyles = makeStyles(theme => ({
   selectEmpty: {
     marginTop: theme.spacing(2),
   },
+  notchedOutline: {
+    borderWidth: "1px",
+    borderColor: "232f3e !important"
+  },
 }));
+
+const buttonStyle = {
+      backgroundColor: "#232f3e",
+      margin: 18
+    };
+
+const textFieldStyle = {
+	borderColor: "#232f3e",
+	margin: 14
+}
 
 const CoverImage = backgroundImage;
 
@@ -116,12 +130,12 @@ function App(){
   const [labelWidth, setLabelWidth] = React.useState(0);
   const [sortType, set_sortType] = React.useState('');
 
-  const [Search_Query,set_Search_Query] = React.useState(null);
-  const [Search_Query1,set_Search_Query1] = React.useState(null);
-  const [Search_Query2,set_Search_Query2] = React.useState(null);
-  const [Search_Query3,set_Search_Query3] = React.useState(null);
-  const [Search_Query4,set_Search_Query4] = React.useState(null);
-  const [Search_Query5,set_Search_Query5] = React.useState(null);
+  let [Search_Query,set_Search_Query] = React.useState(null);
+  let [Search_Query1,set_Search_Query1] = React.useState(null);
+  let [Search_Query2,set_Search_Query2] = React.useState(null);
+  let [Search_Query3,set_Search_Query3] = React.useState(null);
+  let [Search_Query4,set_Search_Query4] = React.useState(null);
+  let [Search_Query5,set_Search_Query5] = React.useState(null);
 
   const Logos = {
     AmazonLogo: require("/Users/Kevin/Desktop/CapStone/SmartCart/front-end/src/amazon_logo.jpg"),
@@ -130,6 +144,14 @@ function App(){
     WholeLogo: require("/Users/Kevin/Desktop/CapStone/SmartCart/front-end/src/whole_logo.jpg"),
     Logo: require("/Users/Kevin/Desktop/CapStone/SmartCart/front-end/src/logo.jpg"),
   };
+
+  //const Logos = {
+    //AmazonLogo: require("E:/Data/MCS/Academics/4Q/Capstone/smart_cart/SmartCart/front-end/src/amazon_logo.jpg"),
+    //WalmartLogo: require("E:/Data/MCS/Academics/4Q/Capstone/smart_cart/SmartCart/front-end/src/walmart_logo.png"),
+    //TargetLogo: require("E:/Data/MCS/Academics/4Q/Capstone/smart_cart/SmartCart/front-end/src/target_logo.png"),
+    //WholeLogo: require("E:/Data/MCS/Academics/4Q/Capstone/smart_cart/SmartCart/front-end/src/whole_logo.jpg"),
+    //Logo: require("E:/Data/MCS/Academics/4Q/Capstone/smart_cart/SmartCart/front-end/src/logo.jpg"),
+  //};
 
   const [Amazon_Title_Query1,set_Amazon_Title_Query1] = React.useState("Not Found");
   const [Amazon_Price_Query1,set_Amazon_Price_Query1] = React.useState(" - ");
@@ -366,11 +388,18 @@ function App(){
     set_Result5(null);
   };
 
+  function stringTrim(itemQuery) {
+  	itemQuery = itemQuery.trim();
+  	itemQuery = itemQuery.split(" ").join('+');
+  	return itemQuery;
+  }
+
   const onSubmit = () => {
-    alert('You clicked the submit button');
+    //alert('You clicked the submit button');
     
     if(Search_Query1 !== null)
     {
+      Search_Query1 = stringTrim(Search_Query1);
       axios.post('http://127.0.0.1:8000/findprice/',{item:Search_Query1}) 
       .then(function(response){
         console.log(response);
@@ -430,6 +459,7 @@ function App(){
     
     if(Search_Query2 !== null)
     {
+      Search_Query2 = stringTrim(Search_Query2);
       axios.post('http://127.0.0.1:8000/findprice/',{item:Search_Query2}) 
       .then(function(response){
         console.log(response);
@@ -490,6 +520,7 @@ function App(){
 
     if(Search_Query3 !== null)
     {
+      Search_Query3 = stringTrim(Search_Query3);
       axios.post('http://127.0.0.1:8000/findprice/',{item:Search_Query3}) 
       .then(function(response){
         console.log(response);
@@ -548,6 +579,7 @@ function App(){
 
     if(Search_Query4 !== null)
     {
+      Search_Query4 = stringTrim(Search_Query4);
       axios.post('http://127.0.0.1:8000/findprice/',{item:Search_Query4}) 
       .then(function(response){
         console.log(response);
@@ -606,6 +638,7 @@ function App(){
 
     if(Search_Query5 !== null)
     {
+      Search_Query5 = stringTrim(Search_Query5);
       axios.post('http://127.0.0.1:8000/findprice/',{item:Search_Query5}) 
       .then(function(response){
         console.log(response);
@@ -1539,7 +1572,7 @@ function App(){
   // };
 
     return (
-      <div className="App">
+      <div className="App" style={backgroundStyle}>
       {/* <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
@@ -1555,38 +1588,49 @@ function App(){
         </a>
       </header> */}
       <div className={classes.root}>
-      <AppBar className={classes.appbar} position="static">
+      <AppBar className={classes.appbar} position="static" style={{ backgroundColor: '#232f3e' }}>
         <Toolbar variant="regular">
-          <Typography variant="h6" color="inherit">
-            Smart Shopping Assistant
+		<Typography variant="h5" style={{color: '#ffa500'}}>
+            SMART
+          </Typography>
+          <Typography variant="h5" style={{color: '#ffffff'}}>
+            CART
           </Typography>
         </Toolbar>
       </AppBar>
     </div>
     {/* <br></br>
     <br></br> */}
-      <div style = {backgroundStyle}>
+      <div>
         <br></br>
         <br></br>
       <form className={classes.container} noValidate autoComplete="off">
       <TextField
         id="outlined-full-width"
         label="Search"
-        style={{ margin: 14 }}
+        style={textFieldStyle}
         placeholder="Enter the items here"
         helperText="*Required"
         fullWidth
-        margin="normal"
+        margin="orange"
         variant="outlined"
         onChange = {onInputChange}
         InputLabelProps={{
           shrink: true,
         }}
+        InputProps={{
+        classes: {
+        	notchedOutline: classes.notchedOutline
+        }
+    }}
+        // <style={{backgroundColor: "#ffffff"}}>
       />
       </form>
       <div>
-      <Button variant="contained" color="primary" style={{ margin: 18 }} onClick = {onAdd}>
-        Add Item
+       <Button variant="contained" style={buttonStyle} onClick = {onAdd}>
+       	<Typography variant="button" style={{color: '#ffa500'}}>
+            Add Item
+          </Typography>
       </Button>
       </div>
       <div>
@@ -1628,8 +1672,10 @@ function App(){
       }
       </div>
       <div>
-      <Button variant="contained" color="primary" style={{ margin: 18 }} onClick = {onSubmit}>
-        Submit
+      <Button variant="contained" color="primary" style={buttonStyle} onClick = {onSubmit}>
+        <Typography variant="button" style={{color: '#ffa500'}}>
+            Submit
+          </Typography>
       </Button>
       </div>
       <div>
