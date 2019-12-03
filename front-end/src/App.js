@@ -31,7 +31,7 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
-import backgroundImage from './background.jpg';
+import backgroundImage from './background_2.png';
 import './App.css';
 
 const useStyles = makeStyles(theme => ({
@@ -100,18 +100,22 @@ const useStyles = makeStyles(theme => ({
   },
   notchedOutline: {
     borderWidth: "1px",
-    borderColor: "232f3e !important"
+    borderColor: "232f3e !important",
   },
 }));
 
 const buttonStyle = {
       backgroundColor: "#232f3e",
-      margin: 18
+      margin: 18,
     };
 
 const textFieldStyle = {
 	borderColor: "#232f3e",
-	margin: 14
+	margin: 14,
+};
+
+const cardStyle = {
+  display: "block",
 }
 
 const CoverImage = backgroundImage;
@@ -981,7 +985,7 @@ function App(){
       if(Obj[1].Title_Query5 === "CANNOT FIND ITEM")
         set_Second_Image_Query5(Logos.Logo);
       set_Second_Link_Query5(Obj[1].Link_Query5)
-      set_Second_Logo_Query5(Obj[1].Logo_Query5);;
+      set_Second_Logo_Query5(Obj[1].Logo_Query5);
       set_Third_Title_Query5(Obj[2].Title_Query5);
       set_Third_Price_Query5(Obj[2].Price_Query5);
       set_Third_Image_Query5(Obj[2].Image_Query5);
@@ -1375,7 +1379,7 @@ function App(){
     if(Obj[1].Title_Query5 === "CANNOT FIND ITEM")
         set_Second_Image_Query5(Logos.Logo);
     set_Second_Link_Query5(Obj[1].Link_Query5)
-    set_Second_Logo_Query5(Obj[1].Logo_Query5);;
+    set_Second_Logo_Query5(Obj[1].Logo_Query5);
     set_Third_Title_Query5(Obj[2].Title_Query5);
     set_Third_Price_Query5(Obj[2].Price_Query5);
     set_Third_Image_Query5(Obj[2].Image_Query5);
@@ -1710,19 +1714,22 @@ function App(){
           // <Avatar aria-label="recipe" className={classes.avatar}>
           //   1
           // </Avatar>
-          <Avatar 
+          <Avatar
+            style={{align:"center"}} 
             alt="Amazon_Logo" 
             src={First_Logo_Query1} 
             className={classes.bigAvatar} 
             />
         }
-        action={
-          <IconButton aria-label="settings">
-            <MoreVertIcon />
-          </IconButton>
-        }
+        //action={
+          //<IconButton aria-label="settings">
+            //<MoreVertIcon />
+          //</IconButton>
+        //}
+        style={cardStyle}
         title={First_Title_Query1}
         subheader={First_Price_Query1}
+        titleTypographyProps={{noWrap:true}}
       />
       <CardMedia 
         className={classes.media} 
@@ -1780,19 +1787,22 @@ function App(){
           // <Avatar aria-label="recipe" className={classes.avatar}>
           //   2
           // </Avatar>
-          <Avatar 
+          <Avatar
+            style={{align:"center"}} 
             alt="Walmart_Logo" 
             src={Second_Logo_Query1} 
             className={classes.bigAvatar} 
             />
         }
-        action={
-          <IconButton aria-label="settings">
-            <MoreVertIcon/>
-          </IconButton>
-        }
+        //action={
+          //<IconButton aria-label="settings">
+            //<MoreVertIcon/>
+          //</IconButton>
+        //}
+        style={cardStyle}
         title={Second_Title_Query1}
         subheader={Second_Price_Query1}
+        titleTypographyProps={{noWrap:true}}
       />
       <CardMedia
         className={classes.media}
@@ -1850,19 +1860,22 @@ function App(){
           // <Avatar aria-label="recipe" className={classes.avatar}>
           //   3
           // </Avatar>
-          <Avatar 
+          <Avatar
+            style={{align:"center"}} 
             alt="Target_Logo" 
             src={Third_Logo_Query1} 
             className={classes.bigAvatar} 
             />
         }
-        action={
-          <IconButton aria-label="settings">
-            <MoreVertIcon />
-          </IconButton>
-        }
+        //action={
+          //<IconButton aria-label="settings">
+            //<MoreVertIcon />
+          //</IconButton>
+        //}
+        style={cardStyle}
         title={Third_Title_Query1}
         subheader={Third_Price_Query1}
+        titleTypographyProps={{noWrap:true}}
       />
       <CardMedia
         className={classes.media}
@@ -1921,19 +1934,22 @@ function App(){
           // <Avatar aria-label="recipe" className={classes.avatar}>
           //   4
           // </Avatar>
-          <Avatar 
+          <Avatar
+            style={{align:"center"}} 
             alt="Whole_Logo" 
             src={Fourth_Logo_Query1} 
             className={classes.bigAvatar} 
             />
           }
-        action={
-          <IconButton aria-label="settings">
-            <MoreVertIcon />
-          </IconButton>
-        }
+        //action={
+          //<IconButton aria-label="settings">
+            //<MoreVertIcon />
+          //</IconButton>
+        //}
+        style={cardStyle}
         title={Fourth_Title_Query1}
         subheader={Fourth_Price_Query1}
+        titleTypographyProps={{noWrap:true}}
       />
       <CardMedia
         className={classes.media}
@@ -2000,19 +2016,22 @@ function App(){
       <Card className={classes.card}>
       <CardHeader
         avatar={
-          <Avatar 
+          <Avatar
+            style={{align:"center"}} 
             alt="Amazon_Logo" 
             src={First_Logo_Query2} 
             className={classes.bigAvatar} 
             />
         }
-        action={
-          <IconButton aria-label="settings">
-            <MoreVertIcon />
-          </IconButton>
-        }
+        //action={
+          //<IconButton aria-label="settings">
+            //<MoreVertIcon />
+          //</IconButton>
+        //}
+        style={cardStyle}
         title = {First_Title_Query2}
         subheader={First_Price_Query2}
+        titleTypographyProps={{noWrap:true}}
       />
       <CardMedia
         className={classes.media}
@@ -2070,19 +2089,22 @@ function App(){
         <Card className={classes.card}>
       <CardHeader
         avatar={
-          <Avatar 
+          <Avatar
+            style={{align:"center"}} 
             alt="Walmart_Logo" 
             src={Second_Logo_Query2} 
             className={classes.bigAvatar} 
             />
         }
-        action={
-          <IconButton aria-label="settings">
-            <MoreVertIcon />
-          </IconButton>
-        }
+        //action={
+          //<IconButton aria-label="settings">
+            //<MoreVertIcon />
+          //</IconButton>
+        //}
+        style={cardStyle}
         title={Second_Title_Query2}
         subheader={Second_Price_Query2}
+        titleTypographyProps={{noWrap:true}}
       />
       <CardMedia
         className={classes.media}
@@ -2138,19 +2160,22 @@ function App(){
         <Card className={classes.card}>
       <CardHeader
         avatar={
-          <Avatar 
+          <Avatar
+            style={{align:"center"}} 
             alt="Target_Logo" 
             src={Third_Logo_Query2} 
             className={classes.bigAvatar} 
             />
         }
-        action={
-          <IconButton aria-label="settings">
-            <MoreVertIcon />
-          </IconButton>
-        }
+        //action={
+          //<IconButton aria-label="settings">
+            //<MoreVertIcon />
+          //</IconButton>
+        //}
+        style={cardStyle}
         title={Third_Title_Query2}
         subheader={Third_Price_Query2}
+        titleTypographyProps={{noWrap:true}}
       />
       <CardMedia
         className={classes.media}
@@ -2206,19 +2231,22 @@ function App(){
         <Card className={classes.card}>
       <CardHeader
         avatar={
-          <Avatar 
+          <Avatar
+            style={{align:"center"}} 
             alt="Whole_Logo" 
             src={Fourth_Logo_Query2} 
             className={classes.bigAvatar} 
             />
         }
-        action={
-          <IconButton aria-label="settings">
-            <MoreVertIcon />
-          </IconButton>
-        }
+        //action={
+          //<IconButton aria-label="settings">
+            //<MoreVertIcon />
+          //</IconButton>
+        //}
+        style={cardStyle}
         title={Fourth_Title_Query2}
         subheader={Fourth_Price_Query2}
+        titleTypographyProps={{noWrap:true}}
       />
       <CardMedia
         className={classes.media}
@@ -2285,19 +2313,22 @@ function App(){
       <Card className={classes.card}>
       <CardHeader
         avatar={
-          <Avatar 
+          <Avatar
+            style={{align:"center"}} 
             alt="Amazon_Logo" 
             src={First_Logo_Query3} 
             className={classes.bigAvatar} 
             />
         }
-        action={
-          <IconButton aria-label="settings">
-            <MoreVertIcon />
-          </IconButton>
-        }
+        //action={
+          //<IconButton aria-label="settings">
+            //<MoreVertIcon />
+          //</IconButton>
+        //}
+        style={cardStyle}
         title = {First_Title_Query3}
         subheader={First_Price_Query3}
+        titleTypographyProps={{noWrap:true}}
       />
       <CardMedia
         className={classes.media}
@@ -2354,19 +2385,22 @@ function App(){
         <Card className={classes.card}>
       <CardHeader
         avatar={
-          <Avatar 
+          <Avatar
+            style={{align:"center"}} 
             alt="Walmart_Logo" 
             src={Second_Logo_Query3} 
             className={classes.bigAvatar} 
             />
         }
-        action={
-          <IconButton aria-label="settings">
-            <MoreVertIcon />
-          </IconButton>
-        }
+        //action={
+          //<IconButton aria-label="settings">
+            //<MoreVertIcon />
+          //</IconButton>
+        //}
+        style={cardStyle}
         title={Second_Title_Query3}
         subheader={Second_Price_Query3}
+        titleTypographyProps={{noWrap:true}}
       />
       <CardMedia
         className={classes.media}
@@ -2422,19 +2456,22 @@ function App(){
         <Card className={classes.card}>
       <CardHeader
         avatar={
-          <Avatar 
+          <Avatar
+            style={{align:"center"}} 
             alt="Target_Logo" 
             src={Third_Logo_Query3} 
             className={classes.bigAvatar} 
             />
         }
-        action={
-          <IconButton aria-label="settings">
-            <MoreVertIcon />
-          </IconButton>
-        }
+        //action={
+          //<IconButton aria-label="settings">
+            //<MoreVertIcon />
+          //</IconButton>
+        //}
+        style={cardStyle}
         title={Third_Title_Query3}
         subheader={Third_Price_Query3}
+        titleTypographyProps={{noWrap:true}}
       />
       <CardMedia
         className={classes.media}
@@ -2490,19 +2527,22 @@ function App(){
         <Card className={classes.card}>
       <CardHeader
         avatar={
-          <Avatar 
+          <Avatar
+            style={{align:"center"}} 
             alt="Whole_Logo" 
             src={Fourth_Logo_Query3} 
             className={classes.bigAvatar} 
             />
         }
-        action={
-          <IconButton aria-label="settings">
-            <MoreVertIcon />
-          </IconButton>
-        }
+        //action={
+          //<IconButton aria-label="settings">
+            //<MoreVertIcon />
+          //</IconButton>
+        //}
+        style={cardStyle}
         title={Fourth_Title_Query3}
         subheader={Fourth_Price_Query3}
+        titleTypographyProps={{noWrap:true}}
       />
       <CardMedia
         className={classes.media}
@@ -2569,19 +2609,22 @@ function App(){
       <Card className={classes.card}>
       <CardHeader
         avatar={
-          <Avatar 
+          <Avatar
+            style={{align:"center"}}
             alt="Amazon_Logo" 
             src={First_Logo_Query4} 
             className={classes.bigAvatar} 
             />
         }
-        action={
-          <IconButton aria-label="settings">
-            <MoreVertIcon />
-          </IconButton>
-        }
+        //action={
+          //<IconButton aria-label="settings">
+            //<MoreVertIcon />
+          //</IconButton>
+        //}
+        style={cardStyle}
         title = {First_Title_Query4}
         subheader={First_Price_Query4}
+        titleTypographyProps={{noWrap:true}}
       />
       <CardMedia
         className={classes.media}
@@ -2638,19 +2681,22 @@ function App(){
         <Card className={classes.card}>
       <CardHeader
         avatar={
-          <Avatar 
+          <Avatar
+            style={{align:"center"}} 
             alt="Walmart_Logo" 
             src={Second_Logo_Query4} 
             className={classes.bigAvatar} 
             />
         }
-        action={
-          <IconButton aria-label="settings">
-            <MoreVertIcon />
-          </IconButton>
-        }
+        //action={
+          //<IconButton aria-label="settings">
+            //<MoreVertIcon />
+          //</IconButton>
+        //}
+        style={cardStyle}
         title={Second_Title_Query4}
         subheader={Second_Price_Query4}
+        titleTypographyProps={{noWrap:true}}
       />
       <CardMedia
         className={classes.media}
@@ -2706,19 +2752,22 @@ function App(){
         <Card className={classes.card}>
       <CardHeader
         avatar={
-          <Avatar 
+          <Avatar
+            style={{align:"center"}} 
             alt="Target_Logo" 
             src={Third_Logo_Query4} 
             className={classes.bigAvatar} 
             />
         }
-        action={
-          <IconButton aria-label="settings">
-            <MoreVertIcon />
-          </IconButton>
-        }
+        //action={
+          //<IconButton aria-label="settings">
+            //<MoreVertIcon />
+          //</IconButton>
+        //}
+        style={cardStyle}
         title={Third_Title_Query4}
         subheader={Third_Price_Query4}
+        titleTypographyProps={{noWrap:true}}
       />
       <CardMedia
         className={classes.media}
@@ -2774,19 +2823,22 @@ function App(){
         <Card className={classes.card}>
       <CardHeader
         avatar={
-          <Avatar 
+          <Avatar
+            style={{align:"center"}} 
             alt="Whole_Logo" 
             src={Fourth_Logo_Query4} 
             className={classes.bigAvatar} 
             />
         }
-        action={
-          <IconButton aria-label="settings">
-            <MoreVertIcon />
-          </IconButton>
-        }
+        //action={
+          //<IconButton aria-label="settings">
+            //<MoreVertIcon />
+          //</IconButton>
+        //}
+        style={cardStyle}
         title={Fourth_Title_Query4}
         subheader={Fourth_Price_Query4}
+        titleTypographyProps={{noWrap:true}}
       />
       <CardMedia
         className={classes.media}
@@ -2853,19 +2905,22 @@ function App(){
       <Card className={classes.card}>
       <CardHeader
         avatar={
-          <Avatar 
+          <Avatar
+            style={{align:"center"}} 
             alt="Amazon_Logo" 
             src={First_Logo_Query5} 
             className={classes.bigAvatar} 
             />
         }
-        action={
-          <IconButton aria-label="settings">
-            <MoreVertIcon />
-          </IconButton>
-        }
+        //action={
+          //<IconButton aria-label="settings">
+            //<MoreVertIcon />
+          //</IconButton>
+        //}
+        style={cardStyle}
         title = {First_Title_Query5}
         subheader={First_Price_Query5}
+        titleTypographyProps={{noWrap:true}}
       />
       <CardMedia
         className={classes.media}
@@ -2922,19 +2977,22 @@ function App(){
         <Card className={classes.card}>
       <CardHeader
         avatar={
-          <Avatar 
+          <Avatar
+            style={{align:"center"}} 
             alt="Walmart_Logo" 
             src={Second_Logo_Query5} 
             className={classes.bigAvatar} 
             />
         }
-        action={
-          <IconButton aria-label="settings">
-            <MoreVertIcon />
-          </IconButton>
-        }
+        //action={
+          //<IconButton aria-label="settings">
+            //<MoreVertIcon />
+          //</IconButton>
+        //}
+        style={cardStyle}
         title={Second_Title_Query5}
         subheader={Second_Price_Query5}
+        titleTypographyProps={{noWrap:true}}
       />
       <CardMedia
         className={classes.media}
@@ -2990,19 +3048,22 @@ function App(){
         <Card className={classes.card}>
       <CardHeader
         avatar={
-          <Avatar 
+          <Avatar
+            style={{align:"center"}}
             alt="Target_Logo" 
             src={Third_Logo_Query5} 
             className={classes.bigAvatar} 
             />
         }
-        action={
-          <IconButton aria-label="settings">
-            <MoreVertIcon />
-          </IconButton>
-        }
+        //action={
+          //<IconButton aria-label="settings">
+            //<MoreVertIcon />
+          //</IconButton>
+        //}
+        style={cardStyle}
         title={Third_Title_Query5}
         subheader={Third_Price_Query5}
+        titleTypographyProps={{noWrap:true}}
       />
       <CardMedia
         className={classes.media}
@@ -3058,19 +3119,22 @@ function App(){
         <Card className={classes.card}>
       <CardHeader
         avatar={
-          <Avatar 
+          <Avatar
+            style={{align:"center"}} 
             alt="Whole_Logo" 
             src={Fourth_Logo_Query5} 
             className={classes.bigAvatar} 
             />
         }
-        action={
-          <IconButton aria-label="settings">
-            <MoreVertIcon />
-          </IconButton>
-        }
+        //action={
+          //<IconButton aria-label="settings">
+            //<MoreVertIcon />
+          //</IconButton>
+        //}
+        style={cardStyle}
         title={Fourth_Title_Query5}
         subheader={Fourth_Price_Query5}
+        titleTypographyProps={{noWrap:true}}
       />
       <CardMedia
         className={classes.media}
