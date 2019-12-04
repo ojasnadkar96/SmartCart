@@ -45,13 +45,15 @@ def findPrice(item):
 def real_crawl(json_item):
 	dict_query = {}
 	dict_query['Item'] = json_item
-	default_title = 'CANNOT FIND ITEM'
+	default_space = ' '
+	default_title = 'CANNOT FIND ITEM' + 14*default_space
 	default_price = '0.0'
 	default_image = "/Users/Kevin/Desktop/CapStone/SmartCart/front-end/src/logo.jpg"
 	try:
 		w_title, w_cost, w_link, w_image = walmart_crawl(json_item)
+		w_description = make_title_constant(w_title)
 		w_price = clean_price_string(w_cost)
-		dict_query['Walmart_Title'] = w_title
+		dict_query['Walmart_Title'] = w_description
 		dict_query['Walmart_Price'] = w_price
 		dict_query['Walmart_Link'] = w_link
 		dict_query['Walmart_Image'] = w_image
@@ -63,8 +65,9 @@ def real_crawl(json_item):
 		dict_query['Walmart_Image'] = default_image
 	try:
 		t_title, t_cost, t_link, t_image = target_crawl(json_item)
+		t_description = make_title_constant(t_title)
 		t_price = clean_price_string(t_cost)
-		dict_query['Target_Title'] = t_title
+		dict_query['Target_Title'] = t_description
 		dict_query['Target_Price'] = t_price
 		dict_query['Target_Link'] = t_link
 		dict_query['Target_Image'] = t_image
@@ -76,8 +79,9 @@ def real_crawl(json_item):
 		dict_query['Target_Image'] = default_image
 	try:
 		a_title, a_cost, a_link, a_image = amazon_crawl(json_item)
+		a_description = make_title_constant(a_title)
 		a_price = clean_price_string(a_cost)
-		dict_query['Amazon_Title'] = a_title
+		dict_query['Amazon_Title'] = a_description
 		dict_query['Amazon_Price'] = a_price
 		dict_query['Amazon_Link'] = a_link
 		dict_query['Amazon_Image'] = a_image
@@ -115,11 +119,12 @@ def real_crawl(json_item):
 	'''
 	try:
 		wf_title, wf_cost, wf_link, wf_image = whole_crawl(json_item)
+		wf_description = make_title_constant(wf_title)
 		if '¢' in wf_cost:
 			wf_price = clean_price_string_wf(wf_cost)
 		else:
 			wf_price = clean_price_string(wf_cost)
-		dict_query['Whole_Title'] = wf_title
+		dict_query['Whole_Title'] = wf_description
 		dict_query['Whole_Price'] = wf_price
 		dict_query['Whole_Link'] = wf_link
 		dict_query['Whole_Image'] = wf_image
@@ -305,3 +310,13 @@ def clean_price_string_wf(price_wf):
 	float_wf = float_wf/100.0
 	string_wf = str(float_wf)
 	return string_wf
+	
+def make_title_constant(real_title):
+	if(len(real_title)>30):
+		greater_title = real_title[:27] + '...'
+		return greater_title
+	else:
+		space_string = ' '
+		number_of_spaces = 30 - len(real_title)
+		lesser_title = real_title + number_of_spaces*space_string
+		return lesser_title

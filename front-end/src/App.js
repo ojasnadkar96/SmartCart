@@ -31,6 +31,7 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import backgroundImage from './background_2.png';
 import './App.css';
 
@@ -112,10 +113,6 @@ const buttonStyle = {
 const textFieldStyle = {
 	borderColor: "#232f3e",
 	margin: 14,
-};
-
-const cardStyle = {
-  display: "block",
 }
 
 const CoverImage = backgroundImage;
@@ -356,6 +353,7 @@ function App(){
 
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
+  const [loading, setLoading] = React.useState(false);
   const axios = require('axios');
 
   const onInputChange = (event) => {
@@ -403,6 +401,9 @@ function App(){
     
     if(Search_Query1 !== null)
     {
+	  if (!loading) {
+        setLoading(true);
+      }	
       Search_Query1 = stringTrim(Search_Query1);
       axios.post('http://127.0.0.1:8000/findprice/',{item:Search_Query1}) 
       .then(function(response){
@@ -429,31 +430,31 @@ function App(){
         set_First_Price_Query1(response.data.Amazon_Price);
         set_First_Link_Query1(response.data.Amazon_Link);
         set_First_Image_Query1(response.data.Amazon_Image);
-        if(response.data.Amazon_Title === "CANNOT FIND ITEM")
+        if(response.data.Amazon_Title.trim() === "CANNOT FIND ITEM")
           set_First_Image_Query1(Logos.Logo);
         set_First_Logo_Query1(Logos.AmazonLogo);
         set_Second_Title_Query1(response.data.Walmart_Title);
         set_Second_Price_Query1(response.data.Walmart_Price);
         set_Second_Link_Query1(response.data.Walmart_Link);
         set_Second_Image_Query1(response.data.Walmart_Image);
-        if(response.data.Walmart_Title === "CANNOT FIND ITEM")
+        if(response.data.Walmart_Title.trim() === "CANNOT FIND ITEM")
           set_Second_Image_Query1(Logos.Logo);
         set_Second_Logo_Query1(Logos.WalmartLogo);
         set_Third_Title_Query1(response.data.Target_Title);
         set_Third_Price_Query1(response.data.Target_Price);
         set_Third_Link_Query1(response.data.Target_Link);
         set_Third_Image_Query1(response.data.Target_Image);
-        if(response.data.Target_Title === "CANNOT FIND ITEM")
+        if(response.data.Target_Title.trim() === "CANNOT FIND ITEM")
           set_Third_Image_Query1(Logos.Logo);
         set_Third_Logo_Query1(Logos.TargetLogo);
         set_Fourth_Title_Query1(response.data.Whole_Title);
         set_Fourth_Price_Query1(response.data.Whole_Price);
         set_Fourth_Link_Query1(response.data.Whole_Link);
         set_Fourth_Image_Query1(response.data.Whole_Image);
-        if(response.data.Whole_Title === "CANNOT FIND ITEM")
+        if(response.data.Whole_Title.trim() === "CANNOT FIND ITEM")
           set_Fourth_Image_Query1(Logos.Logo);
         set_Fourth_Logo_Query1(Logos.WholeLogo);
-
+		setLoading(false);
         set_Result1(true);
       })
       .catch(function(error){
@@ -463,6 +464,9 @@ function App(){
     
     if(Search_Query2 !== null)
     {
+	  if (!loading) {
+        setLoading(true);
+      }
       Search_Query2 = stringTrim(Search_Query2);
       axios.post('http://127.0.0.1:8000/findprice/',{item:Search_Query2}) 
       .then(function(response){
@@ -490,31 +494,31 @@ function App(){
         set_First_Price_Query2(response.data.Amazon_Price);
         set_First_Link_Query2(response.data.Amazon_Link);
         set_First_Image_Query2(response.data.Amazon_Image);
-        if(response.data.Amazon_Title === "CANNOT FIND ITEM")
+        if(response.data.Amazon_Title.trim() === "CANNOT FIND ITEM")
           set_First_Image_Query2(Logos.Logo);
         set_First_Logo_Query2(Logos.AmazonLogo);
         set_Second_Title_Query2(response.data.Walmart_Title);
         set_Second_Price_Query2(response.data.Walmart_Price);
         set_Second_Link_Query2(response.data.Walmart_Link);
         set_Second_Image_Query2(response.data.Walmart_Image);
-        if(response.data.Walmart_Title === "CANNOT FIND ITEM")
+        if(response.data.Walmart_Title.trim() === "CANNOT FIND ITEM")
           set_Second_Image_Query2(Logos.Logo);
         set_Second_Logo_Query2(Logos.WalmartLogo);
         set_Third_Title_Query2(response.data.Target_Title);
         set_Third_Price_Query2(response.data.Target_Price);
         set_Third_Link_Query2(response.data.Target_Link);
         set_Third_Image_Query2(response.data.Target_Image);
-        if(response.data.Target_Title === "CANNOT FIND ITEM")
+        if(response.data.Target_Title.trim() === "CANNOT FIND ITEM")
           set_Third_Image_Query2(Logos.Logo);
         set_Third_Logo_Query2(Logos.TargetLogo);
         set_Fourth_Title_Query2(response.data.Whole_Title);
         set_Fourth_Price_Query2(response.data.Whole_Price);
         set_Fourth_Link_Query2(response.data.Whole_Link);
         set_Fourth_Image_Query2(response.data.Whole_Image);
-        if(response.data.Whole_Title === "CANNOT FIND ITEM")
+        if(response.data.Whole_Title.trim() === "CANNOT FIND ITEM")
           set_Fourth_Image_Query2(Logos.Logo);
         set_Fourth_Logo_Query2(Logos.WholeLogo);
-
+		setLoading(false);
         set_Result2(true);
       })
       .catch(function(error){
@@ -524,6 +528,9 @@ function App(){
 
     if(Search_Query3 !== null)
     {
+	  if (!loading) {
+        setLoading(true);
+      }
       Search_Query3 = stringTrim(Search_Query3);
       axios.post('http://127.0.0.1:8000/findprice/',{item:Search_Query3}) 
       .then(function(response){
@@ -550,30 +557,31 @@ function App(){
         set_First_Price_Query3(response.data.Amazon_Price);
         set_First_Link_Query3(response.data.Amazon_Link);
         set_First_Image_Query3(response.data.Amazon_Image);
-        if(response.data.Amazon_Title === "CANNOT FIND ITEM")
+        if(response.data.Amazon_Title.trim() === "CANNOT FIND ITEM")
           set_First_Image_Query3(Logos.Logo);
         set_First_Logo_Query3(Logos.AmazonLogo);
         set_Second_Title_Query3(response.data.Walmart_Title);
         set_Second_Price_Query3(response.data.Walmart_Price);
         set_Second_Link_Query3(response.data.Walmart_Link);
         set_Second_Image_Query3(response.data.Walmart_Image);
-        if(response.data.Walmart_Title === "CANNOT FIND ITEM")
+        if(response.data.Walmart_Title.trim() === "CANNOT FIND ITEM")
           set_Second_Image_Query3(Logos.Logo);
         set_Second_Logo_Query3(Logos.WalmartLogo);
         set_Third_Title_Query3(response.data.Target_Title);
         set_Third_Price_Query3(response.data.Target_Price);
         set_Third_Link_Query3(response.data.Target_Link);
         set_Third_Image_Query3(response.data.Target_Image);
-        if(response.data.Target_Title === "CANNOT FIND ITEM")
+        if(response.data.Target_Title.trim() === "CANNOT FIND ITEM")
           set_Third_Image_Query3(Logos.Logo);
         set_Third_Logo_Query3(Logos.TargetLogo);
         set_Fourth_Title_Query3(response.data.Whole_Title);
         set_Fourth_Price_Query3(response.data.Whole_Price);
         set_Fourth_Link_Query3(response.data.Whole_Link);
         set_Fourth_Image_Query3(response.data.Whole_Image);
-        if(response.data.Whole_Title === "CANNOT FIND ITEM")
+        if(response.data.Whole_Title.trim() === "CANNOT FIND ITEM")
           set_Fourth_Image_Query3(Logos.Logo);
         set_Fourth_Logo_Query3(Logos.WholeLogo);
+		setLoading(false);
         set_Result3(true);
       })
       .catch(function(error){
@@ -583,6 +591,9 @@ function App(){
 
     if(Search_Query4 !== null)
     {
+	  if (!loading) {
+        setLoading(true);
+      }
       Search_Query4 = stringTrim(Search_Query4);
       axios.post('http://127.0.0.1:8000/findprice/',{item:Search_Query4}) 
       .then(function(response){
@@ -609,30 +620,31 @@ function App(){
         set_First_Price_Query4(response.data.Amazon_Price);
         set_First_Link_Query4(response.data.Amazon_Link);
         set_First_Image_Query4(response.data.Amazon_Image);
-        if(response.data.Amazon_Title === "CANNOT FIND ITEM")
+        if(response.data.Amazon_Title.trim() === "CANNOT FIND ITEM")
           set_First_Image_Query4(Logos.Logo);
         set_First_Logo_Query4(Logos.AmazonLogo);
         set_Second_Title_Query4(response.data.Walmart_Title);
         set_Second_Price_Query4(response.data.Walmart_Price);
         set_Second_Link_Query4(response.data.Walmart_Link);
         set_Second_Image_Query4(response.data.Walmart_Image);
-        if(response.data.Walmart_Title === "CANNOT FIND ITEM")
+        if(response.data.Walmart_Title.trim() === "CANNOT FIND ITEM")
           set_Second_Image_Query4(Logos.Logo);
         set_Second_Logo_Query4(Logos.WalmartLogo);
         set_Third_Title_Query4(response.data.Target_Title);
         set_Third_Price_Query4(response.data.Target_Price);
         set_Third_Link_Query4(response.data.Target_Link);
         set_Third_Image_Query4(response.data.Target_Image);
-        if(response.data.Target_Title === "CANNOT FIND ITEM")
+        if(response.data.Target_Title.trim() === "CANNOT FIND ITEM")
           set_Third_Image_Query4(Logos.Logo);
         set_Third_Logo_Query4(Logos.TargetLogo);
         set_Fourth_Title_Query4(response.data.Whole_Title);
         set_Fourth_Price_Query4(response.data.Whole_Price);
         set_Fourth_Link_Query4(response.data.Whole_Link);
         set_Fourth_Image_Query4(response.data.Whole_Image);
-        if(response.data.Whole_Title === "CANNOT FIND ITEM")
+        if(response.data.Whole_Title.trim() === "CANNOT FIND ITEM")
           set_Fourth_Image_Query4(Logos.Logo);
         set_Fourth_Logo_Query4(Logos.WholeLogo);
+		setLoading(false);
         set_Result4(true);
       })
       .catch(function(error){
@@ -642,6 +654,9 @@ function App(){
 
     if(Search_Query5 !== null)
     {
+	  if (!loading) {
+        setLoading(true);
+      }
       Search_Query5 = stringTrim(Search_Query5);
       axios.post('http://127.0.0.1:8000/findprice/',{item:Search_Query5}) 
       .then(function(response){
@@ -668,30 +683,31 @@ function App(){
         set_First_Price_Query5(response.data.Amazon_Price);
         set_First_Link_Query5(response.data.Amazon_Link);
         set_First_Image_Query5(response.data.Amazon_Image);
-        if(response.data.Amazon_Title === "CANNOT FIND ITEM")
+        if(response.data.Amazon_Title.trim() === "CANNOT FIND ITEM")
           set_First_Image_Query5(Logos.Logo);
         set_First_Logo_Query5(Logos.AmazonLogo);
         set_Second_Title_Query5(response.data.Walmart_Title);
         set_Second_Price_Query5(response.data.Walmart_Price);
         set_Second_Link_Query5(response.data.Walmart_Link);
         set_Second_Image_Query5(response.data.Walmart_Image);
-        if(response.data.Walmart_Title === "CANNOT FIND ITEM")
+        if(response.data.Walmart_Title.trim() === "CANNOT FIND ITEM")
           set_Second_Image_Query5(Logos.Logo);
         set_Second_Logo_Query5(Logos.WalmartLogo);
         set_Third_Title_Query5(response.data.Target_Title);
         set_Third_Price_Query5(response.data.Target_Price);
         set_Third_Link_Query5(response.data.Target_Link);
         set_Third_Image_Query5(response.data.Target_Image);
-        if(response.data.Target_Title === "CANNOT FIND ITEM")
+        if(response.data.Target_Title.trim() === "CANNOT FIND ITEM")
           set_Third_Image_Query5(Logos.Logo);
         set_Third_Logo_Query5(Logos.TargetLogo);
         set_Fourth_Title_Query5(response.data.Whole_Title);
         set_Fourth_Price_Query5(response.data.Whole_Price);
         set_Fourth_Link_Query5(response.data.Whole_Link);
         set_Fourth_Image_Query5(response.data.Whole_Image);
-        if(response.data.Whole_Title === "CANNOT FIND ITEM")
+        if(response.data.Whole_Title.trim() === "CANNOT FIND ITEM")
           set_Fourth_Image_Query5(Logos.Logo);
         set_Fourth_Logo_Query5(Logos.WholeLogo);
+		setLoading(false);
         set_Result5(true);
       })
       .catch(function(error){
@@ -847,28 +863,28 @@ function App(){
       set_First_Title_Query1(Obj[0].Title_Query1);
       set_First_Price_Query1(Obj[0].Price_Query1);
       set_First_Image_Query1(Obj[0].Image_Query1);
-      if(Obj[0].Title_Query1 === "CANNOT FIND ITEM")
+      if(Obj[0].Title_Query1.trim() === "CANNOT FIND ITEM")
         set_First_Image_Query1(Logos.Logo);
       set_First_Link_Query1(Obj[0].Link_Query1);
       set_First_Logo_Query1(Obj[0].Logo_Query1);
       set_Second_Title_Query1(Obj[1].Title_Query1);
       set_Second_Price_Query1(Obj[1].Price_Query1);
       set_Second_Image_Query1(Obj[1].Image_Query1);
-      if(Obj[1].Title_Query1 === "CANNOT FIND ITEM")
+      if(Obj[1].Title_Query1.trim() === "CANNOT FIND ITEM")
         set_Second_Image_Query1(Logos.Logo);
       set_Second_Link_Query1(Obj[1].Link_Query1);
       set_Second_Logo_Query1(Obj[1].Logo_Query1);
       set_Third_Title_Query1(Obj[2].Title_Query1);
       set_Third_Price_Query1(Obj[2].Price_Query1);
       set_Third_Image_Query1(Obj[2].Image_Query1);
-      if(Obj[2].Title_Query1 === "CANNOT FIND ITEM")
+      if(Obj[2].Title_Query1.trim() === "CANNOT FIND ITEM")
         set_Third_Image_Query1(Logos.Logo);
       set_Third_Link_Query1(Obj[2].Link_Query1);
       set_Third_Logo_Query1(Obj[2].Logo_Query1);
       set_Fourth_Title_Query1(Obj[3].Title_Query1);
       set_Fourth_Price_Query1(Obj[3].Price_Query1);
       set_Fourth_Image_Query1(Obj[3].Image_Query1);
-      if(Obj[3].Title_Query1 === "CANNOT FIND ITEM")
+      if(Obj[3].Title_Query1.trim() === "CANNOT FIND ITEM")
         set_Fourth_Image_Query1(Logos.Logo);
       set_Fourth_Link_Query1(Obj[3].Link_Query1);
       set_Fourth_Logo_Query1(Obj[3].Logo_Query1);
@@ -879,28 +895,28 @@ function App(){
       set_First_Title_Query2(Obj[0].Title_Query2);
       set_First_Price_Query2(Obj[0].Price_Query2);
       set_First_Image_Query2(Obj[0].Image_Query2);
-      if(Obj[0].Title_Query2 === "CANNOT FIND ITEM")
+      if(Obj[0].Title_Query2.trim() === "CANNOT FIND ITEM")
         set_First_Image_Query2(Logos.Logo);
       set_First_Link_Query2(Obj[0].Link_Query2);
       set_First_Logo_Query2(Obj[0].Logo_Query2);
       set_Second_Title_Query2(Obj[1].Title_Query2);
       set_Second_Price_Query2(Obj[1].Price_Query2);
       set_Second_Image_Query2(Obj[1].Image_Query2);
-      if(Obj[1].Title_Query2 === "CANNOT FIND ITEM")
+      if(Obj[1].Title_Query2.trim() === "CANNOT FIND ITEM")
         set_Second_Image_Query2(Logos.Logo);
       set_Second_Link_Query2(Obj[1].Link_Query2);
       set_Second_Logo_Query2(Obj[1].Logo_Query2);
       set_Third_Title_Query2(Obj[2].Title_Query2);
       set_Third_Price_Query2(Obj[2].Price_Query2);
       set_Third_Image_Query2(Obj[2].Image_Query2);
-      if(Obj[2].Title_Query2 === "CANNOT FIND ITEM")
+      if(Obj[2].Title_Query2.trim() === "CANNOT FIND ITEM")
         set_Third_Image_Query2(Logos.Logo);
       set_Third_Link_Query2(Obj[2].Link_Query2);
       set_Third_Logo_Query2(Obj[2].Logo_Query2);
       set_Fourth_Title_Query2(Obj[3].Title_Query2);
       set_Fourth_Price_Query2(Obj[3].Price_Query2);
       set_Fourth_Image_Query2(Obj[3].Image_Query2);
-      if(Obj[3].Title_Query2 === "CANNOT FIND ITEM")
+      if(Obj[3].Title_Query2.trim() === "CANNOT FIND ITEM")
         set_Fourth_Image_Query2(Logos.Logo);
       set_Fourth_Link_Query2(Obj[3].Link_Query2);
       set_Fourth_Logo_Query2(Obj[3].Logo_Query2);
@@ -911,28 +927,28 @@ function App(){
       set_First_Title_Query3(Obj[0].Title_Query3);
       set_First_Price_Query3(Obj[0].Price_Query3);
       set_First_Image_Query3(Obj[0].Image_Query3);
-      if(Obj[0].Title_Query3 === "CANNOT FIND ITEM")
+      if(Obj[0].Title_Query3.trim() === "CANNOT FIND ITEM")
         set_First_Image_Query3(Logos.Logo);
       set_First_Link_Query3(Obj[0].Link_Query3);
       set_First_Logo_Query3(Obj[0].Logo_Query3);
       set_Second_Title_Query3(Obj[1].Title_Query3);
       set_Second_Price_Query3(Obj[1].Price_Query3);
       set_Second_Image_Query3(Obj[1].Image_Query3);
-      if(Obj[1].Title_Query3 === "CANNOT FIND ITEM")
+      if(Obj[1].Title_Query3.trim() === "CANNOT FIND ITEM")
         set_Second_Image_Query3(Logos.Logo);
       set_Second_Link_Query3(Obj[1].Link_Query3);
       set_Second_Logo_Query3(Obj[1].Logo_Query3);
       set_Third_Title_Query3(Obj[2].Title_Query3);
       set_Third_Price_Query3(Obj[2].Price_Query3);
       set_Third_Image_Query3(Obj[2].Image_Query3);
-      if(Obj[2].Title_Query3 === "CANNOT FIND ITEM")
+      if(Obj[2].Title_Query3.trim() === "CANNOT FIND ITEM")
         set_Third_Image_Query3(Logos.Logo);
       set_Third_Link_Query3(Obj[2].Link_Query3);
       set_Third_Logo_Query3(Obj[2].Logo_Query3);
       set_Fourth_Title_Query3(Obj[3].Title_Query3);
       set_Fourth_Price_Query3(Obj[3].Price_Query3);
       set_Fourth_Image_Query3(Obj[3].Image_Query3);
-      if(Obj[3].Title_Query3 === "CANNOT FIND ITEM")
+      if(Obj[3].Title_Query3.trim() === "CANNOT FIND ITEM")
         set_Fourth_Image_Query3(Logos.Logo);
       set_Fourth_Link_Query3(Obj[3].Link_Query3);
       set_Fourth_Logo_Query3(Obj[3].Logo_Query3);
@@ -943,28 +959,28 @@ function App(){
       set_First_Title_Query4(Obj[0].Title_Query4);
       set_First_Price_Query4(Obj[0].Price_Query4);
       set_First_Image_Query4(Obj[0].Image_Query4);
-      if(Obj[0].Title_Query4 === "CANNOT FIND ITEM")
+      if(Obj[0].Title_Query4.trim() === "CANNOT FIND ITEM")
         set_First_Image_Query4(Logos.Logo);
       set_First_Link_Query4(Obj[0].Link_Query4);
       set_First_Logo_Query4(Obj[0].Logo_Query4);
       set_Second_Title_Query4(Obj[1].Title_Query4);
       set_Second_Price_Query4(Obj[1].Price_Query4);
       set_Second_Image_Query4(Obj[1].Image_Query4);
-      if(Obj[1].Title_Query4 === "CANNOT FIND ITEM")
+      if(Obj[1].Title_Query4.trim() === "CANNOT FIND ITEM")
         set_Second_Image_Query4(Logos.Logo);
       set_Second_Link_Query4(Obj[1].Link_Query4);
       set_Second_Logo_Query4(Obj[1].Logo_Query4);
       set_Third_Title_Query4(Obj[2].Title_Query4);
       set_Third_Price_Query4(Obj[2].Price_Query4);
       set_Third_Image_Query4(Obj[2].Image_Query4);
-      if(Obj[2].Title_Query4 === "CANNOT FIND ITEM")
+      if(Obj[2].Title_Query4.trim() === "CANNOT FIND ITEM")
         set_Third_Image_Query4(Logos.Logo);
       set_Third_Link_Query4(Obj[2].Link_Query4);
       set_Third_Logo_Query4(Obj[2].Logo_Query4);
       set_Fourth_Title_Query4(Obj[3].Title_Query4);
       set_Fourth_Price_Query4(Obj[3].Price_Query4);
       set_Fourth_Image_Query4(Obj[3].Image_Query4);
-      if(Obj[3].Title_Query4 === "CANNOT FIND ITEM")
+      if(Obj[3].Title_Query4.trim() === "CANNOT FIND ITEM")
         set_Fourth_Image_Query4(Logos.Logo);
       set_Fourth_Link_Query4(Obj[3].Link_Query4);
       set_Fourth_Logo_Query4(Obj[3].Logo_Query4);
@@ -975,28 +991,28 @@ function App(){
       set_First_Title_Query5(Obj[0].Title_Query5);
       set_First_Price_Query5(Obj[0].Price_Query5);
       set_First_Image_Query5(Obj[0].Image_Query5);
-      if(Obj[0].Title_Query5 === "CANNOT FIND ITEM")
+      if(Obj[0].Title_Query5.trim() === "CANNOT FIND ITEM")
         set_First_Image_Query5(Logos.Logo);
       set_First_Link_Query5(Obj[0].Link_Query5);
       set_First_Logo_Query5(Obj[0].Logo_Query5);
       set_Second_Title_Query5(Obj[1].Title_Query5);
       set_Second_Price_Query5(Obj[1].Price_Query5);
       set_Second_Image_Query5(Obj[1].Image_Query5);
-      if(Obj[1].Title_Query5 === "CANNOT FIND ITEM")
+      if(Obj[1].Title_Query5.trim() === "CANNOT FIND ITEM")
         set_Second_Image_Query5(Logos.Logo);
       set_Second_Link_Query5(Obj[1].Link_Query5)
       set_Second_Logo_Query5(Obj[1].Logo_Query5);
       set_Third_Title_Query5(Obj[2].Title_Query5);
       set_Third_Price_Query5(Obj[2].Price_Query5);
       set_Third_Image_Query5(Obj[2].Image_Query5);
-      if(Obj[2].Title_Query5 === "CANNOT FIND ITEM")
+      if(Obj[2].Title_Query5.trim() === "CANNOT FIND ITEM")
         set_Third_Image_Query5(Logos.Logo);
       set_Third_Link_Query5(Obj[2].Link_Query5);
       set_Third_Logo_Query5(Obj[2].Logo_Query5);
       set_Fourth_Title_Query5(Obj[3].Title_Query5);
       set_Fourth_Price_Query5(Obj[3].Price_Query5);
       set_Fourth_Image_Query5(Obj[3].Image_Query5);
-      if(Obj[3].Title_Query5 === "CANNOT FIND ITEM")
+      if(Obj[3].Title_Query5.trim() === "CANNOT FIND ITEM")
         set_Fourth_Image_Query5(Logos.Logo);
       set_Fourth_Link_Query5(Obj[3].Link_Query5);
       set_Fourth_Logo_Query5(Obj[3].Logo_Query5);
@@ -1245,28 +1261,28 @@ function App(){
     set_First_Title_Query1(Obj[0].Title_Query1);
     set_First_Price_Query1(Obj[0].Price_Query1);
     set_First_Image_Query1(Obj[0].Image_Query1);
-    if(Obj[0].Title_Query1 === "CANNOT FIND ITEM")
+    if(Obj[0].Title_Query1.trim() === "CANNOT FIND ITEM")
         set_First_Image_Query1(Logos.Logo);
     set_First_Link_Query1(Obj[0].Link_Query1);
     set_First_Logo_Query1(Obj[0].Logo_Query1);
     set_Second_Title_Query1(Obj[1].Title_Query1);
     set_Second_Price_Query1(Obj[1].Price_Query1);
     set_Second_Image_Query1(Obj[1].Image_Query1);
-    if(Obj[1].Title_Query1 === "CANNOT FIND ITEM")
+    if(Obj[1].Title_Query1.trim() === "CANNOT FIND ITEM")
         set_Second_Image_Query1(Logos.Logo);
     set_Second_Link_Query1(Obj[1].Link_Query1);
     set_Second_Logo_Query1(Obj[1].Logo_Query1);
     set_Third_Title_Query1(Obj[2].Title_Query1);
     set_Third_Price_Query1(Obj[2].Price_Query1);
     set_Third_Image_Query1(Obj[2].Image_Query1);
-    if(Obj[2].Title_Query1 === "CANNOT FIND ITEM")
+    if(Obj[2].Title_Query1.trim() === "CANNOT FIND ITEM")
         set_Third_Image_Query1(Logos.Logo);
     set_Third_Link_Query1(Obj[2].Link_Query1);
     set_Third_Logo_Query1(Obj[2].Logo_Query1);
     set_Fourth_Title_Query1(Obj[3].Title_Query1);
     set_Fourth_Price_Query1(Obj[3].Price_Query1);
     set_Fourth_Image_Query1(Obj[3].Image_Query1);
-    if(Obj[3].Title_Query1 === "CANNOT FIND ITEM")
+    if(Obj[3].Title_Query1.trim() === "CANNOT FIND ITEM")
         set_Fourth_Image_Query1(Logos.Logo);
     set_Fourth_Link_Query1(Obj[3].Link_Query1);
     set_Fourth_Logo_Query1(Obj[3].Logo_Query1);
@@ -1276,28 +1292,28 @@ function App(){
     set_First_Title_Query2(Obj[0].Title_Query2);
     set_First_Price_Query2(Obj[0].Price_Query2);
     set_First_Image_Query2(Obj[0].Image_Query2);
-    if(Obj[0].Title_Query2 === "CANNOT FIND ITEM")
+    if(Obj[0].Title_Query2.trim() === "CANNOT FIND ITEM")
         set_First_Image_Query2(Logos.Logo);
     set_First_Link_Query2(Obj[0].Link_Query2);
     set_First_Logo_Query2(Obj[0].Logo_Query2);
     set_Second_Title_Query2(Obj[1].Title_Query2);
     set_Second_Price_Query2(Obj[1].Price_Query2);
     set_Second_Image_Query2(Obj[1].Image_Query2);
-    if(Obj[1].Title_Query2 === "CANNOT FIND ITEM")
+    if(Obj[1].Title_Query2.trim() === "CANNOT FIND ITEM")
         set_Second_Image_Query2(Logos.Logo);
     set_Second_Link_Query2(Obj[1].Link_Query2);
     set_Second_Logo_Query2(Obj[1].Logo_Query2);
     set_Third_Title_Query2(Obj[2].Title_Query2);
     set_Third_Price_Query2(Obj[2].Price_Query2);
     set_Third_Image_Query2(Obj[2].Image_Query2);
-    if(Obj[2].Title_Query2 === "CANNOT FIND ITEM")
+    if(Obj[2].Title_Query2.trim() === "CANNOT FIND ITEM")
         set_Third_Image_Query2(Logos.Logo);
     set_Third_Link_Query2(Obj[2].Link_Query2);
     set_Third_Logo_Query2(Obj[2].Logo_Query2);
     set_Fourth_Title_Query2(Obj[3].Title_Query2);
     set_Fourth_Price_Query2(Obj[3].Price_Query2);
     set_Fourth_Image_Query2(Obj[3].Image_Query2);
-    if(Obj[3].Title_Query2 === "CANNOT FIND ITEM")
+    if(Obj[3].Title_Query2.trim() === "CANNOT FIND ITEM")
         set_Fourth_Image_Query2(Logos.Logo);
     set_Fourth_Link_Query2(Obj[3].Link_Query2);
     set_Fourth_Logo_Query2(Obj[3].Logo_Query2);
@@ -1307,28 +1323,28 @@ function App(){
     set_First_Title_Query3(Obj[0].Title_Query3);
     set_First_Price_Query3(Obj[0].Price_Query3);
     set_First_Image_Query3(Obj[0].Image_Query3);
-    if(Obj[0].Title_Query3 === "CANNOT FIND ITEM")
+    if(Obj[0].Title_Query3.trim() === "CANNOT FIND ITEM")
         set_First_Image_Query3(Logos.Logo);
     set_First_Link_Query3(Obj[0].Link_Query3);
     set_First_Logo_Query3(Obj[0].Logo_Query3);
     set_Second_Title_Query3(Obj[1].Title_Query3);
     set_Second_Price_Query3(Obj[1].Price_Query3);
     set_Second_Image_Query3(Obj[1].Image_Query3);
-    if(Obj[1].Title_Query3 === "CANNOT FIND ITEM")
+    if(Obj[1].Title_Query3.trim() === "CANNOT FIND ITEM")
         set_Second_Image_Query3(Logos.Logo);
     set_Second_Link_Query3(Obj[1].Link_Query3);
     set_Second_Logo_Query3(Obj[1].Logo_Query3);
     set_Third_Title_Query3(Obj[2].Title_Query3);
     set_Third_Price_Query3(Obj[2].Price_Query3);
     set_Third_Image_Query3(Obj[2].Image_Query3);
-    if(Obj[2].Title_Query3 === "CANNOT FIND ITEM")
+    if(Obj[2].Title_Query3.trim() === "CANNOT FIND ITEM")
         set_Third_Image_Query3(Logos.Logo);
     set_Third_Link_Query3(Obj[2].Link_Query3);
     set_Third_Logo_Query3(Obj[2].Logo_Query3);
     set_Fourth_Title_Query3(Obj[3].Title_Query3);
     set_Fourth_Price_Query3(Obj[3].Price_Query3);
     set_Fourth_Image_Query3(Obj[3].Image_Query3);
-    if(Obj[3].Title_Query3 === "CANNOT FIND ITEM")
+    if(Obj[3].Title_Query3.trim() === "CANNOT FIND ITEM")
         set_Fourth_Image_Query3(Logos.Logo);
     set_Fourth_Link_Query3(Obj[3].Link_Query3);
     set_Fourth_Logo_Query3(Obj[3].Logo_Query3);
@@ -1338,28 +1354,28 @@ function App(){
     set_First_Title_Query4(Obj[0].Title_Query4);
     set_First_Price_Query4(Obj[0].Price_Query4);
     set_First_Image_Query4(Obj[0].Image_Query4);
-    if(Obj[0].Title_Query4 === "CANNOT FIND ITEM")
+    if(Obj[0].Title_Query4.trim() === "CANNOT FIND ITEM")
         set_First_Image_Query4(Logos.Logo);
     set_First_Link_Query4(Obj[0].Link_Query4);
     set_First_Logo_Query4(Obj[0].Logo_Query4);
     set_Second_Title_Query4(Obj[1].Title_Query4);
     set_Second_Price_Query4(Obj[1].Price_Query4);
     set_Second_Image_Query4(Obj[1].Image_Query4);
-    if(Obj[1].Title_Query4 === "CANNOT FIND ITEM")
+    if(Obj[1].Title_Query4.trim() === "CANNOT FIND ITEM")
         set_Second_Image_Query4(Logos.Logo);
     set_Second_Link_Query4(Obj[1].Link_Query4);
     set_Second_Logo_Query4(Obj[1].Logo_Query4);
     set_Third_Title_Query4(Obj[2].Title_Query4);
     set_Third_Price_Query4(Obj[2].Price_Query4);
     set_Third_Image_Query4(Obj[2].Image_Query4);
-    if(Obj[2].Title_Query4 === "CANNOT FIND ITEM")
+    if(Obj[2].Title_Query4.trim() === "CANNOT FIND ITEM")
         set_Third_Image_Query4(Logos.Logo);
     set_Third_Link_Query4(Obj[2].Link_Query4);
     set_Third_Logo_Query4(Obj[2].Logo_Query4);
     set_Fourth_Title_Query4(Obj[3].Title_Query4);
     set_Fourth_Price_Query4(Obj[3].Price_Query4);
     set_Fourth_Image_Query4(Obj[3].Image_Query4);
-    if(Obj[3].Title_Query4 === "CANNOT FIND ITEM")
+    if(Obj[3].Title_Query4.trim() === "CANNOT FIND ITEM")
         set_Fourth_Image_Query4(Logos.Logo);
     set_Fourth_Link_Query4(Obj[3].Link_Query4);
     set_Fourth_Logo_Query4(Obj[3].Logo_Query4);
@@ -1369,28 +1385,28 @@ function App(){
     set_First_Title_Query5(Obj[0].Title_Query5);
     set_First_Price_Query5(Obj[0].Price_Query5);
     set_First_Image_Query5(Obj[0].Image_Query5);
-    if(Obj[0].Title_Query5 === "CANNOT FIND ITEM")
+    if(Obj[0].Title_Query5.trim() === "CANNOT FIND ITEM")
         set_First_Image_Query5(Logos.Logo);
     set_First_Link_Query5(Obj[0].Link_Query5);
     set_First_Logo_Query5(Obj[0].Logo_Query5);
     set_Second_Title_Query5(Obj[1].Title_Query5);
     set_Second_Price_Query5(Obj[1].Price_Query5);
     set_Second_Image_Query5(Obj[1].Image_Query5);
-    if(Obj[1].Title_Query5 === "CANNOT FIND ITEM")
+    if(Obj[1].Title_Query5.trim() === "CANNOT FIND ITEM")
         set_Second_Image_Query5(Logos.Logo);
     set_Second_Link_Query5(Obj[1].Link_Query5)
     set_Second_Logo_Query5(Obj[1].Logo_Query5);
     set_Third_Title_Query5(Obj[2].Title_Query5);
     set_Third_Price_Query5(Obj[2].Price_Query5);
     set_Third_Image_Query5(Obj[2].Image_Query5);
-    if(Obj[2].Title_Query5 === "CANNOT FIND ITEM")
+    if(Obj[2].Title_Query5.trim() === "CANNOT FIND ITEM")
         set_Third_Image_Query5(Logos.Logo);
     set_Third_Link_Query5(Obj[2].Link_Query5);
     set_Third_Logo_Query5(Obj[2].Logo_Query5);
     set_Fourth_Title_Query5(Obj[3].Title_Query5);
     set_Fourth_Price_Query5(Obj[3].Price_Query5);
     set_Fourth_Image_Query5(Obj[3].Image_Query5);
-    if(Obj[3].Title_Query5 === "CANNOT FIND ITEM")
+    if(Obj[3].Title_Query5.trim() === "CANNOT FIND ITEM")
         set_Fourth_Image_Query5(Logos.Logo);
     set_Fourth_Link_Query5(Obj[3].Link_Query5);
     set_Fourth_Logo_Query5(Obj[3].Logo_Query5);
@@ -1633,12 +1649,12 @@ function App(){
       <div>
        <Button variant="contained" style={buttonStyle} onClick = {onAdd}>
        	<Typography variant="button" style={{color: '#ffa500'}}>
-            Add Item
+            ADD TO GROCERY LIST
           </Typography>
       </Button>
       </div>
       <div>
-      <h2>List of items</h2>
+      <h2>GROCERY LIST</h2>
       { Search_Query1 !== null &&
       <Chip
         label={Search_Query1}
@@ -1676,16 +1692,17 @@ function App(){
       }
       </div>
       <div>
-      <Button variant="contained" color="primary" style={buttonStyle} onClick = {onSubmit}>
+      <Button variant="contained" color="primary" style={buttonStyle} onClick = {onSubmit} disabled={loading}>
         <Typography variant="button" style={{color: '#ffa500'}}>
-            Submit
+            GET THE BEST DEALS!
           </Typography>
       </Button>
+	  {loading && <CircularProgress size={24} className={classes.buttonStyle} />}
       </div>
       <div>
       <FormControl variant="outlined" className={classes.formControl}>
         <InputLabel ref={inputLabel} id="demo-simple-select-outlined-label">
-          SortBy
+          SORT BY
         </InputLabel>
         <Select
           labelId="demo-simple-select-outlined-label"
@@ -1714,22 +1731,19 @@ function App(){
           // <Avatar aria-label="recipe" className={classes.avatar}>
           //   1
           // </Avatar>
-          <Avatar
-            style={{align:"center"}} 
+          <Avatar 
             alt="Amazon_Logo" 
             src={First_Logo_Query1} 
             className={classes.bigAvatar} 
             />
         }
-        //action={
-          //<IconButton aria-label="settings">
-            //<MoreVertIcon />
-          //</IconButton>
-        //}
-        style={cardStyle}
+        action={
+          <IconButton aria-label="settings">
+            <MoreVertIcon />
+          </IconButton>
+        }
         title={First_Title_Query1}
         subheader={First_Price_Query1}
-        titleTypographyProps={{noWrap:true}}
       />
       <CardMedia 
         className={classes.media} 
@@ -1787,22 +1801,19 @@ function App(){
           // <Avatar aria-label="recipe" className={classes.avatar}>
           //   2
           // </Avatar>
-          <Avatar
-            style={{align:"center"}} 
+          <Avatar 
             alt="Walmart_Logo" 
             src={Second_Logo_Query1} 
             className={classes.bigAvatar} 
             />
         }
-        //action={
-          //<IconButton aria-label="settings">
-            //<MoreVertIcon/>
-          //</IconButton>
-        //}
-        style={cardStyle}
+        action={
+          <IconButton aria-label="settings">
+            <MoreVertIcon/>
+          </IconButton>
+        }
         title={Second_Title_Query1}
         subheader={Second_Price_Query1}
-        titleTypographyProps={{noWrap:true}}
       />
       <CardMedia
         className={classes.media}
@@ -1860,22 +1871,19 @@ function App(){
           // <Avatar aria-label="recipe" className={classes.avatar}>
           //   3
           // </Avatar>
-          <Avatar
-            style={{align:"center"}} 
+          <Avatar 
             alt="Target_Logo" 
             src={Third_Logo_Query1} 
             className={classes.bigAvatar} 
             />
         }
-        //action={
-          //<IconButton aria-label="settings">
-            //<MoreVertIcon />
-          //</IconButton>
-        //}
-        style={cardStyle}
+        action={
+          <IconButton aria-label="settings">
+            <MoreVertIcon />
+          </IconButton>
+        }
         title={Third_Title_Query1}
         subheader={Third_Price_Query1}
-        titleTypographyProps={{noWrap:true}}
       />
       <CardMedia
         className={classes.media}
@@ -1934,22 +1942,19 @@ function App(){
           // <Avatar aria-label="recipe" className={classes.avatar}>
           //   4
           // </Avatar>
-          <Avatar
-            style={{align:"center"}} 
+          <Avatar 
             alt="Whole_Logo" 
             src={Fourth_Logo_Query1} 
             className={classes.bigAvatar} 
             />
           }
-        //action={
-          //<IconButton aria-label="settings">
-            //<MoreVertIcon />
-          //</IconButton>
-        //}
-        style={cardStyle}
+        action={
+          <IconButton aria-label="settings">
+            <MoreVertIcon />
+          </IconButton>
+        }
         title={Fourth_Title_Query1}
         subheader={Fourth_Price_Query1}
-        titleTypographyProps={{noWrap:true}}
       />
       <CardMedia
         className={classes.media}
@@ -2016,22 +2021,19 @@ function App(){
       <Card className={classes.card}>
       <CardHeader
         avatar={
-          <Avatar
-            style={{align:"center"}} 
+          <Avatar 
             alt="Amazon_Logo" 
             src={First_Logo_Query2} 
             className={classes.bigAvatar} 
             />
         }
-        //action={
-          //<IconButton aria-label="settings">
-            //<MoreVertIcon />
-          //</IconButton>
-        //}
-        style={cardStyle}
+        action={
+          <IconButton aria-label="settings">
+            <MoreVertIcon />
+          </IconButton>
+        }
         title = {First_Title_Query2}
         subheader={First_Price_Query2}
-        titleTypographyProps={{noWrap:true}}
       />
       <CardMedia
         className={classes.media}
@@ -2089,22 +2091,19 @@ function App(){
         <Card className={classes.card}>
       <CardHeader
         avatar={
-          <Avatar
-            style={{align:"center"}} 
+          <Avatar 
             alt="Walmart_Logo" 
             src={Second_Logo_Query2} 
             className={classes.bigAvatar} 
             />
         }
-        //action={
-          //<IconButton aria-label="settings">
-            //<MoreVertIcon />
-          //</IconButton>
-        //}
-        style={cardStyle}
+        action={
+          <IconButton aria-label="settings">
+            <MoreVertIcon />
+          </IconButton>
+        }
         title={Second_Title_Query2}
         subheader={Second_Price_Query2}
-        titleTypographyProps={{noWrap:true}}
       />
       <CardMedia
         className={classes.media}
@@ -2160,22 +2159,19 @@ function App(){
         <Card className={classes.card}>
       <CardHeader
         avatar={
-          <Avatar
-            style={{align:"center"}} 
+          <Avatar 
             alt="Target_Logo" 
             src={Third_Logo_Query2} 
             className={classes.bigAvatar} 
             />
         }
-        //action={
-          //<IconButton aria-label="settings">
-            //<MoreVertIcon />
-          //</IconButton>
-        //}
-        style={cardStyle}
+        action={
+          <IconButton aria-label="settings">
+            <MoreVertIcon />
+          </IconButton>
+        }
         title={Third_Title_Query2}
         subheader={Third_Price_Query2}
-        titleTypographyProps={{noWrap:true}}
       />
       <CardMedia
         className={classes.media}
@@ -2231,22 +2227,19 @@ function App(){
         <Card className={classes.card}>
       <CardHeader
         avatar={
-          <Avatar
-            style={{align:"center"}} 
+          <Avatar 
             alt="Whole_Logo" 
             src={Fourth_Logo_Query2} 
             className={classes.bigAvatar} 
             />
         }
-        //action={
-          //<IconButton aria-label="settings">
-            //<MoreVertIcon />
-          //</IconButton>
-        //}
-        style={cardStyle}
+        action={
+          <IconButton aria-label="settings">
+            <MoreVertIcon />
+          </IconButton>
+        }
         title={Fourth_Title_Query2}
         subheader={Fourth_Price_Query2}
-        titleTypographyProps={{noWrap:true}}
       />
       <CardMedia
         className={classes.media}
@@ -2313,22 +2306,19 @@ function App(){
       <Card className={classes.card}>
       <CardHeader
         avatar={
-          <Avatar
-            style={{align:"center"}} 
+          <Avatar 
             alt="Amazon_Logo" 
             src={First_Logo_Query3} 
             className={classes.bigAvatar} 
             />
         }
-        //action={
-          //<IconButton aria-label="settings">
-            //<MoreVertIcon />
-          //</IconButton>
-        //}
-        style={cardStyle}
+        action={
+          <IconButton aria-label="settings">
+            <MoreVertIcon />
+          </IconButton>
+        }
         title = {First_Title_Query3}
         subheader={First_Price_Query3}
-        titleTypographyProps={{noWrap:true}}
       />
       <CardMedia
         className={classes.media}
@@ -2385,22 +2375,19 @@ function App(){
         <Card className={classes.card}>
       <CardHeader
         avatar={
-          <Avatar
-            style={{align:"center"}} 
+          <Avatar 
             alt="Walmart_Logo" 
             src={Second_Logo_Query3} 
             className={classes.bigAvatar} 
             />
         }
-        //action={
-          //<IconButton aria-label="settings">
-            //<MoreVertIcon />
-          //</IconButton>
-        //}
-        style={cardStyle}
+        action={
+          <IconButton aria-label="settings">
+            <MoreVertIcon />
+          </IconButton>
+        }
         title={Second_Title_Query3}
         subheader={Second_Price_Query3}
-        titleTypographyProps={{noWrap:true}}
       />
       <CardMedia
         className={classes.media}
@@ -2456,22 +2443,19 @@ function App(){
         <Card className={classes.card}>
       <CardHeader
         avatar={
-          <Avatar
-            style={{align:"center"}} 
+          <Avatar 
             alt="Target_Logo" 
             src={Third_Logo_Query3} 
             className={classes.bigAvatar} 
             />
         }
-        //action={
-          //<IconButton aria-label="settings">
-            //<MoreVertIcon />
-          //</IconButton>
-        //}
-        style={cardStyle}
+        action={
+          <IconButton aria-label="settings">
+            <MoreVertIcon />
+          </IconButton>
+        }
         title={Third_Title_Query3}
         subheader={Third_Price_Query3}
-        titleTypographyProps={{noWrap:true}}
       />
       <CardMedia
         className={classes.media}
@@ -2527,22 +2511,19 @@ function App(){
         <Card className={classes.card}>
       <CardHeader
         avatar={
-          <Avatar
-            style={{align:"center"}} 
+          <Avatar 
             alt="Whole_Logo" 
             src={Fourth_Logo_Query3} 
             className={classes.bigAvatar} 
             />
         }
-        //action={
-          //<IconButton aria-label="settings">
-            //<MoreVertIcon />
-          //</IconButton>
-        //}
-        style={cardStyle}
+        action={
+          <IconButton aria-label="settings">
+            <MoreVertIcon />
+          </IconButton>
+        }
         title={Fourth_Title_Query3}
         subheader={Fourth_Price_Query3}
-        titleTypographyProps={{noWrap:true}}
       />
       <CardMedia
         className={classes.media}
@@ -2609,22 +2590,19 @@ function App(){
       <Card className={classes.card}>
       <CardHeader
         avatar={
-          <Avatar
-            style={{align:"center"}}
+          <Avatar 
             alt="Amazon_Logo" 
             src={First_Logo_Query4} 
             className={classes.bigAvatar} 
             />
         }
-        //action={
-          //<IconButton aria-label="settings">
-            //<MoreVertIcon />
-          //</IconButton>
-        //}
-        style={cardStyle}
+        action={
+          <IconButton aria-label="settings">
+            <MoreVertIcon />
+          </IconButton>
+        }
         title = {First_Title_Query4}
         subheader={First_Price_Query4}
-        titleTypographyProps={{noWrap:true}}
       />
       <CardMedia
         className={classes.media}
@@ -2681,22 +2659,19 @@ function App(){
         <Card className={classes.card}>
       <CardHeader
         avatar={
-          <Avatar
-            style={{align:"center"}} 
+          <Avatar 
             alt="Walmart_Logo" 
             src={Second_Logo_Query4} 
             className={classes.bigAvatar} 
             />
         }
-        //action={
-          //<IconButton aria-label="settings">
-            //<MoreVertIcon />
-          //</IconButton>
-        //}
-        style={cardStyle}
+        action={
+          <IconButton aria-label="settings">
+            <MoreVertIcon />
+          </IconButton>
+        }
         title={Second_Title_Query4}
         subheader={Second_Price_Query4}
-        titleTypographyProps={{noWrap:true}}
       />
       <CardMedia
         className={classes.media}
@@ -2752,22 +2727,19 @@ function App(){
         <Card className={classes.card}>
       <CardHeader
         avatar={
-          <Avatar
-            style={{align:"center"}} 
+          <Avatar 
             alt="Target_Logo" 
             src={Third_Logo_Query4} 
             className={classes.bigAvatar} 
             />
         }
-        //action={
-          //<IconButton aria-label="settings">
-            //<MoreVertIcon />
-          //</IconButton>
-        //}
-        style={cardStyle}
+        action={
+          <IconButton aria-label="settings">
+            <MoreVertIcon />
+          </IconButton>
+        }
         title={Third_Title_Query4}
         subheader={Third_Price_Query4}
-        titleTypographyProps={{noWrap:true}}
       />
       <CardMedia
         className={classes.media}
@@ -2823,22 +2795,19 @@ function App(){
         <Card className={classes.card}>
       <CardHeader
         avatar={
-          <Avatar
-            style={{align:"center"}} 
+          <Avatar 
             alt="Whole_Logo" 
             src={Fourth_Logo_Query4} 
             className={classes.bigAvatar} 
             />
         }
-        //action={
-          //<IconButton aria-label="settings">
-            //<MoreVertIcon />
-          //</IconButton>
-        //}
-        style={cardStyle}
+        action={
+          <IconButton aria-label="settings">
+            <MoreVertIcon />
+          </IconButton>
+        }
         title={Fourth_Title_Query4}
         subheader={Fourth_Price_Query4}
-        titleTypographyProps={{noWrap:true}}
       />
       <CardMedia
         className={classes.media}
@@ -2905,22 +2874,19 @@ function App(){
       <Card className={classes.card}>
       <CardHeader
         avatar={
-          <Avatar
-            style={{align:"center"}} 
+          <Avatar 
             alt="Amazon_Logo" 
             src={First_Logo_Query5} 
             className={classes.bigAvatar} 
             />
         }
-        //action={
-          //<IconButton aria-label="settings">
-            //<MoreVertIcon />
-          //</IconButton>
-        //}
-        style={cardStyle}
+        action={
+          <IconButton aria-label="settings">
+            <MoreVertIcon />
+          </IconButton>
+        }
         title = {First_Title_Query5}
         subheader={First_Price_Query5}
-        titleTypographyProps={{noWrap:true}}
       />
       <CardMedia
         className={classes.media}
@@ -2977,22 +2943,19 @@ function App(){
         <Card className={classes.card}>
       <CardHeader
         avatar={
-          <Avatar
-            style={{align:"center"}} 
+          <Avatar 
             alt="Walmart_Logo" 
             src={Second_Logo_Query5} 
             className={classes.bigAvatar} 
             />
         }
-        //action={
-          //<IconButton aria-label="settings">
-            //<MoreVertIcon />
-          //</IconButton>
-        //}
-        style={cardStyle}
+        action={
+          <IconButton aria-label="settings">
+            <MoreVertIcon />
+          </IconButton>
+        }
         title={Second_Title_Query5}
         subheader={Second_Price_Query5}
-        titleTypographyProps={{noWrap:true}}
       />
       <CardMedia
         className={classes.media}
@@ -3048,22 +3011,19 @@ function App(){
         <Card className={classes.card}>
       <CardHeader
         avatar={
-          <Avatar
-            style={{align:"center"}}
+          <Avatar 
             alt="Target_Logo" 
             src={Third_Logo_Query5} 
             className={classes.bigAvatar} 
             />
         }
-        //action={
-          //<IconButton aria-label="settings">
-            //<MoreVertIcon />
-          //</IconButton>
-        //}
-        style={cardStyle}
+        action={
+          <IconButton aria-label="settings">
+            <MoreVertIcon />
+          </IconButton>
+        }
         title={Third_Title_Query5}
         subheader={Third_Price_Query5}
-        titleTypographyProps={{noWrap:true}}
       />
       <CardMedia
         className={classes.media}
@@ -3119,22 +3079,19 @@ function App(){
         <Card className={classes.card}>
       <CardHeader
         avatar={
-          <Avatar
-            style={{align:"center"}} 
+          <Avatar 
             alt="Whole_Logo" 
             src={Fourth_Logo_Query5} 
             className={classes.bigAvatar} 
             />
         }
-        //action={
-          //<IconButton aria-label="settings">
-            //<MoreVertIcon />
-          //</IconButton>
-        //}
-        style={cardStyle}
+        action={
+          <IconButton aria-label="settings">
+            <MoreVertIcon />
+          </IconButton>
+        }
         title={Fourth_Title_Query5}
         subheader={Fourth_Price_Query5}
-        titleTypographyProps={{noWrap:true}}
       />
       <CardMedia
         className={classes.media}
