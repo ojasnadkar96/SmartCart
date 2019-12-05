@@ -29,7 +29,11 @@ def findPrice(item):
 	mycollection = mydb.test_crawl
 	query_dict = {}
 	query_dict['Item'] = search_query['item']
-	indexed = mycollection.find_one(query_dict)
+	try:
+		indexed = mycollection.find_one(query_dict)
+	except:
+		indexed = None
+		print("MONGO CONNECTION TIMEOUT")
 	if  indexed is not None:
 		del indexed['_id']
 		return JsonResponse(indexed)

@@ -33,7 +33,7 @@ import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import backgroundImage from './background_2.png';
+import backgroundImage from './background_3.png';
 import CloseIcon from '@material-ui/icons/Close';
 import './App.css';
 
@@ -2361,7 +2361,7 @@ function App(){
             GET THE BEST DEALS!
           </Typography>
       </Button>
-	  {loading && <CircularProgress size={24} className={classes.buttonStyle} />}
+	  {loading && <CircularProgress size={30} className={classes.buttonStyle} />}
       </div>
       <div>
       <FormControl variant="outlined" className={classes.formControl}>
