@@ -46,7 +46,7 @@ def real_crawl(json_item):
 	dict_query = {}
 	dict_query['Item'] = json_item
 	default_space = ' '
-	default_title = 'CANNOT FIND ITEM' + 14*default_space
+	default_title = 'CANNOT FIND ITEM' + 8*default_space
 	default_price = '0.0'
 	default_image = "/Users/Kevin/Desktop/CapStone/SmartCart/front-end/src/logo.jpg"
 	try:
@@ -312,11 +312,11 @@ def clean_price_string_wf(price_wf):
 	return string_wf
 	
 def make_title_constant(real_title):
-	if(len(real_title)>30):
-		greater_title = real_title[:27] + '...'
+	if(len(real_title)>24):
+		greater_title = real_title[:21] + '...'
 		return greater_title
 	else:
 		space_string = ' '
-		number_of_spaces = 30 - len(real_title)
+		number_of_spaces = 24 - len(real_title)
 		lesser_title = real_title + number_of_spaces*space_string
 		return lesser_title

@@ -156,7 +156,7 @@ function App(){
   //Used for the SortBy dropdown
   const inputLabel = React.useRef(null);
   const [labelWidth, setLabelWidth] = React.useState(0);
-  const [sortType, set_sortType] = React.useState("None");
+  const [sortType, set_sortType] = React.useState(0);
   const [btnColor, set_btnColor] = React.useState('theme.palette.grey[500]');
 
   let [Search_Query,set_Search_Query] = React.useState(null);
@@ -177,7 +177,7 @@ function App(){
   //const Logos = {
     //AmazonLogo: require("E:/Data/MCS/Academics/4Q/Capstone/smart_cart/SmartCart/front-end/src/amazon_logo.jpg"),
     //WalmartLogo: require("E:/Data/MCS/Academics/4Q/Capstone/smart_cart/SmartCart/front-end/src/walmart_logo.png"),
-    //TargetLogo: require("E:/Data/MCS/Academics/4Q/Capstone/smart_cart/SmartCart/front-end/src/target_logo.png"),
+	//TargetLogo: require("E:/Data/MCS/Academics/4Q/Capstone/smart_cart/SmartCart/front-end/src/target_logo.png"),
     //WholeLogo: require("E:/Data/MCS/Academics/4Q/Capstone/smart_cart/SmartCart/front-end/src/whole_logo.jpg"),
     //Logo: require("E:/Data/MCS/Academics/4Q/Capstone/smart_cart/SmartCart/front-end/src/logo.jpg"),
   //};
@@ -1857,20 +1857,20 @@ function App(){
 
   const handleSort = (event) => {
 
-    if(event.target.value === '')
+    if(event.target.value === 0)
     {
+	  set_sortType(0);
       onSubmit();
-      set_sortType("None");
     }
     if(event.target.value === 1)
     {
+	  set_sortType(1);
       sortByCumulativePrice();
-      set_sortType("Cumulative");
     }
     if(event.target.value === 2)
     {
+	  set_sortType(2);
       sortByIndividualPrice();
-      set_sortType("Individual");
     }    
   };
 
@@ -1884,11 +1884,11 @@ function App(){
     if(First_Link_Query1.includes("https://products.wholefoodsmarket.com"))
       Whole_Flag_Query1 = true;
 
-    if(sortType === "None")
+    if(sortType === 0)
       onSubmit();
-    if(sortType === "Cumulative")
+    if(sortType === 1)
       sortByCumulativePrice();
-    if(sortType === "Individual")
+    if(sortType === 2)
       sortByIndividualPrice();
   };
 
@@ -1902,11 +1902,11 @@ function App(){
     if(Second_Link_Query1.includes("https://products.wholefoodsmarket.com"))
       Whole_Flag_Query1 = true;
 
-    if(sortType === "None")
+    if(sortType === 0)
       onSubmit();
-    if(sortType === "Cumulative")
+    if(sortType === 1)
       sortByCumulativePrice();
-    if(sortType === "Individual")
+    if(sortType === 2)
       sortByIndividualPrice();
   };
 
@@ -1920,11 +1920,11 @@ function App(){
     if(Third_Link_Query1.includes("https://products.wholefoodsmarket.com"))
       Whole_Flag_Query1 = true;
 
-    if(sortType === "None")
+    if(sortType === 0)
       onSubmit();
-    if(sortType === "Cumulative")
+    if(sortType === 1)
       sortByCumulativePrice();
-    if(sortType === "Individual")
+    if(sortType === 2)
       sortByIndividualPrice();
   };
 
@@ -1938,11 +1938,11 @@ function App(){
     if(Fourth_Link_Query1.includes("https://products.wholefoodsmarket.com"))
       Whole_Flag_Query1 = true;
 
-    if(sortType === "None")
+    if(sortType === 0)
       onSubmit();
-    if(sortType === "Cumulative")
+    if(sortType === 1)
       sortByCumulativePrice();
-    if(sortType === "Individual")
+    if(sortType === 2)
       sortByIndividualPrice();
   };
 
@@ -1956,11 +1956,11 @@ function App(){
     if(First_Link_Query2.includes("https://products.wholefoodsmarket.com"))
       Whole_Flag_Query2 = true;
 
-    if(sortType === "None")
+    if(sortType === 0)
       onSubmit();
-    if(sortType === "Cumulative")
+    if(sortType === 1)
       sortByCumulativePrice();
-    if(sortType === "Individual")
+    if(sortType === 2)
       sortByIndividualPrice();
   };
 
@@ -1974,11 +1974,11 @@ function App(){
     if(Second_Link_Query2.includes("https://products.wholefoodsmarket.com"))
       Whole_Flag_Query2 = true;
 
-    if(sortType === "None")
+    if(sortType === 0)
       onSubmit();
-    if(sortType === "Cumulative")
+    if(sortType === 1)
       sortByCumulativePrice();
-    if(sortType === "Individual")
+    if(sortType === 2)
       sortByIndividualPrice();
   };
 
@@ -1992,11 +1992,11 @@ function App(){
     if(Third_Link_Query2.includes("https://products.wholefoodsmarket.com"))
       Whole_Flag_Query2 = true;
 
-    if(sortType === "None")
+    if(sortType === 0)
       onSubmit();
-    if(sortType === "Cumulative")
+    if(sortType === 1)
       sortByCumulativePrice();
-    if(sortType === "Individual")
+    if(sortType === 2)
       sortByIndividualPrice();
   };
 
@@ -2010,11 +2010,11 @@ function App(){
     if(Fourth_Link_Query2.includes("https://products.wholefoodsmarket.com"))
       Whole_Flag_Query2 = true;
 
-    if(sortType === "None")
+    if(sortType === 0)
       onSubmit();
-    if(sortType === "Cumulative")
+    if(sortType === 1)
       sortByCumulativePrice();
-    if(sortType === "Individual")
+    if(sortType === 2)
       sortByIndividualPrice();
   };
 
@@ -2028,11 +2028,11 @@ function App(){
     if(First_Link_Query3.includes("https://products.wholefoodsmarket.com"))
       Whole_Flag_Query3 = true;
 
-    if(sortType === "None")
+    if(sortType === 0)
       onSubmit();
-    if(sortType === "Cumulative")
+    if(sortType === 1)
       sortByCumulativePrice();
-    if(sortType === "Individual")
+    if(sortType === 2)
       sortByIndividualPrice();
   };
 
@@ -2046,11 +2046,11 @@ function App(){
     if(Second_Link_Query3.includes("https://products.wholefoodsmarket.com"))
       Whole_Flag_Query3 = true;
 
-    if(sortType === "None")
+    if(sortType === 0)
       onSubmit();
-    if(sortType === "Cumulative")
+    if(sortType === 1)
       sortByCumulativePrice();
-    if(sortType === "Individual")
+    if(sortType === 2)
       sortByIndividualPrice();
   };
 
@@ -2064,11 +2064,11 @@ function App(){
     if(Third_Link_Query3.includes("https://products.wholefoodsmarket.com"))
       Whole_Flag_Query3 = true;
 
-    if(sortType === "None")
+    if(sortType === 0)
       onSubmit();
-    if(sortType === "Cumulative")
+    if(sortType === 1)
       sortByCumulativePrice();
-    if(sortType === "Individual")
+    if(sortType === 2)
       sortByIndividualPrice();
   };
 
@@ -2082,11 +2082,11 @@ function App(){
     if(Fourth_Link_Query3.includes("https://products.wholefoodsmarket.com"))
       Whole_Flag_Query3 = true;
 
-    if(sortType === "None")
+    if(sortType === 0)
       onSubmit();
-    if(sortType === "Cumulative")
+    if(sortType === 1)
       sortByCumulativePrice();
-    if(sortType === "Individual")
+    if(sortType === 2)
       sortByIndividualPrice();
   };
 
@@ -2100,11 +2100,11 @@ function App(){
     if(First_Link_Query4.includes("https://products.wholefoodsmarket.com"))
       Whole_Flag_Query4 = true;
 
-    if(sortType === "None")
+    if(sortType === 0)
       onSubmit();
-    if(sortType === "Cumulative")
+    if(sortType === 1)
       sortByCumulativePrice();
-    if(sortType === "Individual")
+    if(sortType === 2)
       sortByIndividualPrice();
   };
 
@@ -2118,11 +2118,11 @@ function App(){
     if(Second_Link_Query4.includes("https://products.wholefoodsmarket.com"))
       Whole_Flag_Query4 = true;
 
-    if(sortType === "None")
+    if(sortType === 0)
       onSubmit();
-    if(sortType === "Cumulative")
+    if(sortType === 1)
       sortByCumulativePrice();
-    if(sortType === "Individual")
+    if(sortType === 2)
       sortByIndividualPrice();
   };
 
@@ -2136,11 +2136,11 @@ function App(){
     if(Third_Link_Query4.includes("https://products.wholefoodsmarket.com"))
       Whole_Flag_Query4 = true;
 
-    if(sortType === "None")
+    if(sortType === 0)
       onSubmit();
-    if(sortType === "Cumulative")
+    if(sortType === 1)
       sortByCumulativePrice();
-    if(sortType === "Individual")
+    if(sortType === 2)
       sortByIndividualPrice();
   };
 
@@ -2154,11 +2154,11 @@ function App(){
     if(Fourth_Link_Query4.includes("https://products.wholefoodsmarket.com"))
       Whole_Flag_Query4 = true;
 
-    if(sortType === "None")
+    if(sortType === 0)
       onSubmit();
-    if(sortType === "Cumulative")
+    if(sortType === 1)
       sortByCumulativePrice();
-    if(sortType === "Individual")
+    if(sortType === 2)
       sortByIndividualPrice();
   };
 
@@ -2172,11 +2172,11 @@ function App(){
     if(First_Link_Query5.includes("https://products.wholefoodsmarket.com"))
       Whole_Flag_Query5 = true;
 
-    if(sortType === "None")
+    if(sortType === 0)
       onSubmit();
-    if(sortType === "Cumulative")
+    if(sortType === 1)
       sortByCumulativePrice();
-    if(sortType === "Individual")
+    if(sortType === 2)
       sortByIndividualPrice();
   };
 
@@ -2190,11 +2190,11 @@ function App(){
     if(Second_Link_Query5.includes("https://products.wholefoodsmarket.com"))
       Whole_Flag_Query5 = true;
 
-    if(sortType === "None")
+    if(sortType === 0)
       onSubmit();
-    if(sortType === "Cumulative")
+    if(sortType === 1)
       sortByCumulativePrice();
-    if(sortType === "Individual")
+    if(sortType === 2)
       sortByIndividualPrice();
   };
 
@@ -2208,11 +2208,11 @@ function App(){
     if(Third_Link_Query5.includes("https://products.wholefoodsmarket.com"))
       Whole_Flag_Query5 = true;
 
-    if(sortType === "None")
+    if(sortType === 0)
       onSubmit();
-    if(sortType === "Cumulative")
+    if(sortType === 1)
       sortByCumulativePrice();
-    if(sortType === "Individual")
+    if(sortType === 2)
       sortByIndividualPrice();
   };
 
@@ -2226,13 +2226,17 @@ function App(){
     if(Fourth_Link_Query5.includes("https://products.wholefoodsmarket.com"))
       Whole_Flag_Query5 = true;
 
-    if(sortType === "None")
+    if(sortType === 0)
       onSubmit();
-    if(sortType === "Cumulative")
+    if(sortType === 1)
       sortByCumulativePrice();
-    if(sortType === "Individual")
+    if(sortType === 2)
       sortByIndividualPrice();
   };
+  
+  React.useEffect(() => {
+    setLabelWidth(inputLabel.current.offsetWidth);
+  }, []);
   
   // componentDidMount(){
   //   this.callBackendAPI()
@@ -2367,12 +2371,12 @@ function App(){
         <Select
           labelId="demo-simple-select-outlined-label"
           id="demo-simple-select-outlined"
-          value=''
+          value={sortType}
           onChange={handleSort}
           labelWidth={labelWidth}
         >
-          <MenuItem value="">
-            <em>None</em>
+          <MenuItem value={0}>
+            None
           </MenuItem>
           <MenuItem value={1}>Sort By Store</MenuItem>
           <MenuItem value={2}>Sort By Item</MenuItem>
