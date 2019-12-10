@@ -193,18 +193,25 @@ def target_crawl(target_item):
 	target_grid = target_page.find_all('li', class_='h-padding-a-none h-display-flex Col-favj32-0 bkaXIn')
 	for target_item in target_grid:
 		target_element = target_item.find(lambda tag: tag.name == 'span' and tag.get('class') == ['h-text-bs'])
-		if target_element is not None:
+		if target_element is not None and price_is_a_number(target_element.text):
 			target_price = target_element.text
-			target_product = target_page.find('div', class_='flex-grow-one full-width')
-			target_picture = target_page.find('div', class_='Images__ImageContainer-sc-1gcxa3z-2 crxLuS')
+			target_product = target_item.find('div', class_='flex-grow-one full-width')
+			target_picture = target_item.find('div', class_='Images__ImageContainer-sc-1gcxa3z-2 crxLuS')
 			picture_source = target_picture.find('picture')
 			target_image = picture_source.find('source')['srcset']
 			target_anchor = target_product.find('a')
 			target_title = target_anchor.text
-			target_link = 'https://www.target.com/' + target_anchor['href']
+			target_link = 'https://www.target.com' + target_anchor['href']
 			break
 	target_driver.quit()
 	return target_title, target_price, target_link, target_image
+	
+def price_is_a_number(price_number):
+	not_available = 'price not available'
+	if price_number.strip().lower() == not_available.strip().lower():
+		return False
+	else:
+		return True
 
 def amazon_crawl(amazon_item):
 	amazon_headers = {"User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64;x64; rv:66.0) Gecko/20100101 Firefox/66.0", "Accept-Encoding":"gzip, deflate","Accept":"text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8", "DNT":"1","Connection":"close", "Upgrade-Insecure-Requests":"1"}
